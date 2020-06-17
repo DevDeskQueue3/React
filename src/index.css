@@ -34,6 +34,7 @@ code {
   height: 100%;
   justify-content: flex-start;
   margin-top: 40px;
+  text-align: center;
 }
 
 .App .login-container .top-text {
@@ -74,10 +75,6 @@ code {
   width: 100%;
   display: flex;
   justify-content: space-between;
-}
-
-#firstName, #lastName {
-  width: 49%;
 }
 
 @media only screen and (min-height: 812px) {
