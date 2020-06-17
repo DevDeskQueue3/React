@@ -4,7 +4,9 @@ const initialState = {
         name: "Mannie Alvarez",
         email: "carlos.alvarezberrio@gmail.com",
         password: "1234",
+        assignedTickets: [],        
     },
+    tickets: [],
     isFetching: false,
     error: ""
 }

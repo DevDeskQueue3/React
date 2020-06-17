@@ -1,9 +1,12 @@
 import React from 'react';
 import useForm from "../../hooks/useForm";
 import axiosWithAuth from '../../utils/axiosWithAuth';
+import * as MUI from "../../MaterialUI";
 
 const Login = () => {
+    const classes = MUI.useStyles();
     const [helper, handleChanges] = useForm({email: "", password: ""});
+    const error = "";
 
     const postLogin = e => {
         e.preventDefault();
@@ -14,20 +17,23 @@ const Login = () => {
             .catch(err => console.log(err.message, err.response.data));
     }
     return (
-        <div className = "helper-login-container">
+        <div className = "login-container">
+            <div className = "top-text">
             <h2>Helper Login</h2>
-            <p>Login to your account and start Helping.</p>
-            <p>Not a helper? <a href = "#">Click Here</a>.</p>
+                <p>Login to your account and start Helping. <br />
+                    Not a helper? <a href = "#">Click Here</a>.</p>
+            </div>
 
             <form onSubmit = {postLogin}>
-                <label htmlFor = "email">Email Address</label>
-                <input id = "email" type = "email" name = "email" value = {helper.email} onChange = {handleChanges} placeholder = "Email Address" />
+                <div className = "input-group">
+                    <MUI.TextField error = {error} helperText = {error && error} className = {classes.loginInput} id = "email" type = "email" name = "email" value = {helper.email} onChange = {handleChanges} label = "Email Address" />
 
-                <label htmlFor = "password">Password</label>
-                <input id = "password" type = "password" name = "password" value = {helper.password} onChange = {handleChanges} placeholder = "Password" />
-
-                <button type = "submit">Login</button>
-
+                    <MUI.TextField error = {error} helperText = {error && error} className = {classes.loginInput} id = "password" type = "password" name = "password" value = {helper.password} onChange = {handleChanges} label = "Password" />
+                </div>
+                
+                <div className = "button-group">
+                    <button type = "submit" disabled>Login</button>
+                </div>
                 {/* 
                     //Stretch to add Slack login
 

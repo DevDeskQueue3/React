@@ -1,8 +1,11 @@
 import React from 'react';
 import useForm from "../../hooks/useForm";
 import axiosWithAuth from '../../utils/axiosWithAuth';
+import * as MUI from "../../MaterialUI";
 
 const Register = () => {
+    const classes = MUI.useStyles();
+    const error = "";
     const [helper, handleChanges] = useForm({
         firstName: "",
         lastName: "",
@@ -29,25 +32,29 @@ const Register = () => {
 
 
     return (
-        <div className = "helper-login-container">
+        <div className = "login-container">
+            <div className = "top-text">
             <h2>Helper Sign Up</h2>
-            <p>Create an account and start helping.</p>
-            <p>Not a helper? <a href = "#">Click Here</a>.</p>
+                <p>Create an account and start helping.<br />
+                    Not a helper? <a href = "#">Click Here</a>.</p>
+            </div>
 
             <form onSubmit = {postSignup}>
-                <label htmlFor = "firstName">First Name:</label>
-                <input id = "firstName" type = "text" name = "firstName" value = {helper.firstName} onChange = {handleChanges} placeholder = "First Name" />
+                <div className = "input-group">
+                    <div className = "name-group">
+                        <MUI.TextField className = {classes.loginInput} error = {error} helperText = {error && error} id = "firstName" type = "text" name = "firstName" value = {helper.firstName} onChange = {handleChanges} label = "First Name" />
 
-                <label htmlFor = "lastName">Last Name:</label>
-                <input id = "lastName" type = "text" name = "lastName" value = {helper.lastName} onChange = {handleChanges} placeholder = "Last Name" />
+                        <MUI.TextField className = {classes.loginInput} error = {error} helperText = {error && error} id = "lastName" type = "text" name = "lastName" value = {helper.lastName} onChange = {handleChanges} label = "Last Name" />
+                    </div>
 
-                <label htmlFor = "email">Email Address</label>
-                <input id = "email" type = "email" name = "email" value = {helper.email} onChange = {handleChanges} placeholder = "Email Address" />
+                    <MUI.TextField className = {classes.loginInput} error = {error} helperText = {error && error} id = "email" type = "email" name = "email" value = {helper.email} onChange = {handleChanges} label = "Email Address" />
 
-                <label htmlFor = "password">Password</label>
-                <input id = "password" type = "password" name = "password" value = {helper.password} onChange = {handleChanges} placeholder = "Password" />
+                    <MUI.TextField className = {classes.loginInput} error = {error} helperText = {error && error} id = "password" type = "password" name = "password" value = {helper.password} onChange = {handleChanges} label = "Password" />
+                </div>
 
-                <button type = "submit">Create Account</button>
+                <div className = "button-group">
+                    <button type = "submit" disabled>Create Account</button>
+                </div>
 
                 {/* 
                     //Stretch to add Slack login

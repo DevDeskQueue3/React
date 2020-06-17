@@ -1,5 +1,12 @@
 const initialState = {
-    student: {},
+    student: {
+        id: 23984,
+        name: "Mannie Alvarez",
+        email: "carlos.alvarezberrio@gmail.com",
+        password: "1234",
+        openTickets: [],
+        closedTickets: [],
+    },
     isFetching: false,
     error: ""
 }

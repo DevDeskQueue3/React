@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,9 +9,79 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+ /*  background: #F9FAFB; */
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.App .login-container {
+  width: 320px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0px 20px;
+}
+
+.App .login-container form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: flex-start;
+  margin-top: 40px;
+}
+
+.App .login-container .top-text {
+  text-align: center;
+}
+
+/* .App .login-container form input {
+  width: 100%;
+  height: 64px;
+  margin-bottom: 24px;
+} */
+
+.App .login-container form .input-group {
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.App .login-container form button {
+  width: 100%;
+  height: 56px;
+  margin-bottom: 24px;
+  border: none;
+  border-radius: 8px;
+  background: #C716C4;
+  color: #fff;
+  font-size: 21px;
+  font-weight: bold;
+}
+
+.App .login-container form button:disabled {
+  background: #EFEFEF;
+  font-size: 18px;
+  font-weight: normal;
+  color: #2E2C48;
+}
+
+.App .login-container form .name-group {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+#firstName, #lastName {
+  width: 49%;
+}
+
+@media only screen and (min-height: 812px) {
+  .App .login-container {
+    padding: 150px 0;
+  }
 }
