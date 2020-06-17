@@ -5,6 +5,8 @@ import HelperRegister from "./components/helper/Register";
 import StudentLogin from './components/student/Login';
 import StudentRegister from './components/student/Register';
 
+import './App.css';
+
 const App = () => {
   return (
     <div className="App">

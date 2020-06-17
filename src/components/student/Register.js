@@ -1,8 +1,13 @@
 import React from 'react';
 
+import { Container } from '@material-ui/core';
+
 const StudentRegister = () => {
     return (
-        <h1>Registration form goes here...</h1>
+        <>
+            <Container fixed>
+            </Container>
+        </>
     );
 };
 
