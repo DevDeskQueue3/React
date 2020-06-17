@@ -32,7 +32,7 @@ const Register = () => {
         <div className = "helper-login-container">
             <h2>Helper Sign Up</h2>
             <p>Create an account and start helping.</p>
-            <p>Not a helper? <a href = "#">Click Here</a>.</p>
+            <p>Not a helper? <a href="#">Click Here</a>.</p>
 
             <form onSubmit = {postSignup}>
                 <label htmlFor = "firstName">First Name:</label>
