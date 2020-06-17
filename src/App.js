@@ -1,15 +1,15 @@
 import React from 'react';
+import { Route } from "react-router-dom";
+import HelperLogin from "./components/helper/Login";
+import HelperRegister from "./components/helper/Register";
 
-import './App.css';
-
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>DevDeskQueue Coming Soon!</h1>
-      </header>
+    <div className = "App">
+      <Route path = "/helper/login" component = {HelperLogin} />
+      <Route path = "/helper/signup" component = {HelperRegister} />
     </div>
   );
-}
+};
 
 export default App;

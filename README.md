@@ -1,5 +1,30 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## DevDesk Queue App
+Students at Lambda School need a place where they can escalate their concerns and receive help. This app will allow an admin to manage help desk tickets that come in from Lambda School Students.
+
+### Product Vision Document (PVD)
+Here is the link for the Product Vision Document to read more about our goals for this app: [PVD](https://docs.google.com/document/d/1krugO1IBcXsC9sUGfoRJifWSltto1Vq4ZzcJBieuRtc/edit#)
+
+## MVP
+1. As a `student` I want to login and have the ability to see `tickets` that are currently open for help.
+
+2. As a `student` I want to be able to create a new `help ticket` with a `title`, `description`, `what I've tried` and a `category` (ex: React).
+
+3. As a `helper` I want to be able to login and see a list of open tickets. 
+
+4. As a `helper` I want to be able to assign a `ticket` to myself by clicking a "help student" button.
+
+4. As a `helper` I want to be able to mark the `ticket` as "resolved", or re-assign the `ticket` back to the `queue` if I cannot resolve it.
+
+
+## STRETCH
+1. Build an integrated Slackbot that allows students to submit help `tickets` through Slack. Allow the ability to subscribe to the `queue` in Slack to be notified if someone opens a `ticket`.
+
+2. A `user` can be both a `student` and a `helper`
+
+
+
 ## Available Scripts
 
 In the project directory, you can run:
