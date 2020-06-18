@@ -16,3 +16,21 @@ div.login-wrapper form.login-form{
 div.MuiFilledInput-root{
     background-color: white;
 }
+
+div.login-wrapper form.login-form button{
+    font-size: 1.4rem;
+}
+
+.divider{
+    height: 10px;
+    width: 20%;
+}
+
+.divider:before, .divider:after{
+    content: ' ';
+    border-bottom: 1px solid gray;
+    position: relative;
+    height: 10px;
+    top: 25%;
+    width: 20%;
+}

@@ -8,6 +8,7 @@ import {
     FilledInput,
     IconButton,
     makeStyles,
+    withStyles,
     ThemeProvider,
     InputAdornment,
     createMuiTheme
@@ -32,6 +33,16 @@ const theme = createMuiTheme({
         primary: orange,
     },
 });
+
+const ColorButton = withStyles((theme) => ({
+    root: {
+        color: theme.palette.getContrastText(orange[500]),
+        backgroundColor: orange[500],
+        '&:hover': {
+            backgroundColor: orange[700]
+        }
+    }
+}))(Button);
 
 const useStyles = makeStyles((theme) => ({
     margin: {
@@ -101,9 +112,10 @@ const StudentLogin = () => {
                                 }
                             />
                         </FormControl>
-                        <Button size='large'
+                        <ColorButton size='large'
                                 color='primary'
-                        >Create Account</Button>
+                        >Create Account</ColorButton>
+                        <div className='divider'>or</div>
                     </ThemeProvider>
                 </form>
             </Container>
