@@ -1,28 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
 
 import * as MUI from '../../MaterialUI/index';
-
-// import { 
-//     Container,
-//     FormControl,
-//     InputLabel,
-//     TextField,
-//     Button,
-//     Input,
-//     IconButton,
-//     makeStyles,
-//     withStyles,
-//     ThemeProvider,
-//     InputAdornment,
-//     createMuiTheme
-// } from '@material-ui/core';
-
-// import {
-//     AccountCircle,
-//     Visibility,
-//     VisibilityOff
-// } from '@material-ui/icons';
+import * as Styles from '../../MaterialUI/useStyles';
+import { useStyles } from '../../MaterialUI/useStyles';
 
 import { orange } from '@material-ui/core/colors';
 
@@ -32,30 +14,8 @@ import * as yup from 'yup';
 
 import useForm from '../../hooks/useForm';
 
-const theme = MUI.createMuiTheme({
-    palette: {
-        primary: orange,
-    },
-});
-
-const ColorButton = MUI.withStyles((theme) => ({
-    root: {
-        color: theme.palette.getContrastText(orange[500]),
-        backgroundColor: orange[500],
-        '&:hover': {
-            backgroundColor: orange[700]
-        }
-    }
-}))(MUI.Button);
-
-const useStyles = MUI.makeStyles((theme) => ({
-    margin: {
-        margin: theme.spacing(1)
-    }
-}));
-
 const StudentLogin = () => {
-    const classes = useStyles();
+    const classes = useStyles;
 
     const [showPassword, setShowPassword] = useState(false);
 
@@ -91,8 +51,8 @@ const StudentLogin = () => {
                     <p>Login to your account and we'll connect you with a Lambda School Helper.</p>
                 </div>
                 <form className='login-form' onSubmit={handleSubmit}>
-                    <MUI.ThemeProvider theme={theme}>
-                        <MUI.FormControl className={classes.margin}>
+                    <MUI.ThemeProvider theme={Styles.theme}>
+                        <MUI.FormControl className={useStyles.margin}>
                             <MUI.InputLabel htmlFor='email-input'>Email Address</MUI.InputLabel>
                             <MUI.Input id='email-input'
                                 onChange={handleChanges}
@@ -106,7 +66,7 @@ const StudentLogin = () => {
                                 }
                             />
                         </MUI.FormControl>
-                        <MUI.FormControl className={classes.margin}>
+                        <MUI.FormControl className={useStyles.margin}>
                             <MUI.InputLabel htmlFor='password-input'>Password</MUI.InputLabel>
                             <MUI.Input id='password-input'
                                 type={showPassword ? 'text' : 'password'}
@@ -123,9 +83,9 @@ const StudentLogin = () => {
                                 }
                             />
                         </MUI.FormControl>
-                        <ColorButton size='large'
+                        <Styles.ColorButton size='large'
                                 color='primary'
-                        >Login</ColorButton>
+                        >Login</Styles.ColorButton>
                     </MUI.ThemeProvider>
                 </form>
                 <div className='divider'>or</div>

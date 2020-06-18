@@ -15,17 +15,11 @@ import {
     IconButton,
     ThemeProvider,
     InputAdornment,
-    CircularProgress,
-    createMuiTheme,
-    makeStyles,
-    withStyles
+    CircularProgress
 } from '@material-ui/core';
 
 export {
     useStyles,
-    makeStyles,
-    withStyles,
-    createMuiTheme,
     TextField,
     Container,
     FormControl,
