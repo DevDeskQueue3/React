@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import useForm from "../../hooks/useForm";
 import { loginFormSchema } from "../../utils/loginFormValidation";
 import * as MUI from "../../MaterialUI";
+import { theme } from "../../MaterialUI/useStyles";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getToken } from "../../actions/login";
@@ -10,7 +11,7 @@ const initialValues = {
     email: "",
     password: ""
 }
-const Login = () => {
+const Login = props => {
     const dispatch = useDispatch();
     const { isFetching, error } = useSelector(state => state.login);
     const classes = MUI.useStyles();
@@ -27,10 +28,16 @@ const Login = () => {
     const postLogin = e => {
         e.preventDefault();
 
-        console.log(helper)
-
         dispatch(getToken(helper));
     }
+
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem("user"))
+        if(user) {
+            props.history.push("/tickets")
+        }
+    }, [isFetching])
+
     return (
         <div className = "login-container">
             <div className = "top-text">
@@ -40,6 +47,7 @@ const Login = () => {
             </div>
 
             <form onSubmit = {postLogin}>
+                <MUI.ThemeProvider theme = {theme}>
                 <div className = "input-group">
                     <MUI.TextField 
                         error = {formErrors.email.length > 0} 
@@ -62,6 +70,7 @@ const Login = () => {
                         value = {helper.password} 
                         onChange = {handleChanges} 
                         label = "Password" 
+                        
                     />
 
                     {error.code && <span className = "form-error">{
@@ -73,7 +82,7 @@ const Login = () => {
                 
 
                 <div className = "button-group">
-                    <button type = "submit" disabled = {buttonDisabled}>Login</button>
+                    {isFetching ? <MUI.CircularProgress /> : <button type = "submit" disabled = {buttonDisabled}>Login</button>}
                 </div>
 
                 <Link to = "/helper/signup">Don't have an account?</Link>
@@ -89,6 +98,7 @@ const Login = () => {
 
                     <a href = "#">Connect using Slack</a>
                 */}
+                </MUI.ThemeProvider>
             </form>
         </div>
     );

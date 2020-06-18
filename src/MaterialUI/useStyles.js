@@ -1,4 +1,11 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createMuiTheme } from '@material-ui/core';
+import { orange } from '@material-ui/core/colors';
+
+export const theme = createMuiTheme({
+    palette: {
+        primary: orange,
+    },
+});
 
 const useStyles = makeStyles((theme) => ({
     loginInput: {
@@ -7,6 +14,9 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: "21px !important",
         marginRight: "10px !important",
     },
+    margin: {
+        margin: theme.spacing(1)
+    }
 }));
 
 export default useStyles;

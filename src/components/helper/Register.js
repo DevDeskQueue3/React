@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getToken } from "../../actions/login";
 import * as MUI from "../../MaterialUI";
+import { theme } from "../../MaterialUI/useStyles";
 
 const initialValues = {
     firstName: "",
@@ -13,7 +14,7 @@ const initialValues = {
     password: ""
 };
 
-const Register = () => {
+const Register = props => {
     const dispatch = useDispatch();
     const { isFetching, error } = useSelector(state => state.login);
 
@@ -44,6 +45,13 @@ const Register = () => {
         
     }
 
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem("user"))
+        if(user) {
+            props.history.push("/tickets")
+        }
+    }, [isFetching])
+
 
     return (
         <div className = "login-container">
@@ -54,6 +62,7 @@ const Register = () => {
             </div>
 
             <form onSubmit = {postSignup}>
+                <MUI.ThemeProvider theme = {theme}>
                 <div className = "input-group">
                     <div className = "name-group">
                         <MUI.TextField 
@@ -129,6 +138,7 @@ const Register = () => {
 
                     <a href = "#">Connect using Slack</a>
                 */}
+                </MUI.ThemeProvider>
             </form>
         </div>
     );
