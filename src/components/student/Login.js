@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { 
     Container,
     FormControl,
     InputLabel,
+    TextField,
     Button,
-    Link,
-    FilledInput,
+    Input,
     IconButton,
     makeStyles,
     withStyles,
@@ -66,7 +67,7 @@ const StudentLogin = () => {
         password: yup.string().required("Password is a required field")
     });
 
-    const { values, handleChanges, handleSubmit, formErrors} = useForm(loginData, formSchema);
+    const { values, handleChanges, formErrors} = useForm(loginData, formSchema);
 
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);
@@ -76,29 +77,36 @@ const StudentLogin = () => {
         e.preventDefault();
     };
 
+    const handleSubmit = () => {
+
+    };
+
     return (
         <>
-            <Container className='login-wrapper'>
-                <h1>We're here to help.</h1>
-                <p>Create a help ticket and we'll connect you with a Lambda School Helper.</p>
+            <Container className='login-container'>
+                <div className='top-text'>
+                    <h1>We're here to help.</h1>
+                    <p>Login to your account and we'll connect you with a Lambda School Helper.</p>
+                </div>
                 <form className='login-form' onSubmit={handleSubmit}>
                     <ThemeProvider theme={theme}>
                         <FormControl className={classes.margin}>
                             <InputLabel htmlFor='email-input'>Email Address</InputLabel>
-                            <FilledInput id='email-input'
+                            <Input id='email-input'
                                 onChange={handleChanges}
                                 value={values.email}
                                 endAdornment={
                                     <InputAdornment position='end'>
-                                        <AccountCircle />
+                                        <IconButton>
+                                            <AccountCircle />
+                                        </IconButton>
                                     </InputAdornment>
                                 }
                             />
                         </FormControl>
                         <FormControl className={classes.margin}>
                             <InputLabel htmlFor='password-input'>Password</InputLabel>
-                            <FilledInput id='password-input'
-                                variant='outlined'
+                            <Input id='password-input'
                                 type={showPassword ? 'text' : 'password'}
                                 value={values.password}
                                 endAdornment={
@@ -115,17 +123,17 @@ const StudentLogin = () => {
                         </FormControl>
                         <ColorButton size='large'
                                 color='primary'
-                        >Create Account</ColorButton>
+                        >Login</ColorButton>
                     </ThemeProvider>
                 </form>
                 <div className='divider'>or</div>
                 <section className='login-links'>
-                    <Link href='#'
+                    {/* <Link href='#'
                             target='_blank'
                             rel='noopener'
-                    >Connect using Slack</Link>
+                    >Connect using Slack</Link> */}
                     <span>Lambda school employee? </span>
-                    <Link href='#'
+                    <Link to='/helper/login'
                             target='_blank'
                             rel='noopener'
                     >Click here</Link>
