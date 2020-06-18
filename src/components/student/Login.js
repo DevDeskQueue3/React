@@ -5,6 +5,7 @@ import {
     FormControl,
     InputLabel,
     Button,
+    Link,
     FilledInput,
     IconButton,
     makeStyles,
@@ -115,9 +116,20 @@ const StudentLogin = () => {
                         <ColorButton size='large'
                                 color='primary'
                         >Create Account</ColorButton>
-                        <div className='divider'>or</div>
                     </ThemeProvider>
                 </form>
+                <div className='divider'>or</div>
+                <section className='login-links'>
+                    <Link href='#'
+                            target='_blank'
+                            rel='noopener'
+                    >Connect using Slack</Link>
+                    <span>Lambda school employee? </span>
+                    <Link href='#'
+                            target='_blank'
+                            rel='noopener'
+                    >Click here</Link>
+                </section>
             </Container>
         </>
     );
