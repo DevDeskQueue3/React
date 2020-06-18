@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import * as MUI from '../../MaterialUI/index';
 import * as Styles from '../../MaterialUI/useStyles';
-import { useStyles } from '../../MaterialUI/useStyles';
 
 import { orange } from '@material-ui/core/colors';
 
@@ -15,7 +14,7 @@ import * as yup from 'yup';
 import useForm from '../../hooks/useForm';
 
 const StudentLogin = () => {
-    const classes = useStyles;
+    const classes = MUI.useStyles();
 
     const [showPassword, setShowPassword] = useState(false);
 
@@ -52,7 +51,7 @@ const StudentLogin = () => {
                 </div>
                 <form className='login-form' onSubmit={handleSubmit}>
                     <MUI.ThemeProvider theme={Styles.theme}>
-                        <MUI.FormControl className={useStyles.margin}>
+                        <MUI.FormControl className={classes.margin}>
                             <MUI.InputLabel htmlFor='email-input'>Email Address</MUI.InputLabel>
                             <MUI.Input id='email-input'
                                 onChange={handleChanges}
@@ -66,7 +65,7 @@ const StudentLogin = () => {
                                 }
                             />
                         </MUI.FormControl>
-                        <MUI.FormControl className={useStyles.margin}>
+                        <MUI.FormControl className={classes.margin}>
                             <MUI.InputLabel htmlFor='password-input'>Password</MUI.InputLabel>
                             <MUI.Input id='password-input'
                                 type={showPassword ? 'text' : 'password'}
