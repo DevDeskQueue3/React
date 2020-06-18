@@ -3,7 +3,7 @@ import useForm from "../../hooks/useForm";
 import { loginFormSchema } from "../../utils/loginFormValidation";
 import * as MUI from "../../MaterialUI";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getToken } from "../../actions/login";
 
 const initialValues = {
@@ -12,8 +12,9 @@ const initialValues = {
 }
 const Login = () => {
     const dispatch = useDispatch();
-
+    const { isFetching, error } = useSelector(state => state.login);
     const classes = MUI.useStyles();
+
     const [helper, handleChanges, formErrors] = useForm(initialValues, loginFormSchema);
     const [buttonDisabled, setButtonDisabled] = useState(true);
 
@@ -28,7 +29,7 @@ const Login = () => {
 
         console.log(helper)
 
-        //dispatch(getToken(helper));
+        dispatch(getToken(helper));
     }
     return (
         <div className = "login-container">
@@ -62,8 +63,15 @@ const Login = () => {
                         onChange = {handleChanges} 
                         label = "Password" 
                     />
+
+                    {error.code && <span className = "form-error">{
+                        error.code === 404 ? "No account found with that email address. Check your email and try again" : 
+                        error.code === 401 ? "Email or Password is incorrect" :
+                        error.message}</span>}
                 </div>
+
                 
+
                 <div className = "button-group">
                     <button type = "submit" disabled = {buttonDisabled}>Login</button>
                 </div>

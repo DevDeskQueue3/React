@@ -13,7 +13,7 @@ const initialState = {
         token: "$2a$08$bosi0lzAK4eOEiA3eBeyz.16KThu0rIQDRFjJ1CoB2ZmSmhokNfKK",
     },
     isFetching: false,
-    error: ""
+    error: {}
 }
 
 export const login = (state = initialState, action) => {
