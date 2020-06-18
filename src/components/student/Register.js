@@ -55,7 +55,7 @@ const StudentRegister = () => {
             <div className='top-text'>
                 <h1>Student Sign Up</h1>
                 <p>Create an account to create and track your help tickets.</p>
-                <Link to='/helper/signup'>Click here</Link>
+                Not a Student? <Link to='/helper/signup'>Click here</Link>
             </div>
             <form onSubmit={handleSubmit}>
                 <MUI.ThemeProvider theme={theme}>
@@ -63,18 +63,22 @@ const StudentRegister = () => {
                         <div className='name-group'>
                             <MUI.TextField className={classes.loginInput}
                                         type='text'
+                                        value={values.firstName}
+                                        onChange={handleChanges}
                                         id='firstName'
                                         name='firstName'
                                         label='First Name' />
                             <MUI.TextField className={classes.loginInput}
                                         type='text'
+                                        value={values.lastName}
+                                        onChange={handleChanges}
                                         id='lastName'
                                         name='lastName'
                                         label='Last Name' />
                         </div>
                     </div>
                     <MUI.FormControl className={classes.margin}>
-                        <MUI.TextField id='email-input'
+                        <MUI.TextField id='email'
                             onChange={handleChanges}
                             value={values.email}
                             label='Email Address'
@@ -92,7 +96,7 @@ const StudentRegister = () => {
                         />
                     </MUI.FormControl>
                     <MUI.FormControl className={classes.margin}>
-                        <MUI.TextField id='password-input'
+                        <MUI.TextField id='password'
                             type={showPassword ? 'text' : 'password'}
                             value={values.password}
                             label='Password'

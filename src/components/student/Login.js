@@ -70,6 +70,7 @@ const StudentLogin = () => {
                             <MUI.TextField id='email'
                                 name='email'
                                 onChange={handleChanges}
+                                error={formErrors.email.length > 0}
                                 value={values.email}
                                 data-cy='email'
                                 label='Email Address'
@@ -88,6 +89,7 @@ const StudentLogin = () => {
                         <MUI.FormControl className={classes.margin}>
                             <MUI.TextField id='password'
                                 name='password'
+                                error={formErrors.password.length > 0}
                                 type={showPassword ? 'text' : 'password'}
                                 value={values.password}
                                 onChange={handleChanges}
