@@ -6,3 +6,11 @@ div.login-wrapper{
     align-items: center;
     font-size: 1.5rem;
 }
+
+div.login-wrapper form{
+    font-size: 1.8rem;
+}
+
+div.MuiFilledInput-root{
+    background-color: white;
+}

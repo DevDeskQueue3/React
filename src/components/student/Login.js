@@ -8,7 +8,9 @@ import {
     FilledInput,
     IconButton,
     makeStyles,
-    InputAdornment
+    ThemeProvider,
+    InputAdornment,
+    createMuiTheme
 } from '@material-ui/core';
 
 import {
@@ -17,7 +19,15 @@ import {
     VisibilityOff
 } from '@material-ui/icons';
 
+import { orange } from '@material-ui/core/colors';
+
 import './student.css';
+
+const theme = createMuiTheme({
+    palette: {
+        primary: orange,
+    },
+});
 
 const useStyles = makeStyles((theme) => ({
     margin: {
@@ -59,34 +69,36 @@ const StudentLogin = () => {
                 <h1>We're here to help.</h1>
                 <p>Create a help ticket and we'll connect you with a Lambda School Helper.</p>
                 <form className='login-form' onSubmit={handleSubmit}>
-                    <FormControl className={classes.margin}>
-                        <InputLabel htmlFor='email-input'>Email Address</InputLabel>
-                        <FilledInput id='email-input'
-                            endAdornment={
-                                <InputAdornment position='end'>
-                                    <AccountCircle />
-                                </InputAdornment>
-                            }
-                        />
-                    </FormControl>
-                    <FormControl className={classes.margin}>
-                        <InputLabel htmlFor='password-input'>Password</InputLabel>
-                        <FilledInput id='password-input'
-                               variant='outlined'
-                               type={showPassword ? 'text' : 'password'}
-                               value={loginData.password}
-                               endAdornment={
-                                   <InputAdornment position='end'>
-                                       <IconButton aria-label='toggle password visibility'
-                                                   onClick={handleClickShowPassword}
-                                                   onMouseDown={handleMouseDownPassword}
-                                       >
-                                           {showPassword ? <Visibility /> : <VisibilityOff />}
-                                       </IconButton>
-                                   </InputAdornment>
-                               }
-                        />
-                    </FormControl>
+                    <ThemeProvider theme={theme}>
+                        <FormControl className={classes.margin}>
+                            <InputLabel htmlFor='email-input'>Email Address</InputLabel>
+                            <FilledInput id='email-input'
+                                endAdornment={
+                                    <InputAdornment position='end'>
+                                        <AccountCircle />
+                                    </InputAdornment>
+                                }
+                            />
+                        </FormControl>
+                        <FormControl className={classes.margin}>
+                            <InputLabel htmlFor='password-input'>Password</InputLabel>
+                            <FilledInput id='password-input'
+                                variant='outlined'
+                                type={showPassword ? 'text' : 'password'}
+                                value={loginData.password}
+                                endAdornment={
+                                    <InputAdornment position='end'>
+                                        <IconButton aria-label='toggle password visibility'
+                                                    onClick={handleClickShowPassword}
+                                                    onMouseDown={handleMouseDownPassword}
+                                        >
+                                            {showPassword ? <Visibility /> : <VisibilityOff />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                }
+                            />
+                        </FormControl>
+                    </ThemeProvider>
                 </form>
             </Container>
         </>
