@@ -14,7 +14,7 @@ const initialValues = {
     password: ""
 };
 
-const Register = () => {
+const Register = props => {
     const dispatch = useDispatch();
     const { isFetching, error } = useSelector(state => state.login);
 
@@ -44,6 +44,13 @@ const Register = () => {
         dispatch(getToken(newHelper));
         
     }
+
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem("user"))
+        if(user) {
+            props.history.push("/tickets")
+        }
+    }, [isFetching])
 
 
     return (

@@ -11,23 +11,13 @@ const initialValues = {
     email: "",
     password: ""
 }
-const Login = () => {
+const Login = props => {
     const dispatch = useDispatch();
     const { isFetching, error } = useSelector(state => state.login);
     const classes = MUI.useStyles();
 
     const [helper, handleChanges, formErrors] = useForm(initialValues, loginFormSchema);
     const [buttonDisabled, setButtonDisabled] = useState(true);
-
-    const [showPassword, setShowPassword] = useState(false);
-
-    const handleClickShowPassword = () => {
-        setShowPassword(!showPassword);
-    };
-
-    const handleMouseDownPassword = (e) => {
-        e.preventDefault();
-    };
 
     useEffect(() => {
         loginFormSchema.isValid(helper).then(valid => {
@@ -38,10 +28,16 @@ const Login = () => {
     const postLogin = e => {
         e.preventDefault();
 
-        console.log(helper)
-
         dispatch(getToken(helper));
     }
+
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem("user"))
+        if(user) {
+            props.history.push("/tickets")
+        }
+    }, [isFetching])
+
     return (
         <div className = "login-container">
             <div className = "top-text">
@@ -86,7 +82,7 @@ const Login = () => {
                 
 
                 <div className = "button-group">
-                    <button type = "submit" disabled = {buttonDisabled}>Login</button>
+                    {isFetching ? <MUI.CircularProgress /> : <button type = "submit" disabled = {buttonDisabled}>Login</button>}
                 </div>
 
                 <Link to = "/helper/signup">Don't have an account?</Link>

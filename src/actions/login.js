@@ -12,15 +12,16 @@ export const getToken = user => dispatch => {
     axiosWithAuth()
         .post(url, user)
         .then(res => {
-            console.log(res.data);
+            //console.log(res.data);
             dispatch({
                 type: FETCH_LOGIN_SUCCESS,
                 payload: res.data
             });
             localStorage.setItem("token", res.data.token);
+            localStorage.setItem("user", JSON.stringify(res.data));
         })
         .catch(err => {
-            console.log(err.message, err.response.data);
+            //console.log(err.message, err.response.data);
             dispatch({
                 type: FETCH_LOGIN_FAILURE,
                 payload: {

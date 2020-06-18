@@ -14,6 +14,7 @@ import {
     IconButton,
     ThemeProvider,
     InputAdornment,
+    CircularProgress,
 } from '@material-ui/core';
 
 export {
@@ -30,4 +31,5 @@ export {
     AccountCircle,
     Visibility,
     VisibilityOff,
+    CircularProgress,
 }
