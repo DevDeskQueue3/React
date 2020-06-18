@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getToken } from "../../actions/login";
 import * as MUI from "../../MaterialUI";
-import { theme } from "../../MaterialUI/useStyles";
+import { theme, ColorButton } from "../../MaterialUI/useStyles";
 
 const initialValues = {
     firstName: "",
@@ -21,6 +21,7 @@ const Register = props => {
     const classes = MUI.useStyles();
     const [helper, handleChanges, formErrors] = useForm(initialValues, registerFormSchema);
     const [buttonDisabled, setButtonDisabled] = useState(true);
+    const [showPassword, setShowPassword] = useState(false);
 
     useEffect(() => {
         registerFormSchema.isValid(helper).then(valid => {
@@ -44,6 +45,14 @@ const Register = props => {
         dispatch(getToken(newHelper));
         
     }
+
+    const handleClickShowPassword = () => {
+        setShowPassword(!showPassword);
+    };
+
+    const handleMouseDownPassword = (e) => {
+        e.preventDefault();
+    };
 
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem("user"))
@@ -107,11 +116,23 @@ const Register = props => {
                         error = {formErrors.password.length > 0} 
                         helperText = {formErrors.password.length > 0 && formErrors.password} 
                         id = "password" 
-                        type = "password" 
+                        type = {showPassword ? "text" : "password"} 
                         name = "password" 
                         value = {helper.password} 
                         onChange = {handleChanges} 
                         label = "Password" 
+                        InputProps = {{
+                            endAdornment: (
+                                <MUI.InputAdornment position = "end">
+                                    <MUI.IconButton aria-label='toggle password visibility'
+                                                    onClick={handleClickShowPassword}
+                                                    onMouseDown={handleMouseDownPassword}
+                                        >
+                                            {showPassword ? <MUI.Visibility /> : <MUI.VisibilityOff />}
+                                        </MUI.IconButton>
+                                </MUI.InputAdornment>
+                            )
+                        }}
                     />
 
                     {error.code && <span className = "form-error">{
@@ -122,7 +143,7 @@ const Register = props => {
                 
 
                 <div className = "button-group">
-                    <button type = "submit" disabled = {buttonDisabled}>Create Account</button>
+                    {isFetching ? <MUI.CircularProgress /> : <ColorButton size="large" color="primary" type = "submit" disabled = {buttonDisabled}>Create Account</ColorButton>}
                 </div>
 
                 <Link to = "/helper/login">Already have an account?</Link>

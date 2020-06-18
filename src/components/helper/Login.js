@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import useForm from "../../hooks/useForm";
 import { loginFormSchema } from "../../utils/loginFormValidation";
 import * as MUI from "../../MaterialUI";
-import { theme } from "../../MaterialUI/useStyles";
+import { theme, ColorButton } from "../../MaterialUI/useStyles";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getToken } from "../../actions/login";
@@ -11,6 +11,7 @@ const initialValues = {
     email: "",
     password: ""
 }
+
 const Login = props => {
     const dispatch = useDispatch();
     const { isFetching, error } = useSelector(state => state.login);
@@ -19,6 +20,8 @@ const Login = props => {
     const [helper, handleChanges, formErrors] = useForm(initialValues, loginFormSchema);
     const [buttonDisabled, setButtonDisabled] = useState(true);
 
+    const [showPassword, setShowPassword] = useState(false);
+    
     useEffect(() => {
         loginFormSchema.isValid(helper).then(valid => {
             setButtonDisabled(!valid);
@@ -30,6 +33,14 @@ const Login = props => {
 
         dispatch(getToken(helper));
     }
+
+    const handleClickShowPassword = () => {
+        setShowPassword(!showPassword);
+    };
+
+    const handleMouseDownPassword = (e) => {
+        e.preventDefault();
+    };
 
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem("user"))
@@ -59,17 +70,39 @@ const Login = props => {
                         value = {helper.email} 
                         onChange = {handleChanges} 
                         label = "Email Address" 
+                        InputProps = {{
+                            endAdornment: (
+                                <MUI.InputAdornment position='end'>
+                                    <MUI.IconButton>
+                                        <MUI.AccountCircle />
+                                    </MUI.IconButton>
+                                </MUI.InputAdornment>
+                            )
+                        }}
                     />
 
                     <MUI.TextField 
                         error = {formErrors.password.length > 0} 
                         helperText = {formErrors.password.length > 0 && formErrors.password}
                         className = {classes.loginInput} 
-                        id = "password" type = "password" 
+                        id = "password" 
+                        type = {showPassword ? "text" : "password"} 
                         name = "password" 
                         value = {helper.password} 
                         onChange = {handleChanges} 
                         label = "Password" 
+                        InputProps = {{
+                            endAdornment: (
+                                <MUI.InputAdornment position = "end">
+                                    <MUI.IconButton aria-label='toggle password visibility'
+                                                    onClick={handleClickShowPassword}
+                                                    onMouseDown={handleMouseDownPassword}
+                                        >
+                                            {showPassword ? <MUI.Visibility /> : <MUI.VisibilityOff />}
+                                        </MUI.IconButton>
+                                </MUI.InputAdornment>
+                            )
+                        }}
                         
                     />
 
@@ -82,7 +115,7 @@ const Login = props => {
                 
 
                 <div className = "button-group">
-                    {isFetching ? <MUI.CircularProgress /> : <button type = "submit" disabled = {buttonDisabled}>Login</button>}
+                    {isFetching ? <MUI.CircularProgress /> : <ColorButton size="large" color="primary" type = "submit" disabled = {buttonDisabled}>Login</ColorButton>}
                 </div>
 
                 <Link to = "/helper/signup">Don't have an account?</Link>
