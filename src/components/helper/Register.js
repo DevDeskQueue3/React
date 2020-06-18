@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import useForm from "../../hooks/useForm";
 import { registerFormSchema } from "../../utils/loginFormValidation";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getToken } from "../../actions/login";
 import * as MUI from "../../MaterialUI";
 
@@ -15,6 +15,7 @@ const initialValues = {
 
 const Register = () => {
     const dispatch = useDispatch();
+    const { isFetching, error } = useSelector(state => state.login);
 
     const classes = MUI.useStyles();
     const [helper, handleChanges, formErrors] = useForm(initialValues, registerFormSchema);
@@ -39,7 +40,7 @@ const Register = () => {
 
         console.log(newHelper);
 
-        //dispatch(getToken(newHelper));
+        dispatch(getToken(newHelper));
         
     }
 
@@ -103,7 +104,13 @@ const Register = () => {
                         onChange = {handleChanges} 
                         label = "Password" 
                     />
+
+                    {error.code && <span className = "form-error">{
+                        error.code === 500 ? "Email Account already exists" : 
+                        error.code === 401 ? "Email or Password is incorrect" :
+                        error.message}</span>}
                 </div>
+                
 
                 <div className = "button-group">
                     <button type = "submit" disabled = {buttonDisabled}>Create Account</button>

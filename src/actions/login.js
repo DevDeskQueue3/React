@@ -7,7 +7,7 @@ export const FETCH_LOGIN_FAILURE = "FETCH_LOGIN_FAILURE";
 export const getToken = user => dispatch => {
     dispatch({type: FETCH_LOGIN_START});
 
-    const url = user.role ? "/register" : "login";
+    const url = user.role ? "/register" : "/login";
 
     axiosWithAuth()
         .post(url, user)
@@ -23,7 +23,10 @@ export const getToken = user => dispatch => {
             console.log(err.message, err.response.data);
             dispatch({
                 type: FETCH_LOGIN_FAILURE,
-                payload: err.message
+                payload: {
+                    code: err.response.status, 
+                    message: err.response.data.message
+                }
             });
         });
 }

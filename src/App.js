@@ -13,7 +13,7 @@ const App = () => {
       <Route path="/helper/login" component={HelperLogin} />
       <Route path="/helper/signup" component={HelperRegister} />
       <Route path="/student/login" component={StudentLogin} />
-      <Route path="/student/register" component={StudentRegister} />
+      <Route path="/student/signup" component={StudentRegister} />
     </div>
   );
 };
