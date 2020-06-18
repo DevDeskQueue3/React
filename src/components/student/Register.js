@@ -27,9 +27,6 @@ const StudentRegister = () => {
 
     const [values, handleChanges, formErrors] = useForm(initialValues, registerFormSchema);
 
-    //Note: onSubmit, when creating the new state data, don't forget to add the student role
-    // and concatenate the names
-
     const handleSubmit = (e) => {
         e.preventDefault();
 

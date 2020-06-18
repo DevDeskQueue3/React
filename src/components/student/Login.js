@@ -1,34 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
+import { loginFormSchema } from "../../utils/loginFormValidation";
+import { theme, ColorButton } from "../../MaterialUI/useStyles";
 
 import * as MUI from '../../MaterialUI/index';
 import * as Styles from '../../MaterialUI/useStyles';
-
-import { orange } from '@material-ui/core/colors';
 
 import './student.css';
 
 import * as yup from 'yup';
 
 import useForm from '../../hooks/useForm';
+import { getToken } from '../../actions/login';
+
+const initialValues = {
+    email: '',
+    password: ''
+};
 
 const StudentLogin = () => {
     const classes = MUI.useStyles();
 
+    const dispatch = useDispatch();
+
+    const { isFetching, error } = useSelector(state => state.login);
+
+    const [buttonDisabled, setButtonDisabled] = useState(true);
+
     const [showPassword, setShowPassword] = useState(false);
 
-    const [loginData, setLoginData] = useState({
-        email: '',
-        password: ''
-    });
+    const [values, handleChanges, formErrors] = useForm(initialValues, loginFormSchema);
 
-    const formSchema = yup.object().shape({
-        email: yup.string().email("Value is not a valid email address").required("Email is a required field"),
-        password: yup.string().required("Password is a required field")
-    });
-
-    const { values, handleChanges, formErrors} = useForm(loginData, formSchema);
+    useEffect(() => {
+        loginFormSchema.isValid(values).then((valid) => {
+            setButtonDisabled(!valid);
+        });
+    },[values]);
 
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);
@@ -38,8 +46,15 @@ const StudentLogin = () => {
         e.preventDefault();
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
+        const newData = {
+            email: values.email,
+            password: values.password
+        };
+
+        dispatch(getToken(newData));
     };
 
     return (
@@ -50,12 +65,14 @@ const StudentLogin = () => {
                     <p>Login to your account and we'll connect you with a Lambda School Helper.</p>
                 </div>
                 <form className='login-form' onSubmit={handleSubmit}>
-                    <MUI.ThemeProvider theme={Styles.theme}>
+                    <MUI.ThemeProvider theme={theme}>
                         <MUI.FormControl className={classes.margin}>
-                            <MUI.InputLabel htmlFor='email-input'>Email Address</MUI.InputLabel>
-                            <MUI.Input id='email-input'
+                            <MUI.InputLabel htmlFor='email'>Email Address</MUI.InputLabel>
+                            <MUI.Input id='email'
+                                name='email'
                                 onChange={handleChanges}
                                 value={values.email}
+                                data-cy='email'
                                 endAdornment={
                                     <MUI.InputAdornment position='end'>
                                         <MUI.IconButton>
@@ -64,12 +81,15 @@ const StudentLogin = () => {
                                     </MUI.InputAdornment>
                                 }
                             />
+                            {formErrors.email.length > 0 && formErrors.email}
                         </MUI.FormControl>
                         <MUI.FormControl className={classes.margin}>
-                            <MUI.InputLabel htmlFor='password-input'>Password</MUI.InputLabel>
-                            <MUI.Input id='password-input'
+                            <MUI.InputLabel htmlFor='password'>Password</MUI.InputLabel>
+                            <MUI.Input id='password'
+                                name='password'
                                 type={showPassword ? 'text' : 'password'}
                                 value={values.password}
+                                onChange={handleChanges}
                                 endAdornment={
                                     <MUI.InputAdornment position='end'>
                                         <MUI.IconButton aria-label='toggle password visibility'
@@ -82,9 +102,13 @@ const StudentLogin = () => {
                                 }
                             />
                         </MUI.FormControl>
-                        <Styles.ColorButton size='large'
-                                color='primary'
-                        >Login</Styles.ColorButton>
+                        {error.code && <span className = "form-error">{
+                        error.code === 404 ? "No account found with that email address. Check your email and try again" : 
+                        error.code === 401 ? "Email or Password is incorrect" :
+                        error.message}</span>}
+                        <div className = "button-group">
+                            {isFetching ? <MUI.CircularProgress /> : <ColorButton size="large" color="primary" type = "submit" disabled = {buttonDisabled}>Login</ColorButton>}
+                        </div>
                     </MUI.ThemeProvider>
                 </form>
                 <div className='divider'>or</div>
