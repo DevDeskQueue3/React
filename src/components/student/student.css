@@ -7,8 +7,10 @@ div.login-wrapper{
     font-size: 1.5rem;
 }
 
-div.login-wrapper form{
+div.login-wrapper form.login-form{
     font-size: 1.8rem;
+    display: flex;
+    flex-direction: column;
 }
 
 div.MuiFilledInput-root{

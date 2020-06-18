@@ -4,7 +4,7 @@ import {
     Container,
     FormControl,
     InputLabel,
-    Input,
+    Button,
     FilledInput,
     IconButton,
     makeStyles,
@@ -101,6 +101,9 @@ const StudentLogin = () => {
                                 }
                             />
                         </FormControl>
+                        <Button size='large'
+                                color='primary'
+                        >Create Account</Button>
                     </ThemeProvider>
                 </form>
             </Container>
