@@ -81,7 +81,7 @@ const StudentLogin = () => {
                                     </MUI.InputAdornment>
                                 }
                             />
-                            {formErrors.email.length > 0 && formErrors.email}
+                            {formErrors.email.length > 0 && <p data-cy='email-error'>{formErrors.email}</p>}
                         </MUI.FormControl>
                         <MUI.FormControl className={classes.margin}>
                             <MUI.InputLabel htmlFor='password'>Password</MUI.InputLabel>
@@ -90,6 +90,7 @@ const StudentLogin = () => {
                                 type={showPassword ? 'text' : 'password'}
                                 value={values.password}
                                 onChange={handleChanges}
+                                data-cy='password'
                                 endAdornment={
                                     <MUI.InputAdornment position='end'>
                                         <MUI.IconButton aria-label='toggle password visibility'
@@ -101,6 +102,7 @@ const StudentLogin = () => {
                                     </MUI.InputAdornment>
                                 }
                             />
+                            {formErrors.password.length > 0 && <p data-cy='password-error'>{formErrors.password}</p>}
                         </MUI.FormControl>
                         {error.code && <span className = "form-error">{
                         error.code === 404 ? "No account found with that email address. Check your email and try again" : 
