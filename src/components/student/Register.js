@@ -34,7 +34,7 @@ const StudentRegister = () => {
         e.preventDefault();
 
         const newData = {
-            name: values.firstName,
+            name: `${values.firstName} ${values.lastName}`,
             email: values.email,
             password: values.password,
             role: 'STUDENT'
