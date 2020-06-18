@@ -43,11 +43,10 @@ const Login = props => {
     };
 
     useEffect(() => {
-        const user = JSON.parse(localStorage.getItem("user"))
-        if(user) {
-            props.history.push("/tickets")
+        if(!isFetching && localStorage.getItem("token")) {
+            props.history.push("/tickets");
         }
-    }, [isFetching])
+    }, [isFetching, props.history])
 
     return (
         <div className = "login-container">

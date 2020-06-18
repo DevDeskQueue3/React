@@ -55,17 +55,16 @@ const Register = props => {
     };
 
     useEffect(() => {
-        const user = JSON.parse(localStorage.getItem("user"))
-        if(user) {
-            props.history.push("/tickets")
+        if(!isFetching && localStorage.getItem("token")) {
+            props.history.push("/tickets");
         }
-    }, [isFetching])
+    }, [isFetching, props.history])
 
 
     return (
         <div className = "login-container">
             <div className = "top-text">
-            <h2>Helper Sign Up</h2>
+            <h1>Helper Sign Up</h1>
                 <p>Create an account and start helping.<br />
                     Not a helper? <Link to = "/student/signup">Click Here</Link>.</p>
             </div>
