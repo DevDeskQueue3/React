@@ -1,8 +1,6 @@
 import { combineReducers } from "redux";
-import { helperLogin } from "./helperLogin";
-import { studentLogin } from "./studentLogin"
+import { login } from "./login"
 
 export default combineReducers({
-    helperLogin,
-    studentLogin,
+    login,
 });
