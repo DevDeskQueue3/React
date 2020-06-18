@@ -7,7 +7,7 @@ import StudentRegister from './components/student/Register';
 
 import './App.css';
 import PrivateRoute from './components/PrivateRoute';
-import Tickets from './components/Tickets';
+import TicketDashboard from './components/ticket/TicketDashboard';
 
 const App = () => {
   const { location, push } = useHistory();
@@ -24,7 +24,7 @@ const App = () => {
       <Route path="/helper/signup" component={HelperRegister} />
       <Route path="/student/login" component={StudentLogin} />
       <Route path="/student/signup" component={StudentRegister} />
-      <PrivateRoute path = "/tickets" component = {Tickets} />
+      <PrivateRoute path = "/tickets" component = {TicketDashboard} />
     </div>
   );
 };
