@@ -5,7 +5,7 @@ import {
     FormControl,
     InputLabel,
     Input,
-    TextField,
+    FilledInput,
     IconButton,
     makeStyles,
     InputAdornment
@@ -56,12 +56,14 @@ const StudentLogin = () => {
     return (
         <>
             <Container className='login-wrapper'>
+                <h1>We're here to help.</h1>
+                <p>Create a help ticket and we'll connect you with a Lambda School Helper.</p>
                 <form className='login-form' onSubmit={handleSubmit}>
                     <FormControl className={classes.margin}>
                         <InputLabel htmlFor='email-input'>Email Address</InputLabel>
-                        <Input id='email-input'
-                            startAdornment={
-                                <InputAdornment position='start'>
+                        <FilledInput id='email-input'
+                            endAdornment={
+                                <InputAdornment position='end'>
                                     <AccountCircle />
                                 </InputAdornment>
                             }
@@ -69,7 +71,7 @@ const StudentLogin = () => {
                     </FormControl>
                     <FormControl className={classes.margin}>
                         <InputLabel htmlFor='password-input'>Password</InputLabel>
-                        <TextField id='password-input'
+                        <FilledInput id='password-input'
                                variant='outlined'
                                type={showPassword ? 'text' : 'password'}
                                value={loginData.password}
