@@ -11,20 +11,28 @@ import {
     InputLabel,
     Input,
     FilledInput,
+    Button,
     IconButton,
     ThemeProvider,
     InputAdornment,
     CircularProgress,
+    createMuiTheme,
+    makeStyles,
+    withStyles
 } from '@material-ui/core';
 
 export {
     useStyles,
+    makeStyles,
+    withStyles,
+    createMuiTheme,
     TextField,
     Container,
     FormControl,
     InputLabel,
     Input,
     FilledInput,
+    Button,
     IconButton,
     ThemeProvider,
     InputAdornment,
