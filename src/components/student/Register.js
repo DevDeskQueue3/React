@@ -2,11 +2,12 @@ import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import * as MUI from '../../MaterialUI/index';
-import * as Styles from '../../MaterialUI/useStyles';
+import { theme, ColorButton } from "../../MaterialUI/useStyles";
 
 import useForm from '../../hooks/useForm';
 
 import { registerFormSchema } from '../../utils/loginFormValidation';
+import { getToken } from '../../actions/login';
 
 const initialValues = {
     firstName: "",
@@ -31,6 +32,17 @@ const StudentRegister = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        const newData = {
+            name: values.firstName,
+            email: values.email,
+            password: values.password,
+            role: 'STUDENT'
+        };
+
+        console.log(newData);
+
+        dispatch(getToken(newData));
     };
 
     const handleClickShowPassword = () => {
@@ -42,63 +54,65 @@ const StudentRegister = () => {
     };
 
     return (
-        <>
-            <MUI.Container fixed>
-                <div className='top-text'>
-                    <h1>Student Sign Up</h1>
-                    <p>Create an account to create and track your help tickets.</p>
-                    <Link to='/helper/signup'>Click here</Link>
-                </div>
-                <form onSubmit={handleSubmit}>
-                    <MUI.ThemeProvider theme={Styles.theme}>
-                        <div className = "input-group">
-                            <div className = "name-group">
-                                <MUI.TextField className={classes.loginInput}
-                                            type='text'
-                                            label='First Name' />
-                                <MUI.TextField className={classes.loginInput}
-                                            type='text'
-                                            label='Last Name' />
-                            </div>
+        <div className='login-container'>
+            <div className='top-text'>
+                <h1>Student Sign Up</h1>
+                <p>Create an account to create and track your help tickets.</p>
+                <Link to='/helper/signup'>Click here</Link>
+            </div>
+            <form onSubmit={handleSubmit}>
+                <MUI.ThemeProvider theme={theme}>
+                    <div className='input-group'>
+                        <div className='name-group'>
+                            <MUI.TextField className={classes.loginInput}
+                                        type='text'
+                                        id='firstName'
+                                        name='firstName'
+                                        label='First Name' />
+                            <MUI.TextField className={classes.loginInput}
+                                        type='text'
+                                        id='lastName'
+                                        name='lastName'
+                                        label='Last Name' />
                         </div>
-                        <MUI.FormControl className={classes.margin}>
-                            <MUI.InputLabel htmlFor='email-input'>Email Address</MUI.InputLabel>
-                            <MUI.Input id='email-input'
-                                onChange={handleChanges}
-                                value={values.email}
-                                endAdornment={
-                                    <MUI.InputAdornment position='end'>
-                                        <MUI.IconButton>
-                                            <MUI.AccountCircle />
-                                        </MUI.IconButton>
-                                    </MUI.InputAdornment>
-                                }
-                            />
-                        </MUI.FormControl>
-                        <MUI.FormControl className={classes.margin}>
-                            <MUI.InputLabel htmlFor='password-input'>Password</MUI.InputLabel>
-                            <MUI.Input id='password-input'
-                                type={showPassword ? 'text' : 'password'}
-                                value={values.password}
-                                endAdornment={
-                                    <MUI.InputAdornment position='end'>
-                                        <MUI.IconButton aria-label='toggle password visibility'
-                                                    onClick={handleClickShowPassword}
-                                                    onMouseDown={handleMouseDownPassword}
-                                        >
-                                            {showPassword ? <MUI.Visibility /> : <MUI.VisibilityOff />}
-                                        </MUI.IconButton>
-                                    </MUI.InputAdornment>
-                                }
-                            />
-                        </MUI.FormControl>
-                        <div className = "button-group">
-                            {isFetching ? <MUI.CircularProgress /> : <Styles.ColorButton size='large' color='primary' type='submit' disabled={buttonDisabled}>Create Account</Styles.ColorButton>}
-                        </div>
-                    </MUI.ThemeProvider>
-                </form>
-            </MUI.Container>
-        </>
+                    </div>
+                    <MUI.FormControl className={classes.margin}>
+                        <MUI.InputLabel htmlFor='email-input'>Email Address</MUI.InputLabel>
+                        <MUI.Input id='email-input'
+                            onChange={handleChanges}
+                            value={values.email}
+                            endAdornment={
+                                <MUI.InputAdornment position='end'>
+                                    <MUI.IconButton>
+                                        <MUI.AccountCircle />
+                                    </MUI.IconButton>
+                                </MUI.InputAdornment>
+                            }
+                        />
+                    </MUI.FormControl>
+                    <MUI.FormControl className={classes.margin}>
+                        <MUI.InputLabel htmlFor='password-input'>Password</MUI.InputLabel>
+                        <MUI.Input id='password-input'
+                            type={showPassword ? 'text' : 'password'}
+                            value={values.password}
+                            endAdornment={
+                                <MUI.InputAdornment position='end'>
+                                    <MUI.IconButton aria-label='toggle password visibility'
+                                                onClick={handleClickShowPassword}
+                                                onMouseDown={handleMouseDownPassword}
+                                    >
+                                        {showPassword ? <MUI.Visibility /> : <MUI.VisibilityOff />}
+                                    </MUI.IconButton>
+                                </MUI.InputAdornment>
+                            }
+                        />
+                    </MUI.FormControl>
+                    <div className = 'button-group'>
+                        {isFetching ? <MUI.CircularProgress /> : <ColorButton size='large' color='primary' type='submit' disabled={buttonDisabled}>Create Account</ColorButton>}
+                    </div>
+                </MUI.ThemeProvider>
+            </form>
+        </div>
     );
 };
 
