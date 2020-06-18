@@ -67,42 +67,46 @@ const StudentLogin = () => {
                 <form className='login-form' onSubmit={handleSubmit}>
                     <MUI.ThemeProvider theme={theme}>
                         <MUI.FormControl className={classes.margin}>
-                            <MUI.InputLabel htmlFor='email'>Email Address</MUI.InputLabel>
-                            <MUI.Input id='email'
+                            <MUI.TextField id='email'
                                 name='email'
                                 onChange={handleChanges}
                                 value={values.email}
                                 data-cy='email'
-                                endAdornment={
-                                    <MUI.InputAdornment position='end'>
-                                        <MUI.IconButton>
-                                            <MUI.AccountCircle />
-                                        </MUI.IconButton>
-                                    </MUI.InputAdornment>
-                                }
+                                label='Email Address'
+                                helperText={formErrors.email.length > 0 && <p data-cy='email-error'>{formErrors.email}</p>}
+                                InputProps={{
+                                    endAdornment: (
+                                        <MUI.InputAdornment position='end'>
+                                            <MUI.IconButton>
+                                                <MUI.AccountCircle />
+                                            </MUI.IconButton>
+                                        </MUI.InputAdornment>
+                                    )
+                                }}
                             />
-                            {formErrors.email.length > 0 && <p data-cy='email-error'>{formErrors.email}</p>}
                         </MUI.FormControl>
                         <MUI.FormControl className={classes.margin}>
-                            <MUI.InputLabel htmlFor='password'>Password</MUI.InputLabel>
-                            <MUI.Input id='password'
+                            <MUI.TextField id='password'
                                 name='password'
                                 type={showPassword ? 'text' : 'password'}
                                 value={values.password}
                                 onChange={handleChanges}
                                 data-cy='password'
-                                endAdornment={
-                                    <MUI.InputAdornment position='end'>
-                                        <MUI.IconButton aria-label='toggle password visibility'
-                                                    onClick={handleClickShowPassword}
-                                                    onMouseDown={handleMouseDownPassword}
-                                        >
-                                            {showPassword ? <MUI.Visibility /> : <MUI.VisibilityOff />}
-                                        </MUI.IconButton>
-                                    </MUI.InputAdornment>
-                                }
+                                label='Password'
+                                helperText={formErrors.password.length > 0 && <span data-cy='password-error'>{formErrors.password}</span>}
+                                InputProps={{
+                                    endAdornment: (
+                                        <MUI.InputAdornment position='end'>
+                                            <MUI.IconButton aria-label='toggle password visibility'
+                                                        onClick={handleClickShowPassword}
+                                                        onMouseDown={handleMouseDownPassword}
+                                            >
+                                                {showPassword ? <MUI.Visibility /> : <MUI.VisibilityOff />}
+                                            </MUI.IconButton>
+                                        </MUI.InputAdornment>
+                                    )
+                                }}
                             />
-                            {formErrors.password.length > 0 && <p data-cy='password-error'>{formErrors.password}</p>}
                         </MUI.FormControl>
                         {error.code && <span className = "form-error">{
                         error.code === 404 ? "No account found with that email address. Check your email and try again" : 
