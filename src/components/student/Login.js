@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { 
     Container,
     FormControl,
     InputLabel,
     Button,
-    Link,
     FilledInput,
     IconButton,
     makeStyles,
@@ -120,10 +120,10 @@ const StudentLogin = () => {
                 </form>
                 <div className='divider'>or</div>
                 <section className='login-links'>
-                    <Link href='#'
+                    {/* <Link href='#'
                             target='_blank'
                             rel='noopener'
-                    >Connect using Slack</Link>
+                    >Connect using Slack</Link> */}
                     <span>Lambda school employee? </span>
                     <Link href='#'
                             target='_blank'
