@@ -4,10 +4,12 @@ import {
     Container,
     FormControl,
     InputLabel,
-    Input,
+    Button,
+    Link,
     FilledInput,
     IconButton,
     makeStyles,
+    withStyles,
     ThemeProvider,
     InputAdornment,
     createMuiTheme
@@ -23,11 +25,25 @@ import { orange } from '@material-ui/core/colors';
 
 import './student.css';
 
+import * as yup from 'yup';
+
+import useForm from '../../hooks/useForm';
+
 const theme = createMuiTheme({
     palette: {
         primary: orange,
     },
 });
+
+const ColorButton = withStyles((theme) => ({
+    root: {
+        color: theme.palette.getContrastText(orange[500]),
+        backgroundColor: orange[500],
+        '&:hover': {
+            backgroundColor: orange[700]
+        }
+    }
+}))(Button);
 
 const useStyles = makeStyles((theme) => ({
     margin: {
@@ -45,11 +61,12 @@ const StudentLogin = () => {
         password: ''
     });
 
-    const handleChanges = (e) => {
-        e.persist();
+    const formSchema = yup.object().shape({
+        email: yup.string().email("Value is not a valid email address").required("Email is a required field"),
+        password: yup.string().required("Password is a required field")
+    });
 
-
-    };
+    const { values, handleChanges, handleSubmit, formErrors} = useForm(loginData, formSchema);
 
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);
@@ -57,10 +74,6 @@ const StudentLogin = () => {
 
     const handleMouseDownPassword = (e) => {
         e.preventDefault();
-    };
-
-    const handleSubmit = () => {
-
     };
 
     return (
@@ -73,6 +86,8 @@ const StudentLogin = () => {
                         <FormControl className={classes.margin}>
                             <InputLabel htmlFor='email-input'>Email Address</InputLabel>
                             <FilledInput id='email-input'
+                                onChange={handleChanges}
+                                value={values.email}
                                 endAdornment={
                                     <InputAdornment position='end'>
                                         <AccountCircle />
@@ -85,7 +100,7 @@ const StudentLogin = () => {
                             <FilledInput id='password-input'
                                 variant='outlined'
                                 type={showPassword ? 'text' : 'password'}
-                                value={loginData.password}
+                                value={values.password}
                                 endAdornment={
                                     <InputAdornment position='end'>
                                         <IconButton aria-label='toggle password visibility'
@@ -98,8 +113,23 @@ const StudentLogin = () => {
                                 }
                             />
                         </FormControl>
+                        <ColorButton size='large'
+                                color='primary'
+                        >Create Account</ColorButton>
                     </ThemeProvider>
                 </form>
+                <div className='divider'>or</div>
+                <section className='login-links'>
+                    <Link href='#'
+                            target='_blank'
+                            rel='noopener'
+                    >Connect using Slack</Link>
+                    <span>Lambda school employee? </span>
+                    <Link href='#'
+                            target='_blank'
+                            rel='noopener'
+                    >Click here</Link>
+                </section>
             </Container>
         </>
     );
