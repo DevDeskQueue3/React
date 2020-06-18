@@ -34,7 +34,7 @@ const Login = () => {
     return (
         <div className = "login-container">
             <div className = "top-text">
-            <h2>Helper Login</h2>
+            <h1>Helper Login</h1>
                 <p>Login to your account and start Helping. <br />
                     Not a helper? <Link to = "/student/login">Click Here</Link>.</p>
             </div>

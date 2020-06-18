@@ -34,6 +34,7 @@ code {
   align-items: center;
   justify-content: flex-start;
   padding: 0px 20px;
+  font-size: 1.6rem;
 }
 
 .App .login-container form {
@@ -46,22 +47,29 @@ code {
   text-align: center;
 }
 
+
+
 .App .login-container .top-text {
   text-align: center;
 }
 
-/* .App .login-container form input {
-  width: 100%;
-  height: 64px;
-  margin-bottom: 24px;
-} */
+.App .login-container form input {
+  font-size: 1.8rem !important;
+}
+.App .login-container form label {
+  font-size: 1.8rem;
+}
 
 .App .login-container form .input-group {
   width: 100%;
   margin-bottom: 50px;
 }
 
-.App .login-container form button {
+.MuiFormHelperText-root {
+  font-size: 1.2rem !important;
+}
+
+.App .login-container form .button-group button {
   width: 100%;
   height: 56px;
   margin-bottom: 24px;
