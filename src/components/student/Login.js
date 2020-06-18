@@ -23,6 +23,10 @@ import { orange } from '@material-ui/core/colors';
 
 import './student.css';
 
+import * as yup from 'yup';
+
+import useForm from '../../hooks/useForm';
+
 const theme = createMuiTheme({
     palette: {
         primary: orange,
@@ -45,11 +49,12 @@ const StudentLogin = () => {
         password: ''
     });
 
-    const handleChanges = (e) => {
-        e.persist();
+    const formSchema = yup.object().shape({
+        email: yup.string().email("Value is not a valid email address").required("Email is a required field"),
+        password: yup.string().required("Password is a required field")
+    });
 
-
-    };
+    const { values, handleChanges, handleSubmit, formErrors} = useForm(loginData, formSchema);
 
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);
@@ -57,10 +62,6 @@ const StudentLogin = () => {
 
     const handleMouseDownPassword = (e) => {
         e.preventDefault();
-    };
-
-    const handleSubmit = () => {
-
     };
 
     return (
@@ -73,6 +74,8 @@ const StudentLogin = () => {
                         <FormControl className={classes.margin}>
                             <InputLabel htmlFor='email-input'>Email Address</InputLabel>
                             <FilledInput id='email-input'
+                                onChange={handleChanges}
+                                value={values.email}
                                 endAdornment={
                                     <InputAdornment position='end'>
                                         <AccountCircle />
@@ -85,7 +88,7 @@ const StudentLogin = () => {
                             <FilledInput id='password-input'
                                 variant='outlined'
                                 type={showPassword ? 'text' : 'password'}
-                                value={loginData.password}
+                                value={values.password}
                                 endAdornment={
                                     <InputAdornment position='end'>
                                         <IconButton aria-label='toggle password visibility'
