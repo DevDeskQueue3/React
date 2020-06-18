@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getToken } from "../../actions/login";
 import * as MUI from "../../MaterialUI";
+import { theme } from "../../MaterialUI/useStyles";
 
 const initialValues = {
     firstName: "",
@@ -54,6 +55,7 @@ const Register = () => {
             </div>
 
             <form onSubmit = {postSignup}>
+                <MUI.ThemeProvider theme = {theme}>
                 <div className = "input-group">
                     <div className = "name-group">
                         <MUI.TextField 
@@ -129,6 +131,7 @@ const Register = () => {
 
                     <a href = "#">Connect using Slack</a>
                 */}
+                </MUI.ThemeProvider>
             </form>
         </div>
     );

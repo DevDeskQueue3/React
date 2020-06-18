@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import useForm from "../../hooks/useForm";
 import { loginFormSchema } from "../../utils/loginFormValidation";
 import * as MUI from "../../MaterialUI";
+import { theme } from "../../MaterialUI/useStyles";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getToken } from "../../actions/login";
@@ -17,6 +18,16 @@ const Login = () => {
 
     const [helper, handleChanges, formErrors] = useForm(initialValues, loginFormSchema);
     const [buttonDisabled, setButtonDisabled] = useState(true);
+
+    const [showPassword, setShowPassword] = useState(false);
+
+    const handleClickShowPassword = () => {
+        setShowPassword(!showPassword);
+    };
+
+    const handleMouseDownPassword = (e) => {
+        e.preventDefault();
+    };
 
     useEffect(() => {
         loginFormSchema.isValid(helper).then(valid => {
@@ -40,6 +51,7 @@ const Login = () => {
             </div>
 
             <form onSubmit = {postLogin}>
+                <MUI.ThemeProvider theme = {theme}>
                 <div className = "input-group">
                     <MUI.TextField 
                         error = {formErrors.email.length > 0} 
@@ -62,6 +74,7 @@ const Login = () => {
                         value = {helper.password} 
                         onChange = {handleChanges} 
                         label = "Password" 
+                        
                     />
 
                     {error.code && <span className = "form-error">{
@@ -89,6 +102,7 @@ const Login = () => {
 
                     <a href = "#">Connect using Slack</a>
                 */}
+                </MUI.ThemeProvider>
             </form>
         </div>
     );
