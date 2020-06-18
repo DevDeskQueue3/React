@@ -1,4 +1,4 @@
-import { makeStyles, createMuiTheme } from '@material-ui/core';
+import { makeStyles, createMuiTheme, Button, withStyles } from '@material-ui/core';
 import { orange } from '@material-ui/core/colors';
 
 export const theme = createMuiTheme({
@@ -6,6 +6,16 @@ export const theme = createMuiTheme({
         primary: orange,
     },
 });
+
+export const ColorButton = withStyles((theme) => ({
+    root: {
+        color: theme.palette.getContrastText(orange[500]),
+        backgroundColor: orange[500],
+        '&:hover': {
+            backgroundColor: orange[700]
+        }
+    }
+}))(Button);
 
 const useStyles = makeStyles((theme) => ({
     loginInput: {

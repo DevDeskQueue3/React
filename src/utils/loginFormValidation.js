@@ -22,7 +22,7 @@ export const registerFormSchema = yup.object().shape({
     password: yup
                 .string()
                 .min(6, "Please enter a password at least 6 characters long.")
-                .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%&])(?=.{6,})/, "Password must containe at least one Uppercase letter, one Lowercase letter, one number, or one of the following symbols: ! @ # $ % &")
+                .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%&])(?=.{6,})/, "Password must containe at least one Uppercase letter, one Lowercase letter, one number, or one of the following symbols: ! @ # $ % &")
                 .required("Please enter a password"),
     
 });

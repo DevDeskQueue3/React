@@ -5,7 +5,7 @@ import {
 } from "../actions/login";
 
 const initialState = {
-    user: {},
+    user: localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : {},
     isFetching: false,
     error: {}
 }
