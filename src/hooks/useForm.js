@@ -31,9 +31,5 @@ export default function useForm(initialValues, formSchema) {
         });
     }
 
-    const handleSubmit = e => {
-
-    }
-
-    return [values, handleChanges, handleSubmit, formErrors];
+    return [values, handleChanges, formErrors];
 }
