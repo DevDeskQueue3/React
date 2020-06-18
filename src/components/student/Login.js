@@ -133,10 +133,7 @@ const StudentLogin = () => {
                             rel='noopener'
                     >Connect using Slack</Link> */}
                     <span>Lambda school employee? </span>
-                    <Link to='/helper/login'
-                            target='_blank'
-                            rel='noopener'
-                    >Click here</Link>
+                    <Link to='/helper/login'>Click here</Link>
                 </section>
             </Container>
         </>
