@@ -74,39 +74,48 @@ const StudentRegister = () => {
                         </div>
                     </div>
                     <MUI.FormControl className={classes.margin}>
-                        <MUI.InputLabel htmlFor='email-input'>Email Address</MUI.InputLabel>
-                        <MUI.Input id='email-input'
+                        <MUI.TextField id='email-input'
                             onChange={handleChanges}
                             value={values.email}
-                            endAdornment={
-                                <MUI.InputAdornment position='end'>
-                                    <MUI.IconButton>
-                                        <MUI.AccountCircle />
-                                    </MUI.IconButton>
-                                </MUI.InputAdornment>
-                            }
+                            label='Email Address'
+                            data-cy='email'
+                            helperText={formErrors.email.length > 0 && <span data-cy='email-error'>{formErrors.email}</span>}
+                            InputProps={{
+                                endAdornment: (
+                                    <MUI.InputAdornment position='end'>
+                                        <MUI.IconButton>
+                                            <MUI.AccountCircle />
+                                        </MUI.IconButton>
+                                    </MUI.InputAdornment>
+                                )
+                            }}
                         />
                     </MUI.FormControl>
                     <MUI.FormControl className={classes.margin}>
-                        <MUI.InputLabel htmlFor='password-input'>Password</MUI.InputLabel>
-                        <MUI.Input id='password-input'
+                        <MUI.TextField id='password-input'
                             type={showPassword ? 'text' : 'password'}
                             value={values.password}
-                            endAdornment={
-                                <MUI.InputAdornment position='end'>
-                                    <MUI.IconButton aria-label='toggle password visibility'
-                                                onClick={handleClickShowPassword}
-                                                onMouseDown={handleMouseDownPassword}
-                                    >
-                                        {showPassword ? <MUI.Visibility /> : <MUI.VisibilityOff />}
-                                    </MUI.IconButton>
-                                </MUI.InputAdornment>
-                            }
+                            label='Password'
+                            data-cy='password'
+                            onChange={handleChanges}
+                            InputProps={{
+                                endAdornment: (
+                                    <MUI.InputAdornment position='end'>
+                                        <MUI.IconButton aria-label='toggle password visibility'
+                                                    onClick={handleClickShowPassword}
+                                                    onMouseDown={handleMouseDownPassword}
+                                        >
+                                            {showPassword ? <MUI.Visibility /> : <MUI.VisibilityOff />}
+                                        </MUI.IconButton>
+                                    </MUI.InputAdornment>
+                                )
+                            }}
                         />
                     </MUI.FormControl>
                     <div className = 'button-group'>
                         {isFetching ? <MUI.CircularProgress /> : <ColorButton size='large' color='primary' type='submit' disabled={buttonDisabled}>Create Account</ColorButton>}
                     </div>
+                    <Link to='/student/login'>Already have an account?</Link>
                 </MUI.ThemeProvider>
             </form>
         </div>
