@@ -7,6 +7,10 @@ div.login-wrapper{
     font-size: 1.5rem;
 }
 
-.MuiFilledInput-root{
+div.login-wrapper form{
+    font-size: 1.8rem;
+}
+
+div.MuiFilledInput-root{
     background-color: white;
 }
