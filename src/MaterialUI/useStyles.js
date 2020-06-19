@@ -7,6 +7,8 @@ export const theme = createMuiTheme({
     },
 });
 
+const drawerWidth = 240;
+
 export const ColorButton = withStyles((theme) => ({
     root: {
         color: theme.palette.getContrastText(orange[500]),
@@ -26,6 +28,13 @@ const useStyles = makeStyles((theme) => ({
     },
     margin: {
         margin: theme.spacing(1)
+    },
+    drawer: {
+        width: drawerWidth,
+        flexShrink: 0
+    },
+    drawerPaper: {
+        width: drawerWidth
     }
 }));
 
