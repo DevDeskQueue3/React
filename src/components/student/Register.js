@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import * as MUI from '../../MaterialUI/index';
@@ -42,6 +42,12 @@ const StudentRegister = () => {
         dispatch(getToken(newData));
     };
 
+    useEffect(() => {
+        registerFormSchema.isValid(values).then((valid) => {
+            setButtonDisabled(!valid);
+        });
+    },[values]);
+
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);
     };
@@ -66,6 +72,7 @@ const StudentRegister = () => {
                                         value={values.firstName}
                                         onChange={handleChanges}
                                         id='firstName'
+                                        helperText={formErrors.firstName.length > 0 && <span data-cy='firstName-error'>{formErrors.firstName}</span>}
                                         name='firstName'
                                         label='First Name' />
                             <MUI.TextField className={classes.loginInput}
@@ -73,6 +80,7 @@ const StudentRegister = () => {
                                         value={values.lastName}
                                         onChange={handleChanges}
                                         id='lastName'
+                                        helperText={formErrors.lastName.length > 0 && <span data-cy='lastName-error'>{formErrors.lastName}</span>}
                                         name='lastName'
                                         label='Last Name' />
                         </div>
@@ -80,7 +88,6 @@ const StudentRegister = () => {
                     <MUI.FormControl className={classes.margin}>
                         <MUI.TextField id='email'
                             onChange={handleChanges}
-                            value={values.email}
                             label='Email Address'
                             data-cy='email'
                             helperText={formErrors.email.length > 0 && <span data-cy='email-error'>{formErrors.email}</span>}
@@ -98,7 +105,6 @@ const StudentRegister = () => {
                     <MUI.FormControl className={classes.margin}>
                         <MUI.TextField id='password'
                             type={showPassword ? 'text' : 'password'}
-                            value={values.password}
                             label='Password'
                             data-cy='password'
                             onChange={handleChanges}
