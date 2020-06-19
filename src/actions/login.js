@@ -3,6 +3,7 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 export const FETCH_LOGIN_START = "FETCH_LOGIN_START";
 export const FETCH_LOGIN_SUCCESS = "FETCH_LOGIN_SUCCESS";
 export const FETCH_LOGIN_FAILURE = "FETCH_LOGIN_FAILURE";
+export const CLEAR_ERROR = "CLEAR_ERROR";
 
 export const getToken = user => dispatch => {
     dispatch({type: FETCH_LOGIN_START});
@@ -30,4 +31,8 @@ export const getToken = user => dispatch => {
                 }
             });
         });
+}
+
+export const clearError = () => dispatch => {
+    dispatch({type: CLEAR_ERROR});
 }

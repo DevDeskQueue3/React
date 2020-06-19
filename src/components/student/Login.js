@@ -12,19 +12,20 @@ import './student.css';
 import * as yup from 'yup';
 
 import useForm from '../../hooks/useForm';
-import { getToken } from '../../actions/login';
+import { getToken, clearError } from '../../actions/login';
 
 const initialValues = {
     email: '',
     password: ''
 };
 
-const StudentLogin = () => {
+const StudentLogin = props => {
     const classes = MUI.useStyles();
 
     const dispatch = useDispatch();
 
     const { isFetching, error } = useSelector(state => state.login);
+    const [loginError, setLoginError] = useState("");
 
     const [buttonDisabled, setButtonDisabled] = useState(true);
 
@@ -57,6 +58,27 @@ const StudentLogin = () => {
         dispatch(getToken(newData));
     };
 
+    useEffect(() => {
+        
+
+        if(localStorage.getItem("token")) {
+            const userData = JSON.parse(localStorage.getItem("user"));
+            
+            if(userData.roles.includes("STUDENT")){
+                props.history.push("/tickets");
+                setLoginError("");
+            } else {
+                setLoginError("Your account is not a student account, sign in using the helper link at the bottom.");
+                localStorage.removeItem("token");
+                localStorage.removeItem("user");
+
+            }
+            
+        }
+    }, [isFetching, props.history]);
+
+    useEffect(() => dispatch(clearError()), [dispatch]);
+
     return (
         <>
             <MUI.Container className='login-container'>
@@ -74,7 +96,7 @@ const StudentLogin = () => {
                                 value={values.email}
                                 data-cy='email'
                                 label='Email Address'
-                                helperText={formErrors.email.length > 0 && <p data-cy='email-error'>{formErrors.email}</p>}
+                                helperText={formErrors.email.length > 0 && <span data-cy='email-error'>{formErrors.email}</span>}
                                 InputProps={{
                                     endAdornment: (
                                         <MUI.InputAdornment position='end'>
@@ -114,6 +136,7 @@ const StudentLogin = () => {
                         error.code === 404 ? "No account found with that email address. Check your email and try again" : 
                         error.code === 401 ? "Email or Password is incorrect" :
                         error.message}</span>}
+                        {loginError.length > 0 && <span className = "form-error">{loginError}</span>}
                         <div className = "button-group">
                             {isFetching ? <MUI.CircularProgress /> : <ColorButton size="large" color="primary" type = "submit" disabled = {buttonDisabled}>Login</ColorButton>}
                         </div>
