@@ -3,10 +3,11 @@ import TextField from '@material-ui/core/TextField';
 import {
     AccountCircle,
     Visibility,
-    VisibilityOff,
-    ExpandMoreIcon,
-    ChevronRightIcon
+    VisibilityOff
 } from '@material-ui/icons';
+
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 import { 
     Container,
@@ -22,12 +23,15 @@ import {
     Button,
     IconButton,
     Fab,
-    TreeView,
-    TreeItem,
     ThemeProvider,
     InputAdornment,
     CircularProgress
 } from '@material-ui/core';
+
+import {
+    TreeView,
+    TreeItem
+} from '@material-ui/lab';
 
 export {
     useStyles,
