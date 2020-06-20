@@ -69,11 +69,8 @@ const TicketDashboard = props => {
                     {tickets.map((ticket) => {
                         return( 
                             <MUI.Card key={ticket.id}>
-                                <MUI.CardHeader>
-                                    <MUI.CardContent>
-                                        {ticket.title}
-                                    </MUI.CardContent>
-                                </MUI.CardHeader>
+                                <MUI.CardHeader
+                                    title={ticket.title} />
                             </MUI.Card>
                         );
                     })}
