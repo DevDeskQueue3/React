@@ -35,11 +35,15 @@ const useStyles = makeStyles((theme) => ({
     },
     timeframe: {
         borderRight: '1px solid #cecece',
-        top: '50%'
+        '& p': {
+            position: 'relative',
+            top: '20%'
+        }
     },
     header: {
         fontSize: '1.4rem',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        margin: '2px'
     },
     subtitle: {
         fontWeight: 'normal',
