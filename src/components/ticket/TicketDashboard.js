@@ -74,8 +74,9 @@ const TicketDashboard = props => {
                                 className={`${classes.card} ticket-card`} 
                                 key={ticket.id}>
                                 <div className={classes.details}>
-                                    <MUI.CardContent>
-                                        ddd
+                                    <MUI.CardContent
+                                        className={classes.timeframe}>
+                                        <p>1 Day Old</p>
                                     </MUI.CardContent>
                                     <div>
                                         <MUI.CardHeader

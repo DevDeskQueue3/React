@@ -31,14 +31,21 @@ const useStyles = makeStyles((theme) => ({
     },
     details: {
         display: 'flex',
-        padding: '20px'
+        padding: '10px'
+    },
+    timeframe: {
+        borderRight: '1px solid #cecece',
+        top: '50%'
     },
     header: {
         fontSize: '1.4rem',
         fontWeight: 'bold'
     },
     subtitle: {
-        fontWeight: 'normal'
+        fontWeight: 'normal',
+        width: '90%',
+        marginBottom: '10px',
+        paddingLeft: '15px'
     },
     margin: {
         margin: theme.spacing(1)
