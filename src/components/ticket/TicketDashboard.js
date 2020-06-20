@@ -72,26 +72,32 @@ const TicketDashboard = props => {
                     </MUI.TreeView>
                 </MUI.Drawer>
                 <MUI.List className='ticket-list'>
-                    {tickets.map((ticket) => {
-                        return( 
-                            <MUI.Card
-                                className={`${classes.card} ticket-card`} 
-                                key={ticket.id}>
-                                <div className={classes.details}>
-                                    <MUI.CardContent
-                                        className={classes.timeframe}>
-                                        <p>1 Day Old</p>
-                                    </MUI.CardContent>
-                                    <div>
-                                        <MUI.CardHeader
-                                            className={classes.header}
-                                            title={ticket.title} />
-                                        <p className={classes.subtitle}>{ticket.description}</p>
-                                    </div>
-                                </div>
-                            </MUI.Card>
-                        );
-                    })}
+                    {
+                        isFetching ? <h3>Loading Tickets...</h3> : 
+                        error.message ? <h3>{error.message}</h3> :
+                        (
+                            tickets.map((ticket) => {
+                                return( 
+                                    <MUI.Card
+                                        className={`${classes.card} ticket-card`} 
+                                        key={ticket.id}>
+                                        <div className={classes.details}>
+                                            <MUI.CardContent
+                                                className={classes.timeframe}>
+                                                <p>1 Day Old</p>
+                                            </MUI.CardContent>
+                                            <div>
+                                                <MUI.CardHeader
+                                                    className={classes.header}
+                                                    title={ticket.title} />
+                                                <p className={classes.subtitle}>{ticket.description}</p>
+                                            </div>
+                                        </div>
+                                    </MUI.Card>
+                                );
+                            })
+                        )
+                    }
                 </MUI.List>
             </MUI.Grid>
         </>
