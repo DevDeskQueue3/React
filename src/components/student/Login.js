@@ -5,11 +5,8 @@ import { loginFormSchema } from "../../utils/loginFormValidation";
 import { theme, ColorButton } from "../../MaterialUI/useStyles";
 
 import * as MUI from '../../MaterialUI/index';
-import * as Styles from '../../MaterialUI/useStyles';
 
 import './student.css';
-
-import * as yup from 'yup';
 
 import useForm from '../../hooks/useForm';
 import { getToken, clearError } from '../../actions/login';
