@@ -62,6 +62,9 @@ const TicketDashboard = props => {
                     </MUI.TreeItem>
                 </MUI.TreeView>
             </MUI.Drawer>
+            <MUI.List className='ticket-list'>
+
+            </MUI.List>
         </>
     );
 };
