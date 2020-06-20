@@ -4,7 +4,7 @@ const initialState = {
             id: 6516,
             title: "Need a Hiatus!",
             description: "I am having a hard time keeping up with the schedule due to work, need to get some time off to gather myself.",
-            postedAt: "Thu Jun 18 2020 12:00:30",
+            postedAt: "2020-06-20T00:03:11.617Z",
             postedBy: "Joseph Lynn",
             claimedBy: "",
             status: "open",            
