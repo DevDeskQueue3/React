@@ -1,21 +1,31 @@
+import { FETCH_TICKETS_START, FETCH_TICKETS_SUCCESS, FETCH_TICKETS_FAILURE } from "../actions/tickets";
+
 const initialState = {
-    tickets: [
-        {
-            id: 6516,
-            title: "Need a Hiatus!",
-            description: "I am having a hard time keeping up with the schedule due to work, need to get some time off to gather myself.",
-            postedAt: "2020-06-20T00:03:11.617Z",
-            postedBy: "Joseph Lynn",
-            claimedBy: "",
-            status: "open",            
-        }
-    ],
+    tickets: [],
     isFetching: false,
-    error: ""
+    error: {}
 }
 
 export const tickets = (state = initialState, action) => {
     switch(action.type) {
+        case FETCH_TICKETS_START:
+            return {
+                ...state,
+                isFetching: true
+            };
+        case FETCH_TICKETS_SUCCESS:
+            return {
+                ...state,
+                tickets: action.payload,
+                isFetching: false,
+                error: {}
+            };
+        case FETCH_TICKETS_FAILURE:
+            return {
+                ...state,
+                isFetching: false,
+                error: action.payload
+            };
         default: 
             return state;
     }

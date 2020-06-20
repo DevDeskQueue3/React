@@ -8,10 +8,10 @@ export const CLEAR_ERROR = "CLEAR_ERROR";
 export const getToken = user => dispatch => {
     dispatch({type: FETCH_LOGIN_START});
 
-    const url = user.role ? "/register" : "/login";
+    const url = user.role ? "register" : "login";
 
     axiosWithAuth()
-        .post(url, user)
+        .post(`/auth/${url}`, user)
         .then(res => {
             //console.log(res.data);
             dispatch({

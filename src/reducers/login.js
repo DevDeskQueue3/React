@@ -23,7 +23,7 @@ export const login = (state = initialState, action) => {
                 ...state,
                 user: action.payload,
                 isFetching: false,
-                error: ""
+                error: {}
             };
         case FETCH_LOGIN_FAILURE: 
             return {
