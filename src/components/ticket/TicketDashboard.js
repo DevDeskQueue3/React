@@ -1,6 +1,7 @@
-import React from 'react';
-import { useSelector } from "react-redux";
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from "react-redux";
 import * as MUI from '../../MaterialUI/index';
+import { getTickets } from '../../actions/tickets';
 
 const TicketDashboard = props => {
     const classes = MUI.useStyles();
@@ -8,9 +9,12 @@ const TicketDashboard = props => {
     // Tickets State has hardcoded data for use while building the component
     const { user } = useSelector(state => state.login);
     const { tickets, isFetching, error } = useSelector(state => state.tickets);
+    const dispatch = useDispatch();
 
     console.log("cea: components/ticket/TicketDashBoard.js: user: ", user);
     console.log("cea: components/ticket/TicketDashBoard.js: tickets: ", tickets);
+
+    useEffect(() => dispatch(getTickets()), [dispatch]);
 
     return(
         <>
@@ -66,14 +70,21 @@ const TicketDashboard = props => {
                     </MUI.TreeView>
                 </MUI.Drawer>
                 <MUI.List className='ticket-list'>
-                    {tickets.map((ticket) => {
-                        return( 
-                            <MUI.Card key={ticket.id}>
-                                <MUI.CardHeader
-                                    title={ticket.title} />
-                            </MUI.Card>
-                        );
-                    })}
+                    
+                    {
+                        isFetching ? <h3>Loading Tickets...</h3> : 
+                        error.message ? <h3>{error.message}</h3> :
+                        (
+                            tickets.map((ticket) => {
+                                return( 
+                                    <MUI.Card key={ticket.id}>
+                                        <MUI.CardHeader
+                                            title={ticket.title} />
+                                    </MUI.Card>
+                                );
+                            })
+                        )
+                    }
                 </MUI.List>
             </MUI.Grid>
         </>
