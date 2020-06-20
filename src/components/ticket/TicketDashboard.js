@@ -79,7 +79,7 @@ const TicketDashboard = props => {
                             tickets.map((ticket) => {
                                 return( 
                                     <MUI.Card
-                                        className={`${classes.card} ticket-card`} 
+                                        className={`${classes.card} ${ticket.status === "OPEN" ? "ticket-card-red" : "ticket-card-green"}`} 
                                         key={ticket.id}>
                                         <div className={classes.details}>
                                             <MUI.CardContent

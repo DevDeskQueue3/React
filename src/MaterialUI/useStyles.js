@@ -27,7 +27,8 @@ const useStyles = makeStyles((theme) => ({
         marginRight: "10px !important",
     },
     card: {
-        marginLeft: '20px'
+        margin: '0 0 10px 20px',
+        minWidth: '500px'
     },
     details: {
         display: 'flex',
