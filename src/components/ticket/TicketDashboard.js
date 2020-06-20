@@ -32,15 +32,21 @@ const TicketDashboard = props => {
                     variant='permanent'
                     anchor='left'
                 >
-                    <MUI.List>
-                        <MUI.ListItem>The Queue</MUI.ListItem>
+                    <MUI.List
+                        className={classes.list}>
+                        <MUI.ListItem
+                            className={classes.dashboardtitle}>The Queue</MUI.ListItem>
                     </MUI.List>
                     <MUI.Divider />
-                    <MUI.List>
-                        <MUI.ListItem button>All Tickets</MUI.ListItem>
+                    <MUI.List
+                        className={classes.list}>
+                        <MUI.ListItem
+                            className={classes.listitem}
+                            button>All Tickets</MUI.ListItem>
                     </MUI.List>
                     <MUI.Divider />
-                    <MUI.List>
+                    <MUI.List
+                        className={classes.list}>
                         <MUI.ListItem button>My Tickets</MUI.ListItem>
                     </MUI.List>
                     <MUI.Divider />

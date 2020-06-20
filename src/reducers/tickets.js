@@ -14,7 +14,6 @@ export const tickets = (state = initialState, action) => {
                 isFetching: true
             };
         case FETCH_TICKETS_SUCCESS:
-            console.log(action.payload);
             return {
                 ...state,
                 tickets: action.payload,

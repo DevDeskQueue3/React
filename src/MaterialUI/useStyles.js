@@ -29,6 +29,20 @@ const useStyles = makeStyles((theme) => ({
     dashboardRoot: {
         display: 'flex'
     },
+    dashboardtitle: {
+        fontWeight: 'bold'
+    },
+    list: {
+        fontSize: '1.5rem',
+        padding: '0'
+    },
+    listitem: {
+        padding: '7% 7%',
+        '&:hover': {
+            backgroundColor: 'rgba(22, 142, 245, 0.13)',
+            borderLeft: '4px solid rgb(0, 171, 236)'
+        }
+    },
     card: {
         margin: '0 0 10px 20px',
         textAlign: 'left',
