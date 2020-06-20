@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import * as MUI from '../../MaterialUI/index';
 import { getTickets } from '../../actions/tickets';
 
+import './ticket.css';
+
 const TicketDashboard = props => {
     const classes = MUI.useStyles();
 
@@ -70,6 +72,7 @@ const TicketDashboard = props => {
                     </MUI.TreeView>
                 </MUI.Drawer>
                 <MUI.List className='ticket-list'>
+<<<<<<< HEAD
                     
                     {
                         isFetching ? <h3>Loading Tickets...</h3> : 
@@ -85,6 +88,28 @@ const TicketDashboard = props => {
                             })
                         )
                     }
+=======
+                    {tickets.map((ticket) => {
+                        return( 
+                            <MUI.Card
+                                className={`${classes.card} ticket-card`} 
+                                key={ticket.id}>
+                                <div className={classes.details}>
+                                    <MUI.CardContent
+                                        className={classes.timeframe}>
+                                        <p>1 Day Old</p>
+                                    </MUI.CardContent>
+                                    <div>
+                                        <MUI.CardHeader
+                                            className={classes.header}
+                                            title={ticket.title} />
+                                        <p className={classes.subtitle}>{ticket.description}</p>
+                                    </div>
+                                </div>
+                            </MUI.Card>
+                        );
+                    })}
+>>>>>>> 635388848726363df80f63ce7de9230bb3c845fc
                 </MUI.List>
             </MUI.Grid>
         </>
