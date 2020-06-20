@@ -3,7 +3,7 @@ import useForm from "../../hooks/useForm";
 import { registerFormSchema } from "../../utils/loginFormValidation";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getToken } from "../../actions/login";
+import { getToken, clearError } from "../../actions/login";
 import * as MUI from "../../MaterialUI";
 import { theme, ColorButton } from "../../MaterialUI/useStyles";
 
@@ -60,6 +60,7 @@ const Register = props => {
         }
     }, [isFetching, props.history]);
 
+    useEffect(() => dispatch(clearError()), [dispatch]);
 
     return (
         <div className = "login-container">
@@ -136,7 +137,6 @@ const Register = props => {
 
                     {error.code && <span className = "form-error">{
                         error.code === 500 ? "Email Account already exists" : 
-                        error.code === 401 ? "Email or Password is incorrect" :
                         error.message}</span>}
                 </div>
                 

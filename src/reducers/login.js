@@ -1,7 +1,8 @@
 import {
     FETCH_LOGIN_START,
     FETCH_LOGIN_SUCCESS,
-    FETCH_LOGIN_FAILURE
+    FETCH_LOGIN_FAILURE,
+    CLEAR_ERROR
 } from "../actions/login";
 
 const initialState = {
@@ -29,6 +30,11 @@ export const login = (state = initialState, action) => {
                 ...state,
                 error: action.payload,
                 isFetching: false
+            };
+        case CLEAR_ERROR:
+            return {
+                ...state,
+                error: {}
             }
         default: 
             return state;

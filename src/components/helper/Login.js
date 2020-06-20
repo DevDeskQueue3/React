@@ -5,7 +5,7 @@ import * as MUI from "../../MaterialUI";
 import { theme, ColorButton } from "../../MaterialUI/useStyles";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getToken } from "../../actions/login";
+import { getToken, clearError } from "../../actions/login";
 
 const initialValues = {
     email: "",
@@ -47,6 +47,8 @@ const Login = props => {
             props.history.push("/tickets");
         }
     }, [isFetching, props.history]);
+
+    useEffect(() => dispatch(clearError()), [dispatch]);
 
     return (
         <div className = "login-container">
