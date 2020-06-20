@@ -26,31 +26,47 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: "21px !important",
         marginRight: "10px !important",
     },
+    dashboardRoot: {
+        display: 'flex'
+    },
     card: {
         margin: '0 0 10px 20px',
-        minWidth: '500px'
+        textAlign: 'left',
+        width: '100%'
     },
     details: {
         display: 'flex',
-        padding: '10px'
+        justifyContent: 'space-around',
+        padding: '0'
     },
     timeframe: {
         borderRight: '1px solid #cecece',
+        margin: '10px 0',
+        width: '100px',
         '& p': {
             position: 'relative',
             top: '20%'
         }
     },
-    header: {
+    cardsection: {
         fontSize: '1.4rem',
-        fontWeight: 'bold',
-        margin: '2px'
+        '& div': {
+            fontWeight: '600'
+        },
+        '& div.header': {
+            fontWeight: '600'
+        }
+    },
+    header: {
+        margin: '5px',
+        padding: '0'
     },
     subtitle: {
         fontWeight: 'normal',
-        width: '90%',
+        fontSize: '.9rem',
+        width: '85%',
         marginBottom: '10px',
-        paddingLeft: '15px'
+        paddingLeft: '5px'
     },
     margin: {
         margin: theme.spacing(1)

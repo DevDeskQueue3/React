@@ -22,6 +22,7 @@ const TicketDashboard = props => {
         <>
             <MUI.Grid
                 container
+                className={classes.dashboardRoot}
                 spacing={1}>
                 <MUI.Drawer
                     className={classes.drawer}
@@ -82,16 +83,23 @@ const TicketDashboard = props => {
                                         className={`${classes.card} ${ticket.status === "OPEN" ? "ticket-card-red" : "ticket-card-green"}`} 
                                         key={ticket.id}>
                                         <div className={classes.details}>
-                                            <MUI.CardContent
-                                                className={classes.timeframe}>
-                                                <p>1 Day Old</p>
-                                            </MUI.CardContent>
-                                            <div>
+                                            <section className={classes.cardsection}>
+                                                <MUI.CardContent
+                                                    className={classes.timeframe}>
+                                                    <p>1 Day Old</p>
+                                                </MUI.CardContent>
+                                            </section>
+                                            <section className={classes.cardsection}>
                                                 <MUI.CardHeader
                                                     className={classes.header}
                                                     title={ticket.title} />
                                                 <p className={classes.subtitle}>{ticket.description}</p>
-                                            </div>
+                                            </section>
+                                            <section className={classes.cardsection}>
+                                                <MUI.CardContent>
+                                                    <MUI.AccountCircle />
+                                                </MUI.CardContent>
+                                            </section>
                                         </div>
                                     </MUI.Card>
                                 );
