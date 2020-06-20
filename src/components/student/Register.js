@@ -82,28 +82,31 @@ const StudentRegister = props => {
                 <MUI.ThemeProvider theme={theme}>
                     <div className='input-group'>
                         <div className='name-group'>
-                            <MUI.TextField className={classes.loginInput}
-                                        type='text'
-                                        value={values.firstName}
-                                        onChange={handleChanges}
-                                        id='firstName'
-                                        error = {formErrors.firstName.length > 0}
-                                        helperText={formErrors.firstName.length > 0 && <span data-cy='firstName-error'>{formErrors.firstName}</span>}
-                                        name='firstName'
-                                        label='First Name' />
-                            <MUI.TextField className={classes.loginInput}
-                                        type='text'
-                                        value={values.lastName}
-                                        onChange={handleChanges}
-                                        id='lastName'
-                                        error = {formErrors.lastName.length > 0}
-                                        helperText={formErrors.lastName.length > 0 && <span data-cy='lastName-error'>{formErrors.lastName}</span>}
-                                        name='lastName'
-                                        label='Last Name' />
+                            <MUI.TextField 
+                                className={classes.loginInput}
+                                type='text'
+                                value={values.firstName}
+                                onChange={handleChanges}
+                                id='firstName'
+                                error = {formErrors.firstName.length > 0}
+                                helperText={formErrors.firstName.length > 0 && <span data-cy='firstName-error'>{formErrors.firstName}</span>}
+                                name='firstName'
+                                label='First Name' />
+                            <MUI.TextField 
+                                className={classes.loginInput}
+                                type='text'
+                                value={values.lastName}
+                                onChange={handleChanges}
+                                id='lastName'
+                                error = {formErrors.lastName.length > 0}
+                                helperText={formErrors.lastName.length > 0 && <span data-cy='lastName-error'>{formErrors.lastName}</span>}
+                                name='lastName'
+                                label='Last Name' />
                         </div>
-                    </div>
-                    <MUI.FormControl className={classes.margin}>
-                        <MUI.TextField id='email'
+
+                        <MUI.TextField 
+                            className = {classes.loginInput} 
+                            id='email'
                             onChange={handleChanges}
                             label='Email Address'
                             data-cy='email'
@@ -121,9 +124,10 @@ const StudentRegister = props => {
                                 )
                             }}
                         />
-                    </MUI.FormControl>
-                    <MUI.FormControl className={classes.margin}>
-                        <MUI.TextField id='password'
+
+                        <MUI.TextField 
+                            className = {classes.loginInput} 
+                            id='password'
                             type={showPassword ? 'text' : 'password'}
                             label='Password'
                             data-cy='password'
@@ -145,16 +149,18 @@ const StudentRegister = props => {
                                 )
                             }}
                         />
-                    </MUI.FormControl>
 
-                    {error.code && <span className = "form-error">{
+                        {error.code && <span className = "form-error">{
                         error.code === 500 ? "Email Account already exists. if you have a helper account, you can add the student role in the account settings." : 
                         error.message}</span>}
+                    </div>
 
                     <div className = 'button-group'>
                         {isFetching ? <MUI.CircularProgress /> : <ColorButton size='large' color='primary' type='submit' disabled={buttonDisabled}>Create Account</ColorButton>}
                     </div>
+
                     <Link to='/student/login'>Already have an account?</Link>
+
                 </MUI.ThemeProvider>
             </form>
         </div>
