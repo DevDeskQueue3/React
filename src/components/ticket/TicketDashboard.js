@@ -2,6 +2,8 @@ import React from 'react';
 import { useSelector } from "react-redux";
 import * as MUI from '../../MaterialUI/index';
 
+import './ticket.css';
+
 const TicketDashboard = props => {
     const classes = MUI.useStyles();
 
@@ -68,13 +70,19 @@ const TicketDashboard = props => {
                 <MUI.List className='ticket-list'>
                     {tickets.map((ticket) => {
                         return( 
-                            <MUI.Card key={ticket.id}>
+                            <MUI.Card
+                                className={`${classes.card} ticket-card`} 
+                                key={ticket.id}>
                                 <div className={classes.details}>
                                     <MUI.CardContent>
                                         ddd
                                     </MUI.CardContent>
-                                    <MUI.CardHeader
-                                        title={ticket.title} />
+                                    <div>
+                                        <MUI.CardHeader
+                                            className={classes.header}
+                                            title={ticket.title} />
+                                        <p className={classes.subtitle}>{ticket.description}</p>
+                                    </div>
                                 </div>
                             </MUI.Card>
                         );

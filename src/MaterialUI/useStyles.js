@@ -26,8 +26,19 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: "21px !important",
         marginRight: "10px !important",
     },
+    card: {
+        marginLeft: '20px'
+    },
     details: {
-        display: 'flex'
+        display: 'flex',
+        padding: '20px'
+    },
+    header: {
+        fontSize: '1.4rem',
+        fontWeight: 'bold'
+    },
+    subtitle: {
+        fontWeight: 'normal'
     },
     margin: {
         margin: theme.spacing(1)
