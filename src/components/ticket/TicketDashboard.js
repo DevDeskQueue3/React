@@ -72,23 +72,6 @@ const TicketDashboard = props => {
                     </MUI.TreeView>
                 </MUI.Drawer>
                 <MUI.List className='ticket-list'>
-<<<<<<< HEAD
-                    
-                    {
-                        isFetching ? <h3>Loading Tickets...</h3> : 
-                        error.message ? <h3>{error.message}</h3> :
-                        (
-                            tickets.map((ticket) => {
-                                return( 
-                                    <MUI.Card key={ticket.id}>
-                                        <MUI.CardHeader
-                                            title={ticket.title} />
-                                    </MUI.Card>
-                                );
-                            })
-                        )
-                    }
-=======
                     {tickets.map((ticket) => {
                         return( 
                             <MUI.Card
@@ -109,7 +92,6 @@ const TicketDashboard = props => {
                             </MUI.Card>
                         );
                     })}
->>>>>>> 635388848726363df80f63ce7de9230bb3c845fc
                 </MUI.List>
             </MUI.Grid>
         </>
