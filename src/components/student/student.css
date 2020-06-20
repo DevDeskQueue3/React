@@ -1,0 +1,58 @@
+div.login-wrapper{
+    background: #e6e6e6;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+div.login-wrapper form.login-form{
+    font-size: 1.8rem;
+    display: flex;
+    flex-direction: column;
+}
+
+div.MuiFilledInput-root{
+    background-color: white;
+}
+
+section.login-links{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 80px;
+}
+
+div.login-wrapper form.login-form button{
+    font-size: 1.4rem;
+}
+
+.divider{
+    height: 10px;
+    width: 100%;
+    position: relative;
+    top: 50px;
+    margin: 0 auto;
+    padding: 0 1%;
+    text-align: center;
+}
+
+.divider:before, .divider:after{
+    content: ' ';
+    display: block;
+    border-bottom: 1px solid gray;
+    position: absolute;
+    height: 10px;
+    top: 30%;
+    width: 50%;
+}
+
+.divider:before{
+    left: -2%;
+}
+
+.divider:after{
+    left: 52%;
+}

@@ -1,32 +1,138 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import useForm from "../../hooks/useForm";
-import axiosWithAuth from '../../utils/axiosWithAuth';
+import { loginFormSchema } from "../../utils/loginFormValidation";
+import * as MUI from "../../MaterialUI";
+import { theme, ColorButton } from "../../MaterialUI/useStyles";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getToken, clearError } from "../../actions/login";
 
-const Login = () => {
-    const [helper, handleChanges] = useForm({email: "", password: ""});
+const initialValues = {
+    email: "",
+    password: ""
+}
+
+const Login = props => {
+    const dispatch = useDispatch();
+    const { isFetching, error } = useSelector(state => state.login);
+    const [loginError, setLoginError] = useState("");
+
+    const classes = MUI.useStyles();
+
+    const [helper, handleChanges, formErrors] = useForm(initialValues, loginFormSchema);
+    const [buttonDisabled, setButtonDisabled] = useState(true);
+
+    const [showPassword, setShowPassword] = useState(false);
+    
+    useEffect(() => {
+        loginFormSchema.isValid(helper).then(valid => {
+            setButtonDisabled(!valid);
+        });
+    }, [helper])
 
     const postLogin = e => {
         e.preventDefault();
 
-        axiosWithAuth()
-            .post("/login", helper)
-            .then(res => console.log(res.data))
-            .catch(err => console.log(err.message, err.response.data));
+        dispatch(getToken(helper));
     }
+
+    const handleClickShowPassword = () => {
+        setShowPassword(!showPassword);
+    };
+
+    const handleMouseDownPassword = (e) => {
+        e.preventDefault();
+    };
+
+    useEffect(() => {
+        if(localStorage.getItem("token")) {
+            const userData = JSON.parse(localStorage.getItem("user"));
+            
+            if(userData.roles.includes("HELPER")){
+                props.history.push("/tickets");
+                setLoginError("");
+            } else {
+                setLoginError("Your account is not a helper account, click on the link above to go to the student login.");
+                localStorage.removeItem("token");
+                localStorage.removeItem("user");
+            }
+        }
+    }, [isFetching, props.history]);
+
+    useEffect(() => dispatch(clearError()), [dispatch]);
+
     return (
-        <div className = "helper-login-container">
-            <h2>Helper Login</h2>
-            <p>Login to your account and start Helping.</p>
-            <p>Not a helper? <a href = "#">Click Here</a>.</p>
+        <div className = "login-container">
+            <div className = "top-text">
+            <h1>Helper Login</h1>
+                <p>Login to your account and start Helping. <br />
+                    Not a helper? <Link to = "/student/login">Click Here</Link>.</p>
+            </div>
 
             <form onSubmit = {postLogin}>
-                <label htmlFor = "email">Email Address</label>
-                <input id = "email" type = "email" name = "email" value = {helper.email} onChange = {handleChanges} placeholder = "Email Address" />
+                <MUI.ThemeProvider theme = {theme}>
+                <div className = "input-group">
+                    <MUI.TextField 
+                        error = {formErrors.email.length > 0} 
+                        helperText = {formErrors.email.length > 0 && formErrors.email} 
+                        className = {classes.loginInput} 
+                        id = "email" 
+                        type = "email" 
+                        name = "email" 
+                        value = {helper.email} 
+                        onChange = {handleChanges} 
+                        label = "Email Address" 
+                        InputProps = {{
+                            endAdornment: (
+                                <MUI.InputAdornment position='end'>
+                                    <MUI.IconButton>
+                                        <MUI.AccountCircle />
+                                    </MUI.IconButton>
+                                </MUI.InputAdornment>
+                            )
+                        }}
+                    />
 
-                <label htmlFor = "password">Password</label>
-                <input id = "password" type = "password" name = "password" value = {helper.password} onChange = {handleChanges} placeholder = "Password" />
+                    <MUI.TextField 
+                        error = {formErrors.password.length > 0} 
+                        helperText = {formErrors.password.length > 0 && formErrors.password}
+                        className = {classes.loginInput} 
+                        id = "password" 
+                        type = {showPassword ? "text" : "password"} 
+                        name = "password" 
+                        value = {helper.password} 
+                        onChange = {handleChanges} 
+                        label = "Password" 
+                        InputProps = {{
+                            endAdornment: (
+                                <MUI.InputAdornment position = "end">
+                                    <MUI.IconButton aria-label='toggle password visibility'
+                                                    onClick={handleClickShowPassword}
+                                                    onMouseDown={handleMouseDownPassword}
+                                        >
+                                            {showPassword ? <MUI.Visibility /> : <MUI.VisibilityOff />}
+                                        </MUI.IconButton>
+                                </MUI.InputAdornment>
+                            )
+                        }}
+                        
+                    />
 
-                <button type = "submit">Login</button>
+                    {error.code && <span className = "form-error">{
+                        error.code === 404 ? "No account found with that email address. Check your email and try again" : 
+                        error.code === 401 ? "Email or Password is incorrect" :
+                        error.message}</span>}
+                    {loginError.length > 0 && <span className = "form-error">{loginError}</span>}
+                </div>
+
+                
+
+                <div className = "button-group">
+                    {isFetching ? <MUI.CircularProgress /> : <ColorButton size="large" color="primary" type = "submit" disabled = {buttonDisabled}>Login</ColorButton>}
+
+                </div>
+
+                <Link to = "/helper/signup">Don't have an account?</Link>
 
                 {/* 
                     //Stretch to add Slack login
@@ -39,6 +145,7 @@ const Login = () => {
 
                     <a href = "#">Connect using Slack</a>
                 */}
+                </MUI.ThemeProvider>
             </form>
         </div>
     );

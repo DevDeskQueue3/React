@@ -21,7 +21,7 @@ Here is the link for the Product Vision Document to read more about our goals fo
 ## STRETCH
 1. Build an integrated Slackbot that allows students to submit help `tickets` through Slack. Allow the ability to subscribe to the `queue` in Slack to be notified if someone opens a `ticket`.
 
-2. A `user` can be both a `student` and a `helper`.
+2. A `user` can be both a `student` and a `helper`
 
 
 
