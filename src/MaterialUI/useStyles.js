@@ -26,6 +26,9 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: "21px !important",
         marginRight: "10px !important",
     },
+    details: {
+        display: 'flex'
+    },
     margin: {
         margin: theme.spacing(1)
     },
