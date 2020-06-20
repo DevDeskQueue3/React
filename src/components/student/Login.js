@@ -59,8 +59,6 @@ const StudentLogin = props => {
     };
 
     useEffect(() => {
-        
-
         if(localStorage.getItem("token")) {
             const userData = JSON.parse(localStorage.getItem("user"));
             
