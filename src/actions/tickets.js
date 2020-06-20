@@ -10,7 +10,7 @@ export const getTickets = () => dispatch => {
     axiosWithAuth()
         .get("/tickets")
         .then(res => {
-            console.log(res.data.tickets);
+            //console.log(res.data.tickets);
             dispatch({
                 type: FETCH_TICKETS_SUCCESS,
                 payload: res.data.tickets
