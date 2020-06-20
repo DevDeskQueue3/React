@@ -80,16 +80,17 @@ const StudentLogin = props => {
     useEffect(() => dispatch(clearError()), [dispatch]);
 
     return (
-        <>
-            <MUI.Container className='login-container'>
-                <div className='top-text'>
-                    <h1>We're here to help.</h1>
-                    <p>Login to your account and we'll connect you with a Lambda School Helper.</p>
-                </div>
-                <form className='login-form' onSubmit={handleSubmit}>
-                    <MUI.ThemeProvider theme={theme}>
-                        <MUI.FormControl className={classes.margin}>
-                            <MUI.TextField id='email'
+        <MUI.Container className='login-container'>
+            <div className='top-text'>
+                <h1>We're here to help.</h1>
+                <p>Login to your account and we'll connect you with a Lambda School Helper.</p>
+            </div>
+            <form onSubmit={handleSubmit}>
+                <MUI.ThemeProvider theme={theme}>
+                    <div className = "input-group">
+                            <MUI.TextField 
+                                className = {classes.loginInput}
+                                id='email'
                                 name='email'
                                 onChange={handleChanges}
                                 error={formErrors.email.length > 0}
@@ -107,9 +108,9 @@ const StudentLogin = props => {
                                     )
                                 }}
                             />
-                        </MUI.FormControl>
-                        <MUI.FormControl className={classes.margin}>
-                            <MUI.TextField id='password'
+                            <MUI.TextField 
+                                className = {classes.loginInput}
+                                id='password'
                                 name='password'
                                 error={formErrors.password.length > 0}
                                 type={showPassword ? 'text' : 'password'}
@@ -131,28 +132,32 @@ const StudentLogin = props => {
                                     )
                                 }}
                             />
-                        </MUI.FormControl>
                         {error.code && <span className = "form-error">{
                         error.code === 404 ? "No account found with that email address. Check your email and try again" : 
                         error.code === 401 ? "Email or Password is incorrect" :
                         error.message}</span>}
                         {loginError.length > 0 && <span className = "form-error">{loginError}</span>}
-                        <div className = "button-group">
-                            {isFetching ? <MUI.CircularProgress /> : <ColorButton size="large" color="primary" type = "submit" disabled = {buttonDisabled}>Login</ColorButton>}
-                        </div>
-                    </MUI.ThemeProvider>
-                </form>
-                <div className='divider'>or</div>
-                <section className='login-links'>
-                    {/* <Link href='#'
-                            target='_blank'
-                            rel='noopener'
-                    >Connect using Slack</Link> */}
-                    <span>Lambda school employee? </span>
-                    <Link to='/helper/login'>Click here</Link>
-                </section>
-            </MUI.Container>
-        </>
+
+                    </div>
+
+                    <div className = "button-group">
+                        {isFetching ? <MUI.CircularProgress /> : <ColorButton size="large" color="primary" type = "submit" disabled = {buttonDisabled}>Login</ColorButton>}
+                    </div>
+
+                    <Link to = "/student/signup">Don't have an account?</Link>
+
+                </MUI.ThemeProvider>
+            </form>
+            <div className='divider'>or</div>
+            <section className='login-links'>
+                {/* <Link href='#'
+                        target='_blank'
+                        rel='noopener'
+                >Connect using Slack</Link> */}
+                <span>Lambda school employee? </span>
+                <Link to='/helper/login'>Click here</Link>
+            </section>
+        </MUI.Container>
     );
 };
 

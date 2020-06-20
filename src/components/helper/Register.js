@@ -72,92 +72,101 @@ const Register = props => {
 
             <form onSubmit = {postSignup}>
                 <MUI.ThemeProvider theme = {theme}>
-                <div className = "input-group">
-                    <div className = "name-group">
+                    <div className = "input-group">
+                        <div className = "name-group">
+                            <MUI.TextField 
+                                className = {classes.loginInput} 
+                                error = {formErrors.firstName.length > 0} 
+                                helperText = {formErrors.firstName.length > 0 && formErrors.firstName} 
+                                id = "firstName" 
+                                type = "text" 
+                                name = "firstName" 
+                                value = {helper.firstName} 
+                                onChange = {handleChanges} 
+                                label = "First Name" 
+                            />
+
+                            <MUI.TextField 
+                                className = {classes.loginInput}
+                                error = {formErrors.lastName.length > 0} 
+                                helperText = {formErrors.lastName.length > 0 && formErrors.lastName}
+                                id = "lastName" 
+                                type = "text" 
+                                name = "lastName" 
+                                value = {helper.lastName} 
+                                onChange = {handleChanges} 
+                                label = "Last Name" 
+                            />
+                        </div>
+
                         <MUI.TextField 
                             className = {classes.loginInput} 
-                            error = {formErrors.firstName.length > 0} 
-                            helperText = {formErrors.firstName.length > 0 && formErrors.firstName} 
-                            id = "firstName" 
-                            type = "text" 
-                            name = "firstName" 
-                            value = {helper.firstName} 
+                            error = {formErrors.email.length > 0} 
+                            helperText = {formErrors.email.length > 0 && formErrors.email} 
+                            id = "email" 
+                            type = "email" 
+                            name = "email" 
+                            value = {helper.email} 
                             onChange = {handleChanges} 
-                            label = "First Name" 
+                            label = "Email Address" 
+                            InputProps={{
+                                endAdornment: (
+                                    <MUI.InputAdornment position='end'>
+                                        <MUI.IconButton>
+                                            <MUI.AccountCircle />
+                                        </MUI.IconButton>
+                                    </MUI.InputAdornment>
+                                )
+                            }}
                         />
 
                         <MUI.TextField 
-                            className = {classes.loginInput}
-                            error = {formErrors.lastName.length > 0} 
-                            helperText = {formErrors.lastName.length > 0 && formErrors.lastName}
-                            id = "lastName" 
-                            type = "text" 
-                            name = "lastName" 
-                            value = {helper.lastName} 
+                            className = {classes.loginInput} 
+                            error = {formErrors.password.length > 0} 
+                            helperText = {formErrors.password.length > 0 && formErrors.password} 
+                            id = "password" 
+                            type = {showPassword ? "text" : "password"} 
+                            name = "password" 
+                            value = {helper.password} 
                             onChange = {handleChanges} 
-                            label = "Last Name" 
+                            label = "Password" 
+                            InputProps = {{
+                                endAdornment: (
+                                    <MUI.InputAdornment position = "end">
+                                        <MUI.IconButton aria-label='toggle password visibility'
+                                                        onClick={handleClickShowPassword}
+                                                        onMouseDown={handleMouseDownPassword}
+                                            >
+                                                {showPassword ? <MUI.Visibility /> : <MUI.VisibilityOff />}
+                                            </MUI.IconButton>
+                                    </MUI.InputAdornment>
+                                )
+                            }}
                         />
+
+                        {error.code && <span className = "form-error">{
+                            error.code === 500 ? "Email Account already exists" : 
+                            error.message}</span>}
+                    </div>
+                    
+
+                    <div className = "button-group">
+                        {isFetching ? <MUI.CircularProgress /> : <ColorButton size="large" color="primary" type = "submit" disabled = {buttonDisabled}>Create Account</ColorButton>}
                     </div>
 
-                    <MUI.TextField 
-                        className = {classes.loginInput} 
-                        error = {formErrors.email.length > 0} 
-                        helperText = {formErrors.email.length > 0 && formErrors.email} 
-                        id = "email" 
-                        type = "email" 
-                        name = "email" 
-                        value = {helper.email} 
-                        onChange = {handleChanges} 
-                        label = "Email Address" 
-                    />
+                    <Link to = "/helper/login">Already have an account?</Link>
 
-                    <MUI.TextField 
-                        className = {classes.loginInput} 
-                        error = {formErrors.password.length > 0} 
-                        helperText = {formErrors.password.length > 0 && formErrors.password} 
-                        id = "password" 
-                        type = {showPassword ? "text" : "password"} 
-                        name = "password" 
-                        value = {helper.password} 
-                        onChange = {handleChanges} 
-                        label = "Password" 
-                        InputProps = {{
-                            endAdornment: (
-                                <MUI.InputAdornment position = "end">
-                                    <MUI.IconButton aria-label='toggle password visibility'
-                                                    onClick={handleClickShowPassword}
-                                                    onMouseDown={handleMouseDownPassword}
-                                        >
-                                            {showPassword ? <MUI.Visibility /> : <MUI.VisibilityOff />}
-                                        </MUI.IconButton>
-                                </MUI.InputAdornment>
-                            )
-                        }}
-                    />
+                    {/* 
+                        //Stretch to add Slack login
 
-                    {error.code && <span className = "form-error">{
-                        error.code === 500 ? "Email Account already exists" : 
-                        error.message}</span>}
-                </div>
-                
+                        <div className = "login-divider">
+                            <div className = "line" />
+                            <span>or</span>
+                            <div className = "line" />
+                        </div>
 
-                <div className = "button-group">
-                    {isFetching ? <MUI.CircularProgress /> : <ColorButton size="large" color="primary" type = "submit" disabled = {buttonDisabled}>Create Account</ColorButton>}
-                </div>
-
-                <Link to = "/helper/login">Already have an account?</Link>
-
-                {/* 
-                    //Stretch to add Slack login
-
-                    <div className = "login-divider">
-                        <div className = "line" />
-                        <span>or</span>
-                        <div className = "line" />
-                    </div>
-
-                    <a href = "#">Connect using Slack</a>
-                */}
+                        <a href = "#">Connect using Slack</a>
+                    */}
                 </MUI.ThemeProvider>
             </form>
         </div>
