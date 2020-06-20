@@ -15,6 +15,8 @@ const initialValues = {
 const Login = props => {
     const dispatch = useDispatch();
     const { isFetching, error } = useSelector(state => state.login);
+    const [loginError, setLoginError] = useState("");
+
     const classes = MUI.useStyles();
 
     const [helper, handleChanges, formErrors] = useForm(initialValues, loginFormSchema);
@@ -44,7 +46,16 @@ const Login = props => {
 
     useEffect(() => {
         if(localStorage.getItem("token")) {
-            props.history.push("/tickets");
+            const userData = JSON.parse(localStorage.getItem("user"));
+            
+            if(userData.roles.includes("HELPER")){
+                props.history.push("/tickets");
+                setLoginError("");
+            } else {
+                setLoginError("Your account is not a helper account, click on the link above to go to the student login.");
+                localStorage.removeItem("token");
+                localStorage.removeItem("user");
+            }
         }
     }, [isFetching, props.history]);
 
@@ -111,12 +122,14 @@ const Login = props => {
                         error.code === 404 ? "No account found with that email address. Check your email and try again" : 
                         error.code === 401 ? "Email or Password is incorrect" :
                         error.message}</span>}
+                    {loginError.length > 0 && <span className = "form-error">{loginError}</span>}
                 </div>
 
                 
 
                 <div className = "button-group">
                     {isFetching ? <MUI.CircularProgress /> : <ColorButton size="large" color="primary" type = "submit" disabled = {buttonDisabled}>Login</ColorButton>}
+
                 </div>
 
                 <Link to = "/helper/signup">Don't have an account?</Link>

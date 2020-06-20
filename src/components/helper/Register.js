@@ -17,6 +17,8 @@ const initialValues = {
 const Register = props => {
     const dispatch = useDispatch();
     const { isFetching, error } = useSelector(state => state.login);
+    const [loginError, setLoginError] = useState("");
+
 
     const classes = MUI.useStyles();
     const [helper, handleChanges, formErrors] = useForm(initialValues, registerFormSchema);
@@ -56,7 +58,16 @@ const Register = props => {
 
     useEffect(() => {
         if(localStorage.getItem("token")) {
-            props.history.push("/tickets");
+            const userData = JSON.parse(localStorage.getItem("user"));
+            
+            if(userData.roles.includes("HELPER")){
+                props.history.push("/tickets");
+                setLoginError("");
+            } else {
+                setLoginError("Your account is not a student account, sign in using the helper link at the bottom.");
+                localStorage.removeItem("token");
+                localStorage.removeItem("user");
+            }
         }
     }, [isFetching, props.history]);
 
@@ -147,6 +158,7 @@ const Register = props => {
                         {error.code && <span className = "form-error">{
                             error.code === 500 ? "Email Account already exists" : 
                             error.message}</span>}
+                        {loginError.length > 0 && <span className = "form-error">{loginError}</span>}
                     </div>
                     
 

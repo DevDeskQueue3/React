@@ -21,6 +21,8 @@ const StudentRegister = props => {
 
     const dispatch = useDispatch();
     const { isFetching, error } = useSelector(state => state.login);
+    const [loginError, setLoginError] = useState("");
+
 
     const [buttonDisabled, setButtonDisabled] = useState(true);
     const [showPassword, setShowPassword] = useState(false);
@@ -43,15 +45,17 @@ const StudentRegister = props => {
     };
 
     useEffect(() => {
-        
-
         if(localStorage.getItem("token")) {
-            const token = JSON.parse(localStorage.getItem("token"));
+            const userData = JSON.parse(localStorage.getItem("user"));
             
-            if(token){
+            if(userData.roles.includes("STUDENT")){
                 props.history.push("/tickets");
-            } 
-            
+                setLoginError("");
+            } else {
+                setLoginError("Your account is not a student account, sign in using the helper link at the bottom.");
+                localStorage.removeItem("token");
+                localStorage.removeItem("user");
+            }
         }
     }, [isFetching, props.history]);
 
@@ -153,6 +157,7 @@ const StudentRegister = props => {
                         {error.code && <span className = "form-error">{
                         error.code === 500 ? "Email Account already exists. if you have a helper account, you can add the student role in the account settings." : 
                         error.message}</span>}
+                        {loginError.length > 0 && <span className = "form-error">{loginError}</span>}
                     </div>
 
                     <div className = 'button-group'>
