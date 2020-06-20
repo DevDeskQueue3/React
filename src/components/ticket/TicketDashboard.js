@@ -74,14 +74,14 @@ const TicketDashboard = props => {
                 </MUI.Drawer>
                 <MUI.List className='ticket-list'>
                     {
-                        isFetching ? <h3>Loading Tickets...</h3> : 
+                        isFetching || !tickets ? <h3 className='loading'>Loading Tickets...</h3> : 
                         error.message ? <h3>{error.message}</h3> :
                         (
                             tickets.map((ticket) => {
                                 return( 
                                     <MUI.Card
                                         className={`${classes.card} ${ticket.status === "OPEN" ? "ticket-card-red" : "ticket-card-green"}`} 
-                                        key={ticket.id}>
+                                        key={ticket.ticket_id}>
                                         <div className={classes.details}>
                                             <section className={classes.cardsection}>
                                                 <MUI.CardContent
@@ -100,7 +100,7 @@ const TicketDashboard = props => {
                                                     <MUI.Tooltip
                                                         className={classes.tooltip}
                                                         TransitionComponent={MUI.Fade}
-                                                        title={ticket.postedBy.name}>
+                                                        title={ticket.posted_by_name}>
                                                         <MUI.AccountCircle />
                                                     </MUI.Tooltip>
                                                 </MUI.CardContent>

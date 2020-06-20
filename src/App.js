@@ -8,6 +8,7 @@ import StudentRegister from './components/student/Register';
 import './App.css';
 import PrivateRoute from './components/PrivateRoute';
 import TicketDashboard from './components/ticket/TicketDashboard';
+import TicketForm from './components/ticket/TicketForm';
 
 const App = () => {
   const { location, push } = useHistory();
@@ -24,7 +25,8 @@ const App = () => {
       <Route path="/helper/signup" component={HelperRegister} />
       <Route path="/student/login" component={StudentLogin} />
       <Route path="/student/signup" component={StudentRegister} />
-      <PrivateRoute path = "/tickets" component = {TicketDashboard} />{/*remember to change this route back to PrivateRoute*/}
+      <PrivateRoute path = "/tickets" component = {TicketDashboard} />
+      <Route path="/tickets/create" component={TicketForm} />
     </div>
   );
 };

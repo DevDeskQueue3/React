@@ -9,3 +9,7 @@
 .ticket-card-red{
     border-left: 4px solid rgb(179, 3, 3);
 }
+
+.loading{
+    margin-left: 20px;
+}
