@@ -59,7 +59,10 @@ const useStyles = makeStyles((theme) => ({
     },
     header: {
         margin: '5px',
-        padding: '0'
+        padding: '10px 0 0 0'
+    },
+    tooltip: {
+        fontSize: '1.4rem'
     },
     subtitle: {
         fontWeight: 'normal',

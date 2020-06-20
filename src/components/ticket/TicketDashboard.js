@@ -97,7 +97,12 @@ const TicketDashboard = props => {
                                             </section>
                                             <section className={classes.cardsection}>
                                                 <MUI.CardContent>
-                                                    <MUI.AccountCircle />
+                                                    <MUI.Tooltip
+                                                        className={classes.tooltip}
+                                                        TransitionComponent={MUI.Fade}
+                                                        title={ticket.postedBy.name}>
+                                                        <MUI.AccountCircle />
+                                                    </MUI.Tooltip>
                                                 </MUI.CardContent>
                                             </section>
                                         </div>
