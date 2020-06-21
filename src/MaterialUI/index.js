@@ -3,7 +3,8 @@ import TextField from '@material-ui/core/TextField';
 import {
     AccountCircle,
     Visibility,
-    VisibilityOff
+    VisibilityOff,
+    PostAddRounded as AddTicketIcon,
 } from '@material-ui/icons';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -41,6 +42,7 @@ import {
     ClickAwayListener,
     MenuItem,
     MenuList,
+    Icon,
 } from '@material-ui/core';
 
 import {
@@ -89,4 +91,6 @@ export {
     ClickAwayListener,
     MenuItem,
     MenuList,
+    Icon,
+    AddTicketIcon,
 }

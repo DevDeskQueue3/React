@@ -3,6 +3,7 @@ import * as MUI from "../../MaterialUI";
 import { useSelector, useDispatch } from "react-redux";
 import { getTickets } from '../../actions/tickets';
 import { useHistory } from 'react-router-dom';
+import { ColorButton } from '../../MaterialUI/useStyles';
 
 const TicketQueue = () => {
     const classes = MUI.useStyles();
@@ -22,7 +23,7 @@ const TicketQueue = () => {
     }
 
     return (
-        <MUI.List className='ticket-list'>
+        <MUI.List className='ticket-list' >
             {
                 isFetching ? <h3 className='loading'>Loading Tickets...</h3> : 
             error.code === 401 ? <h3>Your session has expired. Please <MUI.Button variant = "contained" onClick = {loginAgain}>Log In</MUI.Button> Again</h3> :
@@ -63,6 +64,10 @@ const TicketQueue = () => {
                     })
                 )
             }
+            
+            <ColorButton className = {classes.addTicketButton} variant = "contained">
+                <MUI.AddTicketIcon fontSize = "large" />
+            </ColorButton>
         </MUI.List>
 
     );

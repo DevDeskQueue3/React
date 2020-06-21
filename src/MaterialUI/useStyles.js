@@ -116,7 +116,15 @@ const useStyles = makeStyles((theme) => ({
     },
     paper: {
         marginRight: theme.spacing(2),
-        
+
+    },
+    addTicketButton: {
+        borderRadius: "100px",
+        width: "100px",
+        height: "100px",
+        position: "fixed",
+        right: 550,
+        marginTop: -200,
     }
 }));
 
