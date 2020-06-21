@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
     },
     listitem: {
         padding: '7% 7%',
+        width: '70%',
         borderLeft: '4px solid rgba(255,255,255,0)',
         '&:hover': {
             borderLeft: '4px solid rgb(0, 171, 236)',
@@ -58,7 +59,8 @@ const useStyles = makeStyles((theme) => ({
     timeframe: {
         borderRight: '1px solid #cecece',
         margin: '10px 0',
-        width: '100px',
+        width: '108px',
+        maxWidth: '110px',
         '& p': {
             position: 'relative',
             top: '20%'

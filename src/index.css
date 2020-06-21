@@ -70,7 +70,8 @@ code {
   font-size: 1.2rem !important;
 }
 
-.App .login-container form .button-group button {
+.App .login-container form .button-group button,
+.App .ticket-form-container .button-group button {
   width: 100%;
   height: 56px;
   margin-bottom: 24px;
@@ -81,7 +82,8 @@ code {
   font-weight: bold;
 }
 
-.App .login-container form button:disabled {
+.App .login-container form button:disabled,
+.App .ticket-form-container form button:disabled {
   background: #EFEFEF;
   font-size: 18px;
   font-weight: normal;

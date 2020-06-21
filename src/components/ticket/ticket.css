@@ -10,6 +10,36 @@
     border-left: 4px solid rgb(179, 3, 3);
 }
 
+.ticket-list{
+    width: 50%;
+}
+
 .loading{
     margin-left: 20px;
+}
+
+.ticket-form-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    height: 100%;
+}
+
+.ticket-form-header{
+    text-align: left;
+    width: 31%;
+}
+
+.ticket-form{
+    display: flex;
+    flex-direction: column;
+}
+
+.ticket-form .input-group{
+    padding: 15px;
+}
+
+.ticket-form .input-group div.MuiInputBase-root{
+    width: 250px;
 }
