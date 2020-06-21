@@ -47,7 +47,9 @@ const TicketDashboard = props => {
                     <MUI.Divider />
                     <MUI.List
                         className={classes.list}>
-                        <MUI.ListItem button>My Tickets</MUI.ListItem>
+                        <MUI.ListItem
+                            className={classes.listitem}
+                            button>My Tickets</MUI.ListItem>
                     </MUI.List>
                     <MUI.Divider />
                     <MUI.TreeView

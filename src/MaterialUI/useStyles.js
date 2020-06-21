@@ -1,5 +1,6 @@
 import { makeStyles, createMuiTheme, Button, withStyles } from '@material-ui/core';
 import { orange } from '@material-ui/core/colors';
+import { CallReceived } from '@material-ui/icons';
 
 export const theme = createMuiTheme({
     palette: {
@@ -38,9 +39,10 @@ const useStyles = makeStyles((theme) => ({
     },
     listitem: {
         padding: '7% 7%',
+        borderLeft: '4px solid rgba(255,255,255,0)',
         '&:hover': {
-            backgroundColor: 'rgba(22, 142, 245, 0.13)',
-            borderLeft: '4px solid rgb(0, 171, 236)'
+            borderLeft: '4px solid rgb(0, 171, 236)',
+            backgroundColor: 'rgba(22, 142, 245, 0.13)'
         }
     },
     card: {
