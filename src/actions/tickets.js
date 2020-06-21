@@ -20,8 +20,8 @@ export const getTickets = () => dispatch => {
             dispatch({
                 type: FETCH_TICKETS_FAILURE,
                 payload: {
-                    code: err.response, 
-                    message: err.message
+                    code: err.response.status, 
+                    message: err.response.data.message
                 }
             })
         });

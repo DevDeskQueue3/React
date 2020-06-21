@@ -34,7 +34,13 @@ import {
     Fab,
     ThemeProvider,
     InputAdornment,
-    CircularProgress
+    CircularProgress,
+    Popper,
+    Paper,
+    Grow,
+    ClickAwayListener,
+    MenuItem,
+    MenuList,
 } from '@material-ui/core';
 
 import {
@@ -76,5 +82,11 @@ export {
     VisibilityOff,
     CircularProgress,
     ExpandMoreIcon,
-    ChevronRightIcon
+    ChevronRightIcon,
+    Popper,
+    Paper,
+    Grow,
+    ClickAwayListener,
+    MenuItem,
+    MenuList,
 }
