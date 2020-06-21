@@ -40,14 +40,14 @@ const useStyles = makeStyles((theme) => ({
     },
     list: {
         fontSize: '1.5rem',
-        padding: '0'
+        padding: '10px 0 10px 0'
     },
     listitem: {
-        padding: '7% 7%',
-        borderLeft: '4px solid rgba(255,255,255,0)',
+        padding: '7% 7% !important',
+        borderLeft: '4px solid rgba(255,255,255,0)', /* This prevents jitter on hover - Darren Tebo */
         '&:hover': {
             borderLeft: '4px solid rgb(0, 171, 236)',
-            backgroundColor: 'rgba(22, 142, 245, 0.13)'
+            backgroundColor: 'rgba(22, 142, 245, 0.13) '
         }
     },
     card: {
@@ -119,12 +119,16 @@ const useStyles = makeStyles((theme) => ({
 
     },
     addTicketButton: {
+        backgroundColor: "#ff9800",
         borderRadius: "100px",
         width: "100px",
         height: "100px",
         position: "fixed",
-        right: 550,
-        marginTop: -200,
+        right: "20px",
+        bottom: "20px",
+        '&:hover': {
+            backgroundColor: "rgba(255, 152, 0, 0.7607843137254902)"
+        }
     }
 }));
 

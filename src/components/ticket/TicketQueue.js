@@ -65,9 +65,13 @@ const TicketQueue = () => {
                 )
             }
             
-            <ColorButton className = {classes.addTicketButton} variant = "contained">
-                <MUI.AddTicketIcon fontSize = "large" />
-            </ColorButton>
+            <MUI.Fab
+                size='medium'
+                className={classes.addTicketButton}
+                variant="extended"
+            >
+                <MUI.AddTicketIcon fontSize="large" />
+            </MUI.Fab>
         </MUI.List>
 
     );

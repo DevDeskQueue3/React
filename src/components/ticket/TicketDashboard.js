@@ -22,13 +22,9 @@ const TicketDashboard = props => {
 
     return(
         <MUI.Grid container className={classes.dashboardRoot} spacing={1} >
-
             <NavDrawer />
-
             <TicketQueue />
-
             <TicketPreview />
-
         </MUI.Grid>
     );
 };
