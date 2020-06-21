@@ -1,6 +1,5 @@
 import { makeStyles, createMuiTheme, Button, withStyles } from '@material-ui/core';
 import { orange } from '@material-ui/core/colors';
-import { CallReceived } from '@material-ui/icons';
 
 export const theme = createMuiTheme({
     palette: {
@@ -39,7 +38,6 @@ const useStyles = makeStyles((theme) => ({
     },
     listitem: {
         padding: '7% 7%',
-        width: '70%',
         borderLeft: '4px solid rgba(255,255,255,0)',
         '&:hover': {
             borderLeft: '4px solid rgb(0, 171, 236)',
@@ -53,7 +51,6 @@ const useStyles = makeStyles((theme) => ({
     },
     details: {
         display: 'flex',
-        justifyContent: 'space-around',
         padding: '0'
     },
     timeframe: {
@@ -67,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     cardsection: {
-        fontSize: '1.4rem',
+        fontSize: '1.5rem',
         '& div': {
             fontWeight: '600'
         },
@@ -77,7 +74,10 @@ const useStyles = makeStyles((theme) => ({
     },
     header: {
         margin: '5px',
-        padding: '10px 0 0 0'
+        padding: '10px 0 0 0',
+        '& span': {
+            fontWeight: '700'
+        }
     },
     tooltip: {
         fontSize: '1.4rem'

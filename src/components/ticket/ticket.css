@@ -14,6 +14,17 @@
     width: 50%;
 }
 
+.ticket-info-wrapper{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-left: 10px;
+}
+
+.ticket-info-wrapper section:first-of-type {
+    width: 46%;
+}
+
 .loading{
     margin-left: 20px;
 }

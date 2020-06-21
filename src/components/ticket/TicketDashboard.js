@@ -97,22 +97,24 @@ const TicketDashboard = props => {
                                                     <p>1 Day Old</p>
                                                 </MUI.CardContent>
                                             </section>
-                                            <section className={classes.cardsection}>
-                                                <MUI.CardHeader
-                                                    className={classes.header}
-                                                    title={ticket.title} />
-                                                <p className={classes.subtitle}>{ticket.description}</p>
-                                            </section>
-                                            <section className={classes.cardsection}>
-                                                <MUI.CardContent>
-                                                    <MUI.Tooltip
-                                                        className={classes.tooltip}
-                                                        TransitionComponent={MUI.Fade}
-                                                        title={ticket.posted_by_name}>
-                                                        <MUI.AccountCircle />
-                                                    </MUI.Tooltip>
-                                                </MUI.CardContent>
-                                            </section>
+                                            <div className='ticket-info-wrapper'>
+                                                <section className={classes.cardsection}>
+                                                    <MUI.CardHeader
+                                                        className={classes.header}
+                                                        title={ticket.title} />
+                                                    <p className={classes.subtitle}>{ticket.description}</p>
+                                                </section>
+                                                <section className={classes.cardsection}>
+                                                    <MUI.CardContent>
+                                                        <MUI.Tooltip
+                                                            className={classes.tooltip}
+                                                            TransitionComponent={MUI.Fade}
+                                                            title={ticket.posted_by_name}>
+                                                            <MUI.AccountCircle />
+                                                        </MUI.Tooltip>
+                                                    </MUI.CardContent>
+                                                </section>
+                                            </div>
                                         </div>
                                     </MUI.Card>
                                 );
