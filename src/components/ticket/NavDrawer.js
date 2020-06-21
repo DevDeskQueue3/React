@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import * as MUI from "../../MaterialUI";
 
 
 //Needs to be hidden at window width 600px and below,
 //Check TicketPreview component for comment on when to hide
 const NavDrawer = () => {
+    const list = useRef();
     const classes = MUI.useStyles();
 
     const logout = () => {
         localStorage.clear();
         window.location.href = "/";
     }
+
+    const setActive = (e) => {
+        console.log('setactive: ', list)
+        list.current.classList.add("active");
+    };
 
     return (
         <MUI.Drawer
@@ -30,13 +36,16 @@ const NavDrawer = () => {
                     </MUI.List>
                     <MUI.Divider />
                     <MUI.List
-                        className={classes.list}>
+                        ref={list}
+                        className={classes.list}
+                        onClick={(e) => setActive(e)}>
                         <MUI.ListItem
                             className={classes.listitem}
                             button>All Tickets</MUI.ListItem>
                     </MUI.List>
                     <MUI.Divider />
                     <MUI.List
+                        
                         className={classes.list}>
                         <MUI.ListItem
                             className={classes.listitem}

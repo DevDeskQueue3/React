@@ -21,8 +21,15 @@
     width: 100%;
     height: 100%;
     max-width: 615px;
-    padding-top: 24px !important;
-    padding-left: 27px !important;
+    margin-top: 24px !important;
+    margin-left: 27px !important;
+}
+
+ul.active{
+    background-color: rgba(22, 142, 245, 0.13);
+    border-left: 4px solid rgb(0, 171, 236);
+    font-weight: bold;
+    padding: 10px 0 10px 0;
 }
 
 .ticket-info-wrapper{
@@ -60,4 +67,11 @@
 
 .ticket-form .input-group div.MuiInputBase-root{
     width: 250px;
+}
+
+/* Media Queries */
+@media screen and (max-width: 1100px){
+    .previewDrawer{
+        display: none;
+    }
 }

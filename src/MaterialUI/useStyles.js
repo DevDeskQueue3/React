@@ -45,9 +45,10 @@ const useStyles = makeStyles((theme) => ({
     listitem: {
         padding: '7% 7% !important',
         borderLeft: '4px solid rgba(255,255,255,0)', /* This prevents jitter on hover - Darren Tebo */
-        '&:hover': {
+        '&:hover div': {
             borderLeft: '4px solid rgb(0, 171, 236)',
-            backgroundColor: 'rgba(22, 142, 245, 0.13) '
+            backgroundColor: 'rgba(22, 142, 245, 0.13)',
+            padding: '10px 0 10px 0'
         }
     },
     card: {
@@ -112,7 +113,8 @@ const useStyles = makeStyles((theme) => ({
     },
     previewDrawer: {
         width: 479,
-        flexShrink: 0
+        flexShrink: 0,
+        marginTop: '300px'
     },
     paper: {
         marginRight: theme.spacing(2),
