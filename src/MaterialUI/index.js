@@ -3,7 +3,8 @@ import TextField from '@material-ui/core/TextField';
 import {
     AccountCircle,
     Visibility,
-    VisibilityOff
+    VisibilityOff,
+    PostAddRounded as AddTicketIcon,
 } from '@material-ui/icons';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -34,7 +35,14 @@ import {
     Fab,
     ThemeProvider,
     InputAdornment,
-    CircularProgress
+    CircularProgress,
+    Popper,
+    Paper,
+    Grow,
+    ClickAwayListener,
+    MenuItem,
+    MenuList,
+    Icon,
 } from '@material-ui/core';
 
 import {
@@ -76,5 +84,13 @@ export {
     VisibilityOff,
     CircularProgress,
     ExpandMoreIcon,
-    ChevronRightIcon
+    ChevronRightIcon,
+    Popper,
+    Paper,
+    Grow,
+    ClickAwayListener,
+    MenuItem,
+    MenuList,
+    Icon,
+    AddTicketIcon,
 }

@@ -7,7 +7,7 @@ export const theme = createMuiTheme({
     },
 });
 
-const drawerWidth = 240;
+const leftDrawerWidth = "25%";
 
 export const ColorButton = withStyles((theme) => ({
     root: {
@@ -27,10 +27,16 @@ const useStyles = makeStyles((theme) => ({
         marginRight: "10px !important",
     },
     dashboardRoot: {
-        display: 'flex'
+        width: "100%",
+        display: 'flex',
+        flexWrap: "nowrap",
+        justifyContent: "space-between",
     },
     dashboardtitle: {
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
     },
     list: {
         fontSize: '1.5rem',
@@ -45,9 +51,9 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     card: {
-        margin: '0 0 10px 20px',
+        margin: '0 0px 17px 0px',
         textAlign: 'left',
-        width: '100%'
+        width: '97%'
     },
     details: {
         display: 'flex',
@@ -93,11 +99,32 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(1)
     },
     drawer: {
-        width: drawerWidth,
-        flexShrink: 0
+        width: leftDrawerWidth,
+        minWidth: 185,
+        maxWidth: 354,
+        flexShrink: 0,
+
     },
     drawerPaper: {
-        width: drawerWidth
+        width: leftDrawerWidth, 
+        minWidth: 185,
+        maxWidth: 354
+    },
+    previewDrawer: {
+        width: 479,
+        flexShrink: 0
+    },
+    paper: {
+        marginRight: theme.spacing(2),
+
+    },
+    addTicketButton: {
+        borderRadius: "100px",
+        width: "100px",
+        height: "100px",
+        position: "fixed",
+        right: 550,
+        marginTop: -200,
     }
 }));
 
