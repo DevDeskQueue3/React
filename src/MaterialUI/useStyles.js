@@ -35,9 +35,9 @@ const useStyles = makeStyles({
     },
     dashboardtitle: {
         fontWeight: 'bold',
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
+        display: "flex !important",
+        alignItems: "center !important",
+        justifyContent: "space-between !important",
     },
     ticketList: {
         border: "1px solid red",
@@ -145,8 +145,8 @@ const useStyles = makeStyles({
         width: "80px",
         height: "80px",
         position: "fixed",
-        right: "37%",
-        bottom: "100px",
+        right: "35%",
+        bottom: "50px",
         '&:hover': {
             backgroundColor: "rgba(255, 152, 0, 0.7607843137254902)"
         },
