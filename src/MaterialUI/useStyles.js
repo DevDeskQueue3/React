@@ -112,9 +112,13 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: 354
     },
     previewDrawer: {
+        display: 'none',
         width: 479,
         flexShrink: 0,
-        marginTop: '300px'
+        marginTop: '30px'
+    },
+    drawerVisible: {
+        display: 'flex'
     },
     paper: {
         marginRight: theme.spacing(2),

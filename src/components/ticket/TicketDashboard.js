@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import * as MUI from '../../MaterialUI/index';
 import { getTickets } from '../../actions/tickets';
@@ -9,7 +9,12 @@ import TicketQueue from './TicketQueue';
 import TicketPreview from './TicketPreview';
 
 const TicketDashboard = props => {
+    const [previewVisible, setPreviewVisible] = useState(false);
     const classes = MUI.useStyles();
+
+    const setVisible = () => {
+        setPreviewVisible(!previewVisible);
+    };
 
     // Tickets State has hardcoded data for use while building the component
     const { user } = useSelector(state => state.login);
@@ -23,8 +28,8 @@ const TicketDashboard = props => {
     return(
         <MUI.Grid container className={classes.dashboardRoot} spacing={1} >
             <NavDrawer />
-            <TicketQueue />
-            <TicketPreview />
+            <TicketQueue showPreview={setVisible} />
+            <TicketPreview visible={previewVisible} />
         </MUI.Grid>
     );
 };

@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import * as MUI from '../../MaterialUI';
 
 // Needs to hide at 1100px window width and below, 
 // then make the tickets in the queue expand when you 
 // click on them when the preview is not visible
 // Check NavDrawer component for comment on when to hide
-const TicketPreview = () => {
+const TicketPreview = (props) => {
     const classes = MUI.useStyles();
-    
+
+    useEffect(() => {
+        console.log('ticket preview: ', props.visible);
+    },[props.visible]);
+
     // Should be fixed position so it always shows when scrolling page
     return (
-        <div className={classes.previewDrawer}>
+        <div className={props.visible ? `${classes.drawerVisible} ${classes.previewDrawer}` : classes.previewDrawer}>
             <MUI.Card>
                 <MUI.CardHeader
                     title={

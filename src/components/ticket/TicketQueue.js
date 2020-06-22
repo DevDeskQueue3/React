@@ -3,9 +3,8 @@ import * as MUI from "../../MaterialUI";
 import { useSelector, useDispatch } from "react-redux";
 import { getTickets } from '../../actions/tickets';
 import { useHistory } from 'react-router-dom';
-import { ColorButton } from '../../MaterialUI/useStyles';
 
-const TicketQueue = () => {
+const TicketQueue = (props) => {
     const classes = MUI.useStyles();
     const dispatch = useDispatch();
     const { push } = useHistory();
@@ -31,6 +30,7 @@ const TicketQueue = () => {
                     tickets.map((ticket) => {
                         return( 
                             <MUI.Card
+                                onClick={() => props.showPreview()}
                                 className={`${classes.card} ${ticket.status === "OPEN" ? "ticket-card-red" : "ticket-card-green"}`} 
                                 key={ticket.ticket_id}>
                                 <div className={classes.details}>
