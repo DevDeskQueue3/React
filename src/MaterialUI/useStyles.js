@@ -140,7 +140,7 @@ const useStyles = makeStyles({
 
     },
     addTicketButton: {
-        backgroundColor: "#ff9800",
+        background: "#ff9800",
         borderRadius: "100px",
         width: "80px",
         height: "80px",

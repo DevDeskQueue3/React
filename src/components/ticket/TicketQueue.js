@@ -87,14 +87,13 @@ const TicketQueue = (props) => {
                 )
             }
             
-            <MUI.Fab
+            <MUI.Button
                 id = "addTicketButton"
-                size='large'
                 className={classes.addTicketButton}
-                variant="extended"
+                variant="contained"
             >
                 <MUI.AddTicketIcon fontSize="large" />
-            </MUI.Fab>
+            </MUI.Button>
         </MUI.List>
 
     );
