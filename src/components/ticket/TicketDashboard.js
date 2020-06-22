@@ -9,13 +9,15 @@ import TicketQueue from './TicketQueue';
 import TicketPreview from './TicketPreview';
 
 const TicketDashboard = props => {
-    const [previewVisible, setPreviewVisible] = useState(false);
     const [ticket, setTicket] = useState({});
+    const [previewVisible, setPreviewVisible] = useState(false);
     const classes = MUI.useStyles();
 
     const setVisible = (t) => {
         setTicket(t);
-        setPreviewVisible(!previewVisible);
+        if(!previewVisible){
+            setPreviewVisible(!previewVisible);
+        }
     };
 
     // Tickets State has hardcoded data for use while building the component

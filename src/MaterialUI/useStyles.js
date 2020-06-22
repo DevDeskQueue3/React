@@ -113,13 +113,24 @@ const useStyles = makeStyles((theme) => ({
     },
     previewDrawer: {
         display: 'none',
-        width: 479,
+        position: "fixed",
+        maxWidth: 479,
+        height: 450,
         flexShrink: 0,
-        marginTop: '30px'
+        marginTop: '30px',
     },
     drawerVisible: {
-        display: 'flex'
+        display: 'block'
     },
+    rightPane: {
+        width: "50%",
+        height: "100vh",
+        //borderLeft: "1px solid rgba(0, 0, 0, 0.12)",
+    },
+    previewHelperText: {
+        color: "#BBB",
+        fontSize: 26,
+    },  
     paper: {
         marginRight: theme.spacing(2),
 
@@ -127,15 +138,19 @@ const useStyles = makeStyles((theme) => ({
     addTicketButton: {
         backgroundColor: "#ff9800",
         borderRadius: "100px",
-        width: "100px",
-        height: "100px",
+        width: "80px",
+        height: "80px",
         position: "fixed",
-        right: "20px",
-        bottom: "20px",
+        right: "43%",
+        bottom: "100px",
         '&:hover': {
             backgroundColor: "rgba(255, 152, 0, 0.7607843137254902)"
+        },
+        "& span svg": {
+            width: "45px",
+            height: "45px"
         }
-    }
+    },
 }));
 
 export default useStyles;

@@ -14,8 +14,9 @@ const TicketPreview = (props) => {
 
     // Should be fixed position so it always shows when scrolling page
     return (
-        <div className={props.visible ? `${classes.drawerVisible} ${classes.previewDrawer}` : classes.previewDrawer}>
-            <MUI.Card>
+        <div id = "rightPane" className={classes.rightPane}>
+            {!props.visible && <h2 className = {classes.previewHelperText}>Ticket Preview, Select a ticket to view details.</h2>}
+            <MUI.Card className={props.visible ? `${classes.drawerVisible} ${classes.previewDrawer}` : classes.previewDrawer}>
                 <MUI.CardHeader
                     title={
                         <MUI.Typography

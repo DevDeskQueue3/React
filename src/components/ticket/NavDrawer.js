@@ -20,6 +20,7 @@ const NavDrawer = () => {
 
     return (
         <MUI.Drawer
+                    id = "navDrawer"
                     className={classes.drawer}
                     classes={{
                         paper: classes.drawerPaper
