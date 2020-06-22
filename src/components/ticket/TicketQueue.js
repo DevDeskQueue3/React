@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as MUI from "../../MaterialUI";
 import { useSelector, useDispatch } from "react-redux";
 import { getTickets } from '../../actions/tickets';
@@ -9,11 +9,23 @@ const TicketQueue = (props) => {
     const dispatch = useDispatch();
     const { push } = useHistory();
 
-    const { tickets, isFetching, error } = useSelector(state => state.tickets);
+    const { user } = useSelector(state => state.login);
+    const { tickets, loggedUserRole, isFetching, error } = useSelector(state => state.tickets);
+    const [filteredTickets, setFilteredTickets] = useState(tickets);
 
-    console.log("cea: components/ticket/TicketDashBoard.js: tickets: ", tickets);
+    useEffect(() => {
+        dispatch(getTickets());        
+    }, [dispatch]);
 
-    useEffect(() => dispatch(getTickets()), [dispatch]);
+    useEffect(() => {
+        if(loggedUserRole === "STUDENT"){
+            setFilteredTickets(tickets.filter(ticket => ticket.posted_by_id === user.id));
+        } else (
+            setFilteredTickets(tickets)
+        )
+    }, [loggedUserRole, user, tickets, dispatch]);
+
+    if(filteredTickets.length > 0) console.log("FilteredTickets: ", filteredTickets);
 
     const loginAgain = e => {
         localStorage.removeItem("token");
@@ -48,8 +60,11 @@ const TicketQueue = (props) => {
             {
                 isFetching ? <h3 className='loading'>Loading Tickets...</h3> : 
             error.code === 401 ? <h3>Your session has expired. Please <MUI.Button variant = "contained" onClick = {loginAgain}>Log In</MUI.Button> Again</h3> :
+            filteredTickets.length === 0 ? <h3>You do not have any tickets yet.</h3> :
                 (
-                    tickets.map((ticket) => {
+                    
+                    filteredTickets.map((ticket) => {
+                        
                         return( 
                             <MUI.Card
                                 onClick={() => props.showPreview(ticket)}
@@ -87,13 +102,15 @@ const TicketQueue = (props) => {
                 )
             }
             
-            <MUI.Button
-                id = "addTicketButton"
-                className={classes.addTicketButton}
-                variant="contained"
-            >
-                <MUI.AddTicketIcon fontSize="large" />
-            </MUI.Button>
+            {loggedUserRole === "STUDENT" && 
+                <MUI.Button
+                    id = "addTicketButton"
+                    className={classes.addTicketButton}
+                    variant="contained"
+                >
+                    <MUI.AddTicketIcon fontSize="large" />
+                </MUI.Button>
+            }
         </MUI.List>
 
     );

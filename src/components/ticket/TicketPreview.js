@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import * as MUI from '../../MaterialUI';
 
 // Needs to hide at 1100px window width and below, 

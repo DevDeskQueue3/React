@@ -10,6 +10,7 @@ import './student.css';
 
 import useForm from '../../hooks/useForm';
 import { getToken, clearError } from '../../actions/login';
+import { setLoggedUserRole } from '../../actions/tickets';
 
 const initialValues = {
     email: '',
@@ -60,6 +61,7 @@ const StudentLogin = props => {
             const userData = JSON.parse(localStorage.getItem("user"));
             
             if(userData.roles.includes("STUDENT")){
+                dispatch(setLoggedUserRole("STUDENT"));
                 props.history.push("/tickets");
                 setLoginError("");
             } else {
