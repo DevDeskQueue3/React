@@ -20,29 +20,29 @@ export const ColorButton = withStyles((theme) => ({
 }))(Button);
 
 const useStyles = makeStyles((theme) => ({
-    loginInput: {
+    "loginInput": {
         width: "100%",
         height: "74px",
         marginBottom: "21px !important",
         marginRight: "10px !important",
     },
-    dashboardRoot: {
+    "dashboardRoot": {
         width: "100%",
         display: 'flex',
         flexWrap: "nowrap",
         justifyContent: "space-between",
     },
-    dashboardtitle: {
+    "dashboardtitle": {
         fontWeight: 'bold',
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
     },
-    list: {
+    "list": {
         fontSize: '1.5rem',
         padding: '10px 0 10px 0'
     },
-    listitem: {
+    "listitem": {
         padding: '7% 7% !important',
         borderLeft: '4px solid rgba(255,255,255,0)', /* This prevents jitter on hover - Darren Tebo */
         '&:hover div': {
@@ -51,16 +51,16 @@ const useStyles = makeStyles((theme) => ({
             padding: '10px 0 10px 0'
         }
     },
-    card: {
+    "card": {
         margin: '0 0px 17px 0px',
         textAlign: 'left',
         width: '97%'
     },
-    details: {
+    "details": {
         display: 'flex',
         padding: '0'
     },
-    timeframe: {
+    "timeframe": {
         borderRight: '1px solid #cecece',
         margin: '10px 0',
         width: '108px',
@@ -70,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
             top: '20%'
         }
     },
-    cardsection: {
+    "cardsection": {
         fontSize: '1.5rem',
         '& div': {
             fontWeight: '600'
@@ -79,39 +79,39 @@ const useStyles = makeStyles((theme) => ({
             fontWeight: '600'
         }
     },
-    header: {
+    "header": {
         margin: '5px',
         padding: '10px 0 0 0',
         '& span': {
             fontWeight: '700'
         }
     },
-    tooltip: {
+    "tooltip": {
         fontSize: '1.4rem'
     },
-    subtitle: {
+    "subtitle": {
         fontWeight: 'normal',
         fontSize: '.9rem',
         width: '85%',
         marginBottom: '10px',
         paddingLeft: '5px'
     },
-    margin: {
+    "margin": {
         margin: theme.spacing(1)
     },
-    drawer: {
+    "drawer": {
         width: leftDrawerWidth,
         minWidth: 185,
         maxWidth: 354,
         flexShrink: 0,
 
     },
-    drawerPaper: {
+    "drawerPaper": {
         width: leftDrawerWidth, 
         minWidth: 185,
         maxWidth: 354
     },
-    previewDrawer: {
+    "previewDrawer": {
         display: 'none',
         position: "fixed",
         maxWidth: 479,
@@ -119,23 +119,23 @@ const useStyles = makeStyles((theme) => ({
         flexShrink: 0,
         marginTop: '30px',
     },
-    drawerVisible: {
+    "drawerVisible": {
         display: 'block'
     },
-    rightPane: {
+    "rightPane": {
         width: "50%",
         height: "100vh",
         //borderLeft: "1px solid rgba(0, 0, 0, 0.12)",
     },
-    previewHelperText: {
+    "previewHelperText": {
         color: "#BBB",
         fontSize: 26,
     },  
-    paper: {
+    "paper": {
         marginRight: theme.spacing(2),
 
     },
-    addTicketButton: {
+    "addTicketButton": {
         backgroundColor: "#ff9800",
         borderRadius: "100px",
         width: "80px",
