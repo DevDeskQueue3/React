@@ -30,12 +30,19 @@ const TicketDashboard = props => {
     useEffect(() => dispatch(getTickets()), [dispatch]);
 
     return(
-        <MUI.Grid container className={classes.dashboardRoot} spacing={1} >
+        <div className = {classes.dashboardRoot}>
             <NavDrawer />
-            <TicketQueue showPreview={setVisible} />
-            <TicketPreview visible={previewVisible} ticket={ticket} />
-        </MUI.Grid>
+            <TicketQueue showPreview = {setVisible} />
+        </div>
+
+        
     );
 };
 
 export default TicketDashboard;
+
+{/* <MUI.Grid container className={classes.dashboardRoot} spacing={1} >
+            <NavDrawer />
+            <TicketQueue showPreview={setVisible} />
+            <TicketPreview visible={previewVisible} ticket={ticket} />
+        </MUI.Grid> */}

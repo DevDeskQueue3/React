@@ -28,15 +28,19 @@ const useStyles = makeStyles({
     },
     dashboardRoot: {
         width: "100%",
+        height: "100vh",
         display: 'flex',
         flexWrap: "nowrap",
-        justifyContent: "space-between",
+        justifyContent: "flex-start",
     },
     dashboardtitle: {
         fontWeight: 'bold',
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
+    },
+    ticketList: {
+        border: "1px solid red",
     },
     list: {
         fontSize: '1.5rem',
