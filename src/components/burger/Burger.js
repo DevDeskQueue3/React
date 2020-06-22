@@ -1,14 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import * as MUI from '../../MaterialUI/index';
 
-const BurgerMenu = () => {
+const Burger = (props) => {
+    const [visible, setVisible] = useState(true);
+
     const classes = MUI.useStyles();
 
     return (
         <MUI.Button
             variant='contained'
             className={classes.burgerwrapper}
+            onClick={() => props.toggleDrawer(visible)}
         >
             <MUI.MenuIcon
                 fontSize='large' />
@@ -16,4 +19,4 @@ const BurgerMenu = () => {
     );
 };
 
-export default BurgerMenu;
+export default Burger;

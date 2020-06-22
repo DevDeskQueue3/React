@@ -57,6 +57,7 @@ const TicketQueue = (props) => {
 
     return (
         <MUI.List className="ticket-list" >
+            <h1>Tickets</h1>
             {
                 isFetching ? <h3 className='loading'>Loading Tickets...</h3> : 
             error.code === 401 ? <h3>Your session has expired. Please <MUI.Button variant = "contained" onClick = {loginAgain}>Log In</MUI.Button> Again</h3> :

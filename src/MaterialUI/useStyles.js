@@ -34,11 +34,17 @@ const useStyles = makeStyles({
         justifyContent: "flex-start",
     },
     burgerwrapper: {
+        background: "rgba(200,200,200,.9)",
+        top: "10px",
+        left: "10px",
+        margin: "0 40px 40px 0",
         width: "5px",
         height: "50px",
+        zIndex: "1250",
         position: "relative",
-        top: "10px",
-        left: "10px"
+        '&:hover': {
+            background: "rgba(190,190,190,.9)"
+        }
     },
     dashboardtitle: {
         fontWeight: 'bold',
