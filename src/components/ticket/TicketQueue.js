@@ -21,6 +21,28 @@ const TicketQueue = (props) => {
         push("/student/login");
     }
 
+    /* Helper function to set ticket status color */
+    const setStatusColor = (status) => {
+        let colorClass = "";
+
+        /* Set the ticket status color according to the ticket status */
+        switch(status){
+            case "OPEN":
+                colorClass = "ticket-card-red";
+                break;
+            case "CLOSED":
+                colorClass = "ticket-card-green";
+                break;
+            case "INPROGRESS":
+                colorClass = "ticket-card-purple";
+                break;
+            default:
+                break;
+        };
+
+        return colorClass;
+    };
+
     return (
         <MUI.List className='ticket-list' >
             {
@@ -30,8 +52,8 @@ const TicketQueue = (props) => {
                     tickets.map((ticket) => {
                         return( 
                             <MUI.Card
-                                onClick={() => props.showPreview()}
-                                className={`${classes.card} ${ticket.status === "OPEN" ? "ticket-card-red" : "ticket-card-green"}`} 
+                                onClick={() => props.showPreview(ticket)}
+                                className={`${classes.card} ${setStatusColor(ticket.status)}`} 
                                 key={ticket.ticket_id}>
                                 <div className={classes.details}>
                                     <section className={classes.cardsection}>

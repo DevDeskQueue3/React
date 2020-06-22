@@ -22,11 +22,11 @@ const TicketPreview = (props) => {
                             component='h3'
                             variant='h3'
                         >
-                            People Issue
+                            {props.ticket.title}
                         </MUI.Typography>
                     }
                     subheader={
-                        <p className={classes.subtitle}>My team isn't communicating well</p>
+                        <p className={classes.subtitle}>{props.ticket.description}</p>
                     }>
                 </MUI.CardHeader>
                 <MUI.CardContent>

@@ -10,9 +10,11 @@ import TicketPreview from './TicketPreview';
 
 const TicketDashboard = props => {
     const [previewVisible, setPreviewVisible] = useState(false);
+    const [ticket, setTicket] = useState({});
     const classes = MUI.useStyles();
 
-    const setVisible = () => {
+    const setVisible = (t) => {
+        setTicket(t);
         setPreviewVisible(!previewVisible);
     };
 
@@ -29,7 +31,7 @@ const TicketDashboard = props => {
         <MUI.Grid container className={classes.dashboardRoot} spacing={1} >
             <NavDrawer />
             <TicketQueue showPreview={setVisible} />
-            <TicketPreview visible={previewVisible} />
+            <TicketPreview visible={previewVisible} ticket={ticket} />
         </MUI.Grid>
     );
 };
