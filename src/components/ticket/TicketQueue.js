@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { getTickets } from '../../actions/tickets';
 import { useHistory } from 'react-router-dom';
 
+import Burger from '../burger/Burger';
+
 const TicketQueue = (props) => {
     const classes = MUI.useStyles();
     const dispatch = useDispatch();
@@ -13,9 +15,16 @@ const TicketQueue = (props) => {
     const { tickets, loggedUserRole, isFetching, error } = useSelector(state => state.tickets);
     const [filteredTickets, setFilteredTickets] = useState(tickets);
 
+    const [statusText, setStatusText] = useState(props.statusText);
+    const [open, setOpen] = useState(false);
+    
     useEffect(() => {
         dispatch(getTickets());        
     }, [dispatch]);
+
+    const toggleDrawer = (open) => {
+        setOpen(!open);
+    };
 
     useEffect(() => {
         if(loggedUserRole === "STUDENT"){
@@ -57,7 +66,8 @@ const TicketQueue = (props) => {
 
     return (
         <MUI.List className="ticket-list" >
-            <h1>Tickets</h1>
+            <Burger toggleDrawer={toggleDrawer} />
+            <h1>statusText</h1>
             {
                 isFetching ? <h3 className='loading'>Loading Tickets...</h3> : 
             error.code === 401 ? <h3>Your session has expired. Please <MUI.Button variant = "contained" onClick = {loginAgain}>Log In</MUI.Button> Again</h3> :

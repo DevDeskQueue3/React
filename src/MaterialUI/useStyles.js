@@ -29,6 +29,7 @@ const useStyles = makeStyles({
     dashboardRoot: {
         width: "100%",
         height: "100vh",
+        marginTop: "40px",
         display: 'flex',
         flexWrap: "nowrap",
         justifyContent: "flex-start",
@@ -36,12 +37,12 @@ const useStyles = makeStyles({
     burgerwrapper: {
         background: "rgba(200,200,200,.9)",
         top: "10px",
-        left: "10px",
+        left: "250px",
         margin: "0 40px 40px 0",
         width: "5px",
         height: "50px",
         zIndex: "1250",
-        position: "relative",
+        position: "fixed",
         '&:hover': {
             background: "rgba(190,190,190,.9)"
         }

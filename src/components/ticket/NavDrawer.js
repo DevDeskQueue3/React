@@ -2,15 +2,12 @@ import React, { useRef, useState } from 'react';
 import * as MUI from "../../MaterialUI";
 import { useSelector } from 'react-redux';
 
-import Burger from '../burger/Burger';
-
 //Needs to be hidden at window width 600px and below,
 //Check TicketPreview component for comment on when to hide
 const NavDrawer = () => {
     const list = useRef();
     const classes = MUI.useStyles();
     const { loggedUserRole } = useSelector(state => state.tickets);
-    const [open, setOpen] = useState(false);
 
     const logout = () => {
         localStorage.clear();
@@ -19,10 +16,6 @@ const NavDrawer = () => {
 
     const setActive = (e) => {
         list.current.classList.add("active");
-    };
-
-    const toggleDrawer = (open) => {
-        setOpen(!open);
     };
 
     return (
@@ -34,9 +27,7 @@ const NavDrawer = () => {
                     }}
                     variant='permanent'
                     anchor='left'
-                    open={open}
                 >
-                    <Burger toggleDrawer={toggleDrawer} />
                     <MUI.List
                         className={classes.list}>
                         <MUI.ListItem className={classes.dashboardtitle}>
