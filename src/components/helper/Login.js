@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import useForm from "../../hooks/useForm";
 import { loginFormSchema } from "../../utils/loginFormValidation";
 import * as MUI from "../../MaterialUI";
-import { theme } from "../../MaterialUI/useStyles";
+import { theme, ColorButton } from "../../MaterialUI/useStyles";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getToken, clearError } from "../../actions/login";
@@ -128,7 +128,7 @@ const Login = props => {
                 
 
                 <div className = "button-group">
-                    {isFetching ? <MUI.CircularProgress /> : <MUI.Button className = {classes.colorButton} size="large" color="primary" type = "submit" disabled = {buttonDisabled}>Login</MUI.Button>}
+                    {isFetching ? <MUI.CircularProgress /> : <ColorButton size="large" color="primary" type = "submit" disabled = {buttonDisabled}>Login</ColorButton>}
                 </div>
 
                 <Link to = "/helper/signup">Don't have an account?</Link>

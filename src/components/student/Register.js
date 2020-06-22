@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import * as MUI from '../../MaterialUI/index';
-import { theme } from "../../MaterialUI/useStyles";
+import { theme, ColorButton } from "../../MaterialUI/useStyles";
 
 import useForm from '../../hooks/useForm';
 
@@ -161,7 +161,7 @@ const StudentRegister = props => {
                     </div>
 
                     <div className = 'button-group'>
-                        {isFetching ? <MUI.CircularProgress /> : <MUI.Button className = {classes.colorButton} size='large' color='primary' type='submit' disabled={buttonDisabled}>Create Account</MUI.Button>}
+                        {isFetching ? <MUI.CircularProgress /> : <ColorButton size='large' color='primary' type='submit' disabled={buttonDisabled}>Create Account</ColorButton>}
                     </div>
 
                     <Link to='/student/login'>Already have an account?</Link>

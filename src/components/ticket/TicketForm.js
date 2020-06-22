@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import useForm from '../../hooks/useForm';
 import * as MUI from '../../MaterialUI/index';
 import { ticketFormSchema } from '../../utils/ticketFormValidation';
-import { theme } from '../../MaterialUI/useStyles';
+import { theme, ColorButton } from '../../MaterialUI/useStyles';
 
 const initialValues = {
     title: '',
@@ -11,7 +11,6 @@ const initialValues = {
 };
 
 const TicketForm = () => {
-    const classes = MUI.useStyles();
     const [buttonDisabled, setButtonDisabled] = useState(true);
     const [values, handleChanges, formErrors] = useForm(initialValues, ticketFormSchema);
 
@@ -83,7 +82,7 @@ const TicketForm = () => {
                             </div>
                         </MUI.ThemeProvider>
                         <div className = "button-group">
-                            <MUI.Button className = {classes.colorButton} size="large" color="primary" type = "submit" disabled={buttonDisabled}>Submit Ticket</MUI.Button>
+                            <ColorButton size="large" color="primary" type = "submit" disabled={buttonDisabled}>Submit Ticket</ColorButton>
                         </div>
                     </form>
                 </section>
