@@ -19,7 +19,7 @@ export const ColorButton = withStyles((theme) => ({
     }
 }))(Button);
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
     loginInput: {
         width: "100%",
         height: "74px",
@@ -28,15 +28,19 @@ const useStyles = makeStyles((theme) => ({
     },
     dashboardRoot: {
         width: "100%",
+        height: "100vh",
         display: 'flex',
         flexWrap: "nowrap",
-        justifyContent: "space-between",
+        justifyContent: "flex-start",
     },
     dashboardtitle: {
         fontWeight: 'bold',
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
+        display: "flex !important",
+        alignItems: "center !important",
+        justifyContent: "space-between !important",
+    },
+    ticketList: {
+        border: "1px solid red",
     },
     list: {
         fontSize: '1.5rem',
@@ -123,7 +127,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'block'
     },
     rightPane: {
-        width: "50%",
+        width: "40%",
         height: "100vh",
         //borderLeft: "1px solid rgba(0, 0, 0, 0.12)",
     },
@@ -136,13 +140,13 @@ const useStyles = makeStyles((theme) => ({
 
     },
     addTicketButton: {
-        backgroundColor: "#ff9800",
+        background: "#ff9800",
         borderRadius: "100px",
         width: "80px",
         height: "80px",
         position: "fixed",
-        right: "43%",
-        bottom: "100px",
+        right: "35%",
+        bottom: "50px",
         '&:hover': {
             backgroundColor: "rgba(255, 152, 0, 0.7607843137254902)"
         },
@@ -151,6 +155,6 @@ const useStyles = makeStyles((theme) => ({
             height: "45px"
         }
     },
-}));
+});
 
 export default useStyles;

@@ -44,7 +44,7 @@ const TicketQueue = (props) => {
     };
 
     return (
-        <MUI.List className='ticket-list' >
+        <MUI.List className="ticket-list" >
             {
                 isFetching ? <h3 className='loading'>Loading Tickets...</h3> : 
             error.code === 401 ? <h3>Your session has expired. Please <MUI.Button variant = "contained" onClick = {loginAgain}>Log In</MUI.Button> Again</h3> :
@@ -87,14 +87,13 @@ const TicketQueue = (props) => {
                 )
             }
             
-            <MUI.Fab
+            <MUI.Button
                 id = "addTicketButton"
-                size='large'
                 className={classes.addTicketButton}
-                variant="extended"
+                variant="contained"
             >
                 <MUI.AddTicketIcon fontSize="large" />
-            </MUI.Fab>
+            </MUI.Button>
         </MUI.List>
 
     );

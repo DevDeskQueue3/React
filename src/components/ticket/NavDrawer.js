@@ -31,7 +31,7 @@ const NavDrawer = () => {
                     <MUI.List
                         className={classes.list}>
                         <MUI.ListItem className={classes.dashboardtitle}>
-                            The Queue
+                            <span>The Queue</span>
                             <MUI.Button variant="contained" onClick={logout}>Logout</MUI.Button>
                         </MUI.ListItem>
                     </MUI.List>

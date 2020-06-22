@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import * as MUI from '../../MaterialUI/index';
+import * as MUI from '../../MaterialUI/';
 import { getTickets } from '../../actions/tickets';
 
 import './ticket.css';
@@ -30,12 +30,20 @@ const TicketDashboard = props => {
     useEffect(() => dispatch(getTickets()), [dispatch]);
 
     return(
-        <MUI.Grid container className={classes.dashboardRoot} spacing={1} >
+        <div className = {classes.dashboardRoot}>
             <NavDrawer />
-            <TicketQueue showPreview={setVisible} />
+            <TicketQueue showPreview = {setVisible} />
             <TicketPreview visible={previewVisible} ticket={ticket} />
-        </MUI.Grid>
+        </div>
+
+        
     );
 };
 
 export default TicketDashboard;
+
+{/* <MUI.Grid container className={classes.dashboardRoot} spacing={1} >
+            <NavDrawer />
+            <TicketQueue showPreview={setVisible} />
+            <TicketPreview visible={previewVisible} ticket={ticket} />
+        </MUI.Grid> */}

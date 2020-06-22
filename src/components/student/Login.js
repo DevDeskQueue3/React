@@ -136,7 +136,7 @@ const StudentLogin = props => {
                     </div>
 
                     <div className = "button-group">
-                        {isFetching ? <MUI.CircularProgress /> : <ColorButton size="large" color="primary" type = "submit" disabled = {buttonDisabled}>Login</ColorButton>}
+                        {isFetching ? <MUI.CircularProgress /> : <ColorButton  size="large" color="primary" type = "submit" disabled = {buttonDisabled}>Login</ColorButton>}
                     </div>
 
                     <Link to = "/student/signup">Don't have an account?</Link>
