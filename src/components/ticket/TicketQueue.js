@@ -14,15 +14,10 @@ const TicketQueue = (props) => {
     const { user } = useSelector(state => state.login);
     const { tickets, loggedUserRole, isFetching, error } = useSelector(state => state.tickets);
     const [filteredTickets, setFilteredTickets] = useState(tickets);
-    const [open, setOpen] = useState(false);
 
     useEffect(() => {
         dispatch(getTickets());        
     }, [dispatch]);
-
-    const toggleDrawer = (open) => {
-        setOpen(!open);
-    };
 
     useEffect(() => {
         if(loggedUserRole === "STUDENT"){
@@ -64,7 +59,7 @@ const TicketQueue = (props) => {
 
     return (
         <MUI.List className="ticket-list" >
-            <Burger toggleDrawer={toggleDrawer} />
+            <Burger handleDrawerOpen={props.handleDrawerOpen} />
             <h1>{props.statusText}</h1>
             {
                 isFetching ? <h3 className='loading'>Loading Tickets...</h3> : 

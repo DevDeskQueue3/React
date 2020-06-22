@@ -27,6 +27,7 @@ const NavDrawer = (props) => {
                     }}
                     variant='permanent'
                     anchor='left'
+                    open={props.open}
                 >
                     <MUI.List
                         className={classes.list}>

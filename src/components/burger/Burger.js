@@ -4,12 +4,12 @@ import * as MUI from '../../MaterialUI/index';
 
 const Burger = (props) => {
     const classes = MUI.useStyles();
-
+    
     return (
         <MUI.Button
             variant='contained'
             className={classes.burgerwrapper}
-            onClick={() => props.toggleDrawer(false)}
+            onClick={() => props.handleDrawerOpen()}
         >
             <MUI.MenuIcon
                 fontSize='large' />
