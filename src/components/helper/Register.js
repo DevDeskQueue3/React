@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getToken, clearError } from "../../actions/login";
 import * as MUI from "../../MaterialUI";
-import { theme, ColorButton } from "../../MaterialUI/useStyles";
+import { theme } from "../../MaterialUI/useStyles";
 
 const initialValues = {
     firstName: "",
@@ -163,7 +163,7 @@ const Register = props => {
                     
 
                     <div className = "button-group">
-                        {isFetching ? <MUI.CircularProgress /> : <ColorButton size="large" color="primary" type = "submit" disabled = {buttonDisabled}>Create Account</ColorButton>}
+                        {isFetching ? <MUI.CircularProgress /> : <MUI.Button className = {classes.colorButton} size="large" color="primary" type = "submit" disabled = {buttonDisabled}>Create Account</MUI.Button>}
                     </div>
 
                     <Link to = "/helper/login">Already have an account?</Link>
