@@ -19,7 +19,7 @@ export const ColorButton = withStyles((theme) => ({
     }
 }))(Button);
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
     loginInput: {
         width: "100%",
         height: "74px",
@@ -151,6 +151,6 @@ const useStyles = makeStyles((theme) => ({
             height: "45px"
         }
     },
-}));
+});
 
 export default useStyles;
