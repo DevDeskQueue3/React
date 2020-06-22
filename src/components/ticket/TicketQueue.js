@@ -13,8 +13,6 @@ const TicketQueue = (props) => {
     const { tickets, loggedUserRole, isFetching, error } = useSelector(state => state.tickets);
     const [filteredTickets, setFilteredTickets] = useState(tickets);
 
-    console.log("cea: components/ticket/TicketDashBoard.js: tickets: ", tickets);
-
     useEffect(() => {
         dispatch(getTickets());        
     }, [dispatch]);
@@ -25,9 +23,9 @@ const TicketQueue = (props) => {
         } else (
             setFilteredTickets(tickets)
         )
-    }, [tickets, dispatch]);
+    }, [loggedUserRole, user, tickets, dispatch]);
 
-    console.log("FilteredTickets: ", filteredTickets);
+    if(filteredTickets.length > 0) console.log("FilteredTickets: ", filteredTickets);
 
     const loginAgain = e => {
         localStorage.removeItem("token");
@@ -104,13 +102,15 @@ const TicketQueue = (props) => {
                 )
             }
             
-            <MUI.Button
-                id = "addTicketButton"
-                className={classes.addTicketButton}
-                variant="contained"
-            >
-                <MUI.AddTicketIcon fontSize="large" />
-            </MUI.Button>
+            {loggedUserRole === "STUDENT" && 
+                <MUI.Button
+                    id = "addTicketButton"
+                    className={classes.addTicketButton}
+                    variant="contained"
+                >
+                    <MUI.AddTicketIcon fontSize="large" />
+                </MUI.Button>
+            }
         </MUI.List>
 
     );
