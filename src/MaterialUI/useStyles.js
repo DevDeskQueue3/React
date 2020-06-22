@@ -127,7 +127,7 @@ const useStyles = makeStyles({
         display: 'block'
     },
     rightPane: {
-        width: "50%",
+        width: "40%",
         height: "100vh",
         //borderLeft: "1px solid rgba(0, 0, 0, 0.12)",
     },
@@ -145,7 +145,7 @@ const useStyles = makeStyles({
         width: "80px",
         height: "80px",
         position: "fixed",
-        right: "43%",
+        right: "37%",
         bottom: "100px",
         '&:hover': {
             backgroundColor: "rgba(255, 152, 0, 0.7607843137254902)"
