@@ -33,6 +33,13 @@ const useStyles = makeStyles({
         flexWrap: "nowrap",
         justifyContent: "flex-start",
     },
+    burgerwrapper: {
+        width: "5px",
+        height: "50px",
+        position: "relative",
+        top: "10px",
+        left: "10px"
+    },
     dashboardtitle: {
         fontWeight: 'bold',
         display: "flex !important",
@@ -107,8 +114,7 @@ const useStyles = makeStyles({
         width: leftDrawerWidth,
         minWidth: 185,
         maxWidth: 354,
-        flexShrink: 0,
-
+        flexShrink: 0
     },
     drawerPaper: {
         width: leftDrawerWidth, 

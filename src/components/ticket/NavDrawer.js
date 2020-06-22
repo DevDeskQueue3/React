@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import * as MUI from "../../MaterialUI";
 import { useSelector } from 'react-redux';
 
+import BurgerMenu from '../burger/BurgerMenu';
 
 //Needs to be hidden at window width 600px and below,
 //Check TicketPreview component for comment on when to hide
@@ -30,6 +31,7 @@ const NavDrawer = () => {
                     variant='permanent'
                     anchor='left'
                 >
+                <BurgerMenu />
                     <MUI.List
                         className={classes.list}>
                         <MUI.ListItem className={classes.dashboardtitle}>

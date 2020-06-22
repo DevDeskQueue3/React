@@ -8,6 +8,7 @@ import {
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import MenuIcon from '@material-ui/icons/Menu';
 
 import { 
     TextField,
@@ -93,6 +94,7 @@ export {
     ClickAwayListener,
     MenuItem,
     MenuList,
+    MenuIcon,
     Icon,
     AddTicketIcon,
 }
