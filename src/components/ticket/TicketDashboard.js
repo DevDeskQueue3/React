@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import * as MUI from '../../MaterialUI/';
-import { getTickets } from '../../actions/tickets';
+import { getTickets, setLoggedUserRole } from '../../actions/tickets';
 
 import './ticket.css';
 import NavDrawer from './NavDrawer';
@@ -27,7 +27,9 @@ const TicketDashboard = props => {
     console.log("cea: components/ticket/TicketDashBoard.js: user: ", user);
     
 
-    useEffect(() => dispatch(getTickets()), [dispatch]);
+    useEffect(() => {
+        dispatch(setLoggedUserRole(localStorage.getItem("loggedUserRole")));
+    }, [dispatch]);
 
     return(
         <div className = {classes.dashboardRoot}>

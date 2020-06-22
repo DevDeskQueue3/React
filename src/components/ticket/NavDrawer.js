@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import * as MUI from "../../MaterialUI";
+import { useSelector } from 'react-redux';
 
 
 //Needs to be hidden at window width 600px and below,
@@ -7,6 +8,7 @@ import * as MUI from "../../MaterialUI";
 const NavDrawer = () => {
     const list = useRef();
     const classes = MUI.useStyles();
+    const { loggedUserRole } = useSelector(state => state.tickets);
 
     const logout = () => {
         localStorage.clear();
@@ -42,7 +44,7 @@ const NavDrawer = () => {
                         onClick={(e) => setActive(e)}>
                         <MUI.ListItem
                             className={classes.listitem}
-                            button>All Tickets</MUI.ListItem>
+                            button>{loggedUserRole === "STUDENT" ? "Open Tickets" : "All Tickets"}</MUI.ListItem>
                     </MUI.List>
                     <MUI.Divider />
                     <MUI.List
@@ -50,7 +52,7 @@ const NavDrawer = () => {
                         className={classes.list}>
                         <MUI.ListItem
                             className={classes.listitem}
-                            button>My Tickets</MUI.ListItem>
+                            button>{loggedUserRole === "STUDENT" ? "Closed Tickets" : "My Tickets"}</MUI.ListItem>
                     </MUI.List>
                     <MUI.Divider />
                     <MUI.TreeView
