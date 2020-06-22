@@ -10,6 +10,7 @@ const Burger = (props) => {
             variant='contained'
             className={classes.burgerwrapper}
             onClick={() => props.handleDrawerOpen()}
+            disableRipple
         >
             <MUI.MenuIcon
                 fontSize='large' />
