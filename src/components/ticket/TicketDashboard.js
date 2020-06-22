@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import * as MUI from '../../MaterialUI/index';
+import * as MUI from '../../MaterialUI/';
 import { getTickets } from '../../actions/tickets';
 
 import './ticket.css';
