@@ -14,10 +14,8 @@ const TicketQueue = (props) => {
     const { user } = useSelector(state => state.login);
     const { tickets, loggedUserRole, isFetching, error } = useSelector(state => state.tickets);
     const [filteredTickets, setFilteredTickets] = useState(tickets);
-
-    const [statusText, setStatusText] = useState(props.statusText);
     const [open, setOpen] = useState(false);
-    
+
     useEffect(() => {
         dispatch(getTickets());        
     }, [dispatch]);
@@ -67,7 +65,7 @@ const TicketQueue = (props) => {
     return (
         <MUI.List className="ticket-list" >
             <Burger toggleDrawer={toggleDrawer} />
-            <h1>statusText</h1>
+            <h1>{props.statusText}</h1>
             {
                 isFetching ? <h3 className='loading'>Loading Tickets...</h3> : 
             error.code === 401 ? <h3>Your session has expired. Please <MUI.Button variant = "contained" onClick = {loginAgain}>Log In</MUI.Button> Again</h3> :

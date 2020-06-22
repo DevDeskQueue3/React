@@ -1,10 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import * as MUI from "../../MaterialUI";
 import { useSelector } from 'react-redux';
 
 //Needs to be hidden at window width 600px and below,
 //Check TicketPreview component for comment on when to hide
-const NavDrawer = () => {
+const NavDrawer = (props) => {
     const list = useRef();
     const classes = MUI.useStyles();
     const { loggedUserRole } = useSelector(state => state.tickets);
@@ -35,8 +35,9 @@ const NavDrawer = () => {
                             <MUI.Button
                                 variant="contained"
                                 onClick={logout}
-                                startIcon={<MUI.PersonIcon />}
-                            />
+                            >
+                                <MUI.PersonIcon />
+                            </MUI.Button>
                         </MUI.ListItem>
                     </MUI.List>
                     <MUI.Divider />
@@ -46,15 +47,16 @@ const NavDrawer = () => {
                         onClick={(e) => setActive(e)}>
                         <MUI.ListItem
                             className={classes.listitem}
-                            button>{loggedUserRole === "STUDENT" ? "Open Tickets" : "All Tickets"}</MUI.ListItem>
+                            button
+                            onClick={() => props.updateStatusText("Open Tickets")}>{loggedUserRole === "STUDENT" ? "Open Tickets" : "All Tickets"}</MUI.ListItem>
                     </MUI.List>
                     <MUI.Divider />
-                    <MUI.List
-                        
+                    <MUI.List           
                         className={classes.list}>
                         <MUI.ListItem
                             className={classes.listitem}
-                            button>{loggedUserRole === "STUDENT" ? "Closed Tickets" : "My Tickets"}</MUI.ListItem>
+                            button
+                            onClick={() => props.updateStatusText("Closed Tickets")}>{loggedUserRole === "STUDENT" ? "Closed Tickets" : "My Tickets"}</MUI.ListItem>
                     </MUI.List>
                     <MUI.Divider />
                     <MUI.TreeView
