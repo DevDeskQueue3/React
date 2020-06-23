@@ -61,11 +61,11 @@ const TicketQueue = (props) => {
         return colorClass;
     };
 
-    if(isCreatingTicket) return <TicketForm showPreview = {props.showPreview} setPreviewVisible = {props.setPreviewVisible} toggleDrawer = {props.toggleDrawer} open = {props.open} setIsCreatingTicket = {setIsCreatingTicket} />;
+    if(isCreatingTicket) return <TicketForm showPreview={props.showPreview} setPreviewVisible={props.setPreviewVisible} toggleDrawer={props.toggleDrawer} open={props.open} setIsCreatingTicket={setIsCreatingTicket} />;
     return (
         <MUI.List className="ticket-list" >
             <section className='ticket-list-header'>
-                {windowWidth < 600 && <Burger toggleDrawer={props.toggleDrawer} open = {props.open} />}
+                {windowWidth < 600 && <Burger toggleDrawer={props.toggleDrawer} open={props.open} />}
                 <h2>{props.statusText}</h2>
             </section>
             {
