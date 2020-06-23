@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as MUI from '../../MaterialUI';
 import { useSelector } from 'react-redux';
 
@@ -9,10 +9,19 @@ import { useSelector } from 'react-redux';
 const TicketPreview = (props) => {
     const classes = MUI.useStyles();
     const { loggedUserRole } = useSelector(state => state.tickets);
+    const [anchorEl, setAnchorEl] = useState();
 
     useEffect(() => {
         console.log('ticket preview: ', props.visible);
     },[props.visible]);
+
+    const handleClick = e => {
+        setAnchorEl(e.currentTarget);
+    };
+
+    const handleClose = e => {
+        setAnchorEl(null);
+    };
 
     // Should be fixed position so it always shows when scrolling page
     return (
@@ -26,6 +35,20 @@ const TicketPreview = (props) => {
                             variant='h3'
                         >
                             Title: {props.ticket.title}
+                            <MUI.IconButton onClick={handleClick}>
+                                <MUI.MoreHorizIcon />
+                            </MUI.IconButton>
+                            <MUI.Menu
+                                id='option-menu'
+                                anchorEl={anchorEl}
+                                keepMounted
+                                open={Boolean(anchorEl)}
+                                onClose={handleClose}
+                            >
+                                <MUI.MenuItem onClick={handleClose}>Edit</MUI.MenuItem>
+                                <MUI.MenuItem onClick={handleClose}>Delete</MUI.MenuItem>
+                                <MUI.MenuItem onClick={handleClose}>Update Status</MUI.MenuItem>
+                            </MUI.Menu>
                         </MUI.Typography>
                     }
                     subheader={

@@ -14,6 +14,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import CancelIcon from '@material-ui/icons/Cancel';
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
 import { 
     TextField,
@@ -49,6 +50,7 @@ import {
     ClickAwayListener,
     MenuItem,
     MenuList,
+    Menu,
     Icon,
 } from '@material-ui/core';
 
@@ -100,6 +102,7 @@ export {
     ClickAwayListener,
     MenuItem,
     MenuList,
+    Menu,
     MenuIcon,
     Icon,
     AddTicketIcon,
@@ -107,4 +110,5 @@ export {
     CancelIcon,
     EditIcon,
     DeleteIcon,
+    MoreHorizIcon
 }

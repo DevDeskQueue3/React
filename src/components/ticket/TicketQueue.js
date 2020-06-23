@@ -19,6 +19,7 @@ const TicketQueue = (props) => {
     const [isCreatingTicket, setIsCreatingTicket] = useState(false);
     const [ticketToEdit, setTicketToEdit] = useState(null);
     const [windowWidth] = useWindowSize();
+    const [anchorEl, setAnchorEl] = useState();
 
     useEffect(() => {
         dispatch(getTickets());        
@@ -65,6 +66,14 @@ const TicketQueue = (props) => {
         };
 
         return colorClass;
+    };
+
+    const handleClick = e => {
+        setAnchorEl(e.currentTarget);
+    };
+
+    const handleClose = e => {
+        setAnchorEl(null);
     };
 
     if(isCreatingTicket) return <TicketForm ticketToEdit = {ticketToEdit} setTicketToEdit = {setTicketToEdit} showPreview={props.showPreview} setPreviewVisible={props.setPreviewVisible} toggleDrawer={props.toggleDrawer} open={props.open} setIsCreatingTicket={setIsCreatingTicket} />;
@@ -126,6 +135,20 @@ const TicketQueue = (props) => {
                                                     }}>
                                                         <MUI.DeleteIcon />
                                                     </MUI.IconButton>
+                                                    <MUI.IconButton onClick={handleClick}>
+                                                        <MUI.MoreHorizIcon />
+                                                    </MUI.IconButton>
+                                                    <MUI.Menu
+                                                        id='option-menu'
+                                                        anchorEl={anchorEl}
+                                                        keepMounted
+                                                        open={Boolean(anchorEl)}
+                                                        onClose={handleClose}
+                                                    >
+                                                        <MUI.MenuItem onClick={handleClose}>Edit</MUI.MenuItem>
+                                                        <MUI.MenuItem onClick={handleClose}>Delete</MUI.MenuItem>
+                                                        <MUI.MenuItem onClick={handleClose}>Update Status</MUI.MenuItem>
+                                                    </MUI.Menu>
                                                 </>}
                                             </MUI.CardContent>
                                         </section>
