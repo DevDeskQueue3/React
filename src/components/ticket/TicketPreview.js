@@ -23,11 +23,11 @@ const TicketPreview = (props) => {
                             component='h3'
                             variant='h3'
                         >
-                            {props.ticket.title}
+                            Title: {props.ticket.title}
                         </MUI.Typography>
                     }
                     subheader={
-                        <p className={classes.subtitle}>{props.ticket.description}</p>
+                        <p className={classes.subtitle}>Category: {props.ticket.categories}</p>
                     }>
                 </MUI.CardHeader>
                 <MUI.CardContent>
@@ -40,7 +40,7 @@ const TicketPreview = (props) => {
                 </MUI.CardContent>
                 <MUI.CardContent>
                     <MUI.Typography>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ut lacinia velit, nec ultrices nisi. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed sit amet libero sapien. Sed vulputate ante lacus, non viverra lacus finibus.
+                        {props.ticket.description}
                     </MUI.Typography>
                 </MUI.CardContent>
                 <MUI.CardContent>
@@ -53,7 +53,7 @@ const TicketPreview = (props) => {
                 </MUI.CardContent>
                 <MUI.CardContent>
                     <MUI.Typography>
-                        Meeting individually with my TL and SL.
+                    {props.ticket.what_ive_tried}
                     </MUI.Typography>
                 </MUI.CardContent>
             </MUI.Card>

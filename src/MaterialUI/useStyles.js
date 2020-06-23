@@ -29,7 +29,7 @@ const useStyles = makeStyles({
     dashboardRoot: {
         width: "100%",
         height: "100vh",
-        marginTop: "40px",
+        //marginTop: "40px",
         display: 'flex',
         flexWrap: "nowrap",
         justifyContent: "flex-start",
@@ -41,7 +41,7 @@ const useStyles = makeStyles({
         width: "5px",
         height: "50px",
         zIndex: "1250",
-        position: "fixed",
+        //position: "fixed",
         '&:hover': {
             background: "rgba(190,190,190,.9)"
         }
@@ -135,7 +135,7 @@ const useStyles = makeStyles({
         marginTop: '30px',
     },
     drawerVisible: {
-        display: 'block'
+        display: 'block',
     },
     rightPane: {
         width: "40%",

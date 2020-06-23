@@ -11,6 +11,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import MenuIcon from '@material-ui/icons/Menu';
 import PersonIcon from '@material-ui/icons/Person';
+import CancelIcon from '@material-ui/icons/Cancel';
 
 import { 
     TextField,
@@ -100,5 +101,6 @@ export {
     MenuIcon,
     Icon,
     AddTicketIcon,
-    PersonIcon
+    PersonIcon,
+    CancelIcon,
 }

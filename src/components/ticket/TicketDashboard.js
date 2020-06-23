@@ -7,16 +7,27 @@ import './ticket.css';
 import NavDrawer from './NavDrawer';
 import TicketQueue from './TicketQueue';
 import TicketPreview from './TicketPreview';
+import useWindowSize from '../../hooks/useWindowSize';
 
 const TicketDashboard = props => {
     const [ticket, setTicket] = useState({});
     const [previewVisible, setPreviewVisible] = useState(false);
     const [statusText, setStatusText] = useState("Tickets");
     const [statusFilter, setStatusFilter] = useState("");
-    const [open, setOpen] = useState();
-
+    const [open, setOpen] = useState(true);
+    const [windowWidth] = useWindowSize();
 
     const classes = MUI.useStyles();
+
+    useEffect(() => {
+        if(windowWidth) {
+            if(windowWidth < 600) {
+                setOpen(false);
+            } else {
+                setOpen(true);
+            }
+        }
+    }, [windowWidth])
 
     const setVisible = (t) => {
         setTicket(t);
@@ -41,11 +52,10 @@ const TicketDashboard = props => {
         setStatusFilter(status);
     };
 
-    // Tickets State has hardcoded data for use while building the component
-    const { user } = useSelector(state => state.login);
+    //const { user } = useSelector(state => state.login);
     const dispatch = useDispatch();
 
-    console.log("cea: components/ticket/TicketDashBoard.js: user: ", user);
+    //console.log("cea: components/ticket/TicketDashBoard.js: user: ", user);
     
 
     useEffect(() => {
@@ -63,6 +73,8 @@ const TicketDashboard = props => {
                 statusText={statusText}
                 filter={statusFilter}
                 toggleDrawer={toggleDrawer}
+                open = {open}
+                setPreviewVisible = {setPreviewVisible}
             />
             <TicketPreview visible={previewVisible} ticket={ticket} />
         </div>

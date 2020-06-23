@@ -31,5 +31,9 @@ export default function useForm(initialValues, formSchema) {
         });
     }
 
-    return [values, handleChanges, formErrors];
+    const clearForm = () => {
+        setValues(initialValues);
+    }
+
+    return [values, handleChanges, formErrors, clearForm];
 }

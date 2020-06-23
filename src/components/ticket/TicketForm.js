@@ -6,6 +6,8 @@ import { ticketFormSchema } from '../../utils/ticketFormValidation';
 import { theme, ColorButton } from '../../MaterialUI/useStyles';
 import { useDispatch } from "react-redux";
 import { createTicket } from '../../actions/tickets';
+import Burger from '../burger/Burger';
+import useWindowSize from '../../hooks/useWindowSize';
 
 const initialValues = {
     title: "",
@@ -14,10 +16,11 @@ const initialValues = {
     what_ive_tried: "",
 };
 
-const TicketForm = () => {
+const TicketForm = props => {
     const dispatch = useDispatch();
+    const [windowWidth] = useWindowSize();
     const [buttonDisabled, setButtonDisabled] = useState(true);
-    const [values, handleChanges, formErrors] = useForm(initialValues, ticketFormSchema);
+    const [values, handleChanges, formErrors, clearForm] = useForm(initialValues, ticketFormSchema);
     const [chipData, setChipData] = useState([
         {key: 0, name: "categories", value: "Equipment"},
         {key: 1, name: "categories", value: "People"},
@@ -31,6 +34,8 @@ const TicketForm = () => {
             setButtonDisabled(!valid);
         });
     },[values]);
+
+    useEffect(() => props.showPreview(values), [values]);
 
     const selectTopic = data => {
         console.log(data.name, data.value);
@@ -62,12 +67,21 @@ const TicketForm = () => {
         e.preventDefault();
         console.log(values)
         dispatch(createTicket(values));
+        props.setIsCreatingTicket(false);
+        clearForm();
     }
     return(
-        <div className='ticket-form-container'>
+        <div className='ticket-form-container ticket-list'>
             <section className='ticket-form-header'>
-                <h1>Let's submit a help ticket.</h1>
+                {windowWidth < 600 && <Burger toggleDrawer={props.toggleDrawer} />}
+                <h2>Let's submit a help ticket.</h2>
                 {/* <p><span>*</span> Required Fields</p> */}
+                <MUI.IconButton aria-label = "close" onClick = {() => {
+                    props.setIsCreatingTicket(false);
+                    props.setPreviewVisible(false);
+                }}>
+                    <MUI.CancelIcon fontSize="large" />
+                </MUI.IconButton>
             </section>
             <section className='ticket-form'>
                 <form onSubmit = {submitTicket}>
@@ -83,7 +97,6 @@ const TicketForm = () => {
                                 onChange={handleChanges}
                                 label={`What's going on? ${(<span>*</span>).props.children}`}
                             /><br />
-                            <span style = {{color: "red"}}>Required</span>
                         </div>
                         <div className='input-group'>
                             <MUI.InputLabel
@@ -114,7 +127,6 @@ const TicketForm = () => {
                                 onChange={handleChanges}
                                 label={`Describe your issue ${(<span>*</span>).props.children}`}
                             /><br />
-                            <span style = {{color: "red"}}>Required</span>
                         </div>
                         <div className='input-group'>
                             <MUI.TextField    
