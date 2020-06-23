@@ -1,11 +1,13 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import * as MUI from "../../MaterialUI";
 import { useSelector } from 'react-redux';
 
 //Needs to be hidden at window width 600px and below,
 //Check TicketPreview component for comment on when to hide
 const NavDrawer = (props) => {
-    const list = useRef();
+    const opentickets = useRef();
+    const closedtickets = useRef();
+
     const classes = MUI.useStyles();
     const { loggedUserRole } = useSelector(state => state.tickets);
 
@@ -15,7 +17,8 @@ const NavDrawer = (props) => {
     }
 
     const setActive = (e) => {
-        list.current.classList.add("active");
+        const ref = e.currentTarget.id === 'open-tickets' ? opentickets : closedtickets;
+        ref.current.classList.add("active");
     };
 
     return (
@@ -43,21 +46,33 @@ const NavDrawer = (props) => {
             </MUI.List>
             <MUI.Divider />
             <MUI.List
-                ref={list}
+                ref={opentickets}
+                id='open-tickets'
                 className={classes.list}
                 onClick={(e) => setActive(e)}>
                 <MUI.ListItem
                     className={classes.listitem}
                     button
-                    onClick={() => props.updateStatusText("Open Tickets")}>{loggedUserRole === "STUDENT" ? "Open Tickets" : "All Tickets"}</MUI.ListItem>
+                    onClick={() => {
+                            props.updateStatusText("Open Tickets");
+                            props.filterTickets("OPEN");
+                        }
+                    }>{loggedUserRole === "STUDENT" ? "Open Tickets" : "All Tickets"}</MUI.ListItem>
             </MUI.List>
             <MUI.Divider />
-            <MUI.List           
+            <MUI.List
+                ref={closedtickets}
+                id='closed-tickets'
+                onClick={(e) => setActive(e)}     
                 className={classes.list}>
                 <MUI.ListItem
                     className={classes.listitem}
                     button
-                    onClick={() => props.updateStatusText("Closed Tickets")}>{loggedUserRole === "STUDENT" ? "Closed Tickets" : "My Tickets"}</MUI.ListItem>
+                    onClick={() => {
+                            props.updateStatusText("Closed Tickets");
+                            props.filterTickets("CLOSED");
+                        }
+                    }>{loggedUserRole === "STUDENT" ? "Closed Tickets" : "My Tickets"}</MUI.ListItem>
             </MUI.List>
             <MUI.Divider />
             <MUI.TreeView

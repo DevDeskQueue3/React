@@ -12,7 +12,9 @@ const TicketDashboard = props => {
     const [ticket, setTicket] = useState({});
     const [previewVisible, setPreviewVisible] = useState(false);
     const [statusText, setStatusText] = useState("Tickets");
+    const [statusFilter, setStatusFilter] = useState("");
     const [open, setOpen] = useState();
+
 
     const classes = MUI.useStyles();
 
@@ -31,6 +33,14 @@ const TicketDashboard = props => {
         setStatusText(stat);
     };
 
+    useEffect(() => {
+        console.log(statusFilter);
+    },[statusFilter]);
+
+    const filterTickets = (status) => {
+        setStatusFilter(status);
+    };
+
     // Tickets State has hardcoded data for use while building the component
     const { user } = useSelector(state => state.login);
     const dispatch = useDispatch();
@@ -46,10 +56,12 @@ const TicketDashboard = props => {
         <div className = {classes.dashboardRoot}>
             <NavDrawer
                 updateStatusText={updateStatusText}
+                filterTickets={filterTickets}
                 open={open} />
             <TicketQueue
                 showPreview={setVisible}
                 statusText={statusText}
+                filter={statusFilter}
                 toggleDrawer={toggleDrawer}
             />
             <TicketPreview visible={previewVisible} ticket={ticket} />

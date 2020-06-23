@@ -36,11 +36,12 @@ const useStyles = makeStyles({
     },
     burgerwrapper: {
         background: "rgba(200,200,200,.9)",
-        margin: "-13px 40px 20px 0",
+        top: "10px",
+        margin: "0 40px 20px 0",
         width: "5px",
         height: "50px",
         zIndex: "1250",
-        position: "static",
+        position: "fixed",
         '&:hover': {
             background: "rgba(190,190,190,.9)"
         }
@@ -56,16 +57,15 @@ const useStyles = makeStyles({
     },
     list: {
         fontSize: '1.5rem',
-        padding: '10px 0 10px 0'
+        padding: '10px 0 10px 0',
+        '&:hover div': {
+            borderLeft: '4px solid rgb(0, 171, 236)',
+            backgroundColor: 'rgba(22, 142, 245, 0.13)'
+        }
     },
     listitem: {
         padding: '7% 7% !important',
         borderLeft: '4px solid rgba(255,255,255,0)', /* This prevents jitter on hover - Darren Tebo */
-        '&:hover div': {
-            borderLeft: '4px solid rgb(0, 171, 236)',
-            backgroundColor: 'rgba(22, 142, 245, 0.13)',
-            padding: '10px 0 10px 0'
-        }
     },
     card: {
         margin: '0 0px 17px 0px',

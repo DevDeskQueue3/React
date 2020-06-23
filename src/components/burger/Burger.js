@@ -4,7 +4,7 @@ import * as MUI from '../../MaterialUI/index';
 
 const Burger = (props) => {
     const classes = MUI.useStyles();
-    const [isOpen, setIsOpen] = useState();
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
         <MUI.Button
@@ -15,7 +15,6 @@ const Burger = (props) => {
                     setIsOpen(!isOpen);
                 }
             }
-            disableRipple
         >
             {isOpen ? <MUI.ChevronLeftIcon fontSize='large' /> : <MUI.MenuIcon fontSize='large' />}
         </MUI.Button>
