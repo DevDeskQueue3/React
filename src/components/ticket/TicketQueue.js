@@ -103,6 +103,15 @@ const TicketQueue = (props) => {
                                                     title={ticket.posted_by_name}>
                                                     <MUI.AccountCircle />
                                                 </MUI.Tooltip>
+                                                {loggedUserRole === "HELPER" && <><br /><MUI.Button variant = "contained" >Assign</MUI.Button></>}
+                                                {loggedUserRole === "STUDENT" && <>
+                                                    <MUI.IconButton>
+                                                        <MUI.EditIcon />
+                                                    </MUI.IconButton>
+                                                    <MUI.IconButton>
+                                                        <MUI.DeleteIcon />
+                                                    </MUI.IconButton>
+                                                </>}
                                             </MUI.CardContent>
                                         </section>
                                     </div>

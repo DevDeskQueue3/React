@@ -3,7 +3,7 @@ import {
     AccountCircle,
     Visibility,
     VisibilityOff,
-    PostAddRounded as AddTicketIcon
+    PostAddRounded as AddTicketIcon,
 } from '@material-ui/icons';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -12,6 +12,8 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import MenuIcon from '@material-ui/icons/Menu';
 import PersonIcon from '@material-ui/icons/Person';
 import CancelIcon from '@material-ui/icons/Cancel';
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 import { 
     TextField,
@@ -103,4 +105,6 @@ export {
     AddTicketIcon,
     PersonIcon,
     CancelIcon,
+    EditIcon,
+    DeleteIcon,
 }
