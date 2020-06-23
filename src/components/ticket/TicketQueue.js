@@ -29,7 +29,12 @@ const TicketQueue = (props) => {
         } else {
             setFilteredTickets(tickets)
         }
-    }, [loggedUserRole, user, tickets, dispatch]);
+
+        if(props.filter !== ''){
+            setFilteredTickets(tickets.filter(ticket => (ticket.posted_by_id === user.id && ticket.status === props.filter)));
+        }
+
+    }, [loggedUserRole, user, props.filter, tickets, dispatch]);
 
     if(filteredTickets.length > 0) console.log("FilteredTickets: ", filteredTickets);
 
