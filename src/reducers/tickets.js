@@ -1,4 +1,4 @@
-import { FETCH_TICKETS_START, FETCH_TICKETS_SUCCESS, FETCH_TICKETS_FAILURE, SET_LOGGEDUSER_ROLE, UPDATE_TICKETS, DELETE_TICKET } from "../actions/tickets";
+import { FETCH_TICKETS_START, FETCH_TICKETS_SUCCESS, FETCH_TICKETS_FAILURE, SET_LOGGEDUSER_ROLE, CREATE_TICKET, UPDATE_TICKETS, DELETE_TICKET } from "../actions/tickets";
 
 const initialState = {
     tickets: [],
@@ -33,11 +33,21 @@ export const tickets = (state = initialState, action) => {
                 loggedUserRole: action.payload,
             }
         }
-        case UPDATE_TICKETS:
+        case CREATE_TICKET:
             return {
                 ...state,
                 tickets: [...state.tickets, action.payload],
                 error: {}
+            };
+        case UPDATE_TICKETS:
+            return {
+                ...state,
+                tickets: state.tickets.map(ticket => {
+                    if(ticket.ticket_id === action.payload.ticket_id){
+                        return action.payload;
+                    }
+                    return ticket;
+                })
             };
         case DELETE_TICKET:
             return {

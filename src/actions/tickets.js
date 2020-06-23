@@ -3,6 +3,7 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 export const FETCH_TICKETS_START = "FETCH_TICKETS_START";
 export const FETCH_TICKETS_SUCCESS = "FETCH_TICKETS_SUCCESS";
 export const FETCH_TICKETS_FAILURE = "FETCH_TICKETS_FAILURE";
+export const CREATE_TICKET = "CREATE_TICKET";
 export const UPDATE_TICKETS = "UPDATE_TICKETS";
 export const UPDATE_TICKETS_FAILURE = "UPDATE_TICKETS_FAILURE";
 export const DELETE_TICKET = "DELETE_TICKET";
@@ -42,7 +43,7 @@ export const createTicket = (ticket) => dispatch => {
         .then(res => {
             console.log("createTicket action: res.data: ", res.data);
             dispatch({
-                type: UPDATE_TICKETS,
+                type: CREATE_TICKET,
                 payload: res.data
             });
         })
@@ -57,7 +58,7 @@ export const createTicket = (ticket) => dispatch => {
 
 export const editTicket = ticket => dispatch => {
     axiosWithAuth()
-        .put(`/tickets/${ticket.id}`, ticket)
+        .put(`/tickets/${ticket.ticket_id}`, ticket)
         .then(res => {
             dispatch({
                 type: UPDATE_TICKETS,

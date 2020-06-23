@@ -17,6 +17,7 @@ const TicketQueue = (props) => {
     const { tickets, loggedUserRole, isFetching, error } = useSelector(state => state.tickets);
     const [filteredTickets, setFilteredTickets] = useState(tickets);
     const [isCreatingTicket, setIsCreatingTicket] = useState(false);
+    const [ticketToEdit, setTicketToEdit] = useState(null);
     const [windowWidth] = useWindowSize();
 
     useEffect(() => {
@@ -66,7 +67,7 @@ const TicketQueue = (props) => {
         return colorClass;
     };
 
-    if(isCreatingTicket) return <TicketForm showPreview={props.showPreview} setPreviewVisible={props.setPreviewVisible} toggleDrawer={props.toggleDrawer} open={props.open} setIsCreatingTicket={setIsCreatingTicket} />;
+    if(isCreatingTicket) return <TicketForm ticketToEdit = {ticketToEdit} setTicketToEdit = {setTicketToEdit} showPreview={props.showPreview} setPreviewVisible={props.setPreviewVisible} toggleDrawer={props.toggleDrawer} open={props.open} setIsCreatingTicket={setIsCreatingTicket} />;
     return (
         <MUI.List className="ticket-list" >
             <section className='ticket-list-header'>
@@ -110,7 +111,10 @@ const TicketQueue = (props) => {
                                                 </MUI.Tooltip>
                                                 {loggedUserRole === "HELPER" && <><br /><MUI.Button variant = "contained" >Assign</MUI.Button></>}
                                                 {loggedUserRole === "STUDENT" && <>
-                                                    <MUI.IconButton>
+                                                    <MUI.IconButton onClick = {() => {
+                                                        setIsCreatingTicket(true);
+                                                        setTicketToEdit(ticket);
+                                                    }}>
                                                         <MUI.EditIcon />
                                                     </MUI.IconButton>
                                                     <MUI.IconButton onClick = {() => {
