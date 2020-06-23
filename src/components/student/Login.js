@@ -72,7 +72,7 @@ const StudentLogin = props => {
             }
             
         }
-    }, [isFetching, props.history]);
+    }, [dispatch, isFetching, props.history]);
 
     useEffect(() => dispatch(clearError()), [dispatch]);
 

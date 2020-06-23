@@ -6,6 +6,7 @@ import { theme, ColorButton } from "../../MaterialUI/useStyles";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getToken, clearError } from "../../actions/login";
+import { setLoggedUserRole } from '../../actions/tickets';
 
 const initialValues = {
     email: "",
@@ -49,6 +50,7 @@ const Login = props => {
             const userData = JSON.parse(localStorage.getItem("user"));
             
             if(userData.roles.includes("HELPER")){
+                dispatch(setLoggedUserRole("HELPER"));
                 props.history.push("/tickets");
                 setLoginError("");
             } else {
@@ -57,7 +59,7 @@ const Login = props => {
                 localStorage.removeItem("user");
             }
         }
-    }, [isFetching, props.history]);
+    }, [dispatch, isFetching, props.history]);
 
     useEffect(() => dispatch(clearError()), [dispatch]);
 

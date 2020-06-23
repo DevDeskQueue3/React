@@ -8,6 +8,7 @@ import useForm from '../../hooks/useForm';
 
 import { registerFormSchema } from '../../utils/loginFormValidation';
 import { getToken, clearError } from '../../actions/login';
+import { setLoggedUserRole } from '../../actions/tickets';
 
 const initialValues = {
     firstName: "",
@@ -49,6 +50,7 @@ const StudentRegister = props => {
             const userData = JSON.parse(localStorage.getItem("user"));
             
             if(userData.roles.includes("STUDENT")){
+                dispatch(setLoggedUserRole("STUDENT"));
                 props.history.push("/tickets");
                 setLoginError("");
             } else {
@@ -57,7 +59,7 @@ const StudentRegister = props => {
                 localStorage.removeItem("user");
             }
         }
-    }, [isFetching, props.history]);
+    }, [dispatch, isFetching, props.history]);
 
     useEffect(() => {
         registerFormSchema.isValid(values).then((valid) => {

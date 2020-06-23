@@ -1,4 +1,4 @@
-import { FETCH_TICKETS_START, FETCH_TICKETS_SUCCESS, FETCH_TICKETS_FAILURE, SET_LOGGEDUSER_ROLE } from "../actions/tickets";
+import { FETCH_TICKETS_START, FETCH_TICKETS_SUCCESS, FETCH_TICKETS_FAILURE, SET_LOGGEDUSER_ROLE, UPDATE_TICKETS } from "../actions/tickets";
 
 const initialState = {
     tickets: [],
@@ -33,6 +33,12 @@ export const tickets = (state = initialState, action) => {
                 loggedUserRole: action.payload,
             }
         }
+        case UPDATE_TICKETS:
+            return {
+                ...state,
+                tickets: [...state.tickets, action.payload],
+                error: {}
+            };
         default: 
             return state;
     }

@@ -8,7 +8,7 @@ export default function useForm(initialValues, formSchema) {
     const [formErrors, setFormErrors] = useState(initialValues);
 
     const handleChanges = e => {
-        e.persist();
+        if(e.target.name !== "categories") e.persist();
         
         yup.reach(formSchema, e.target.name)
             .validate(e.target.value)
@@ -27,7 +27,7 @@ export default function useForm(initialValues, formSchema) {
 
         setValues({
             ...values,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.name === "categories" ? [e.target.value] : e.target.value
         });
     }
 

@@ -64,9 +64,12 @@ ul.active{
 .ticket-form .input-group{
     padding: 15px;
 }
-
 .ticket-form .input-group div.MuiInputBase-root{
     width: 250px;
+}
+
+#efforts, #description {
+    height: 80px !important;
 }
 
 /* Media Queries */

@@ -3,6 +3,8 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 export const FETCH_TICKETS_START = "FETCH_TICKETS_START";
 export const FETCH_TICKETS_SUCCESS = "FETCH_TICKETS_SUCCESS";
 export const FETCH_TICKETS_FAILURE = "FETCH_TICKETS_FAILURE";
+export const UPDATE_TICKETS = "UPDATE_TICKETS";
+export const UPDATE_TICKETS_FAILURE = "UPDATE_TICKETS_FAILURE";
 export const SET_LOGGEDUSER_ROLE = "SET_LOGGEDUSER_ROLE";
 
 export const getTickets = (id = "") => dispatch => {
@@ -25,6 +27,25 @@ export const getTickets = (id = "") => dispatch => {
                     message: err.response.data.message
                 }
             })
+        });
+}
+
+export const createTicket = (ticket) => dispatch => {
+    axiosWithAuth()
+        .post("/tickets", ticket)
+        .then(res => {
+            console.log("createTicket action: res.data: ", res.data);
+            dispatch({
+                type: UPDATE_TICKETS,
+                payload: res.data
+            });
+        })
+        .catch(err => {
+            console.log({code: err.response.status, message: err.response.data.message})
+            dispatch({
+                type: UPDATE_TICKETS_FAILURE,
+                payload: {code: err.response.status, message: err.response.data.message}
+            });
         });
 }
 

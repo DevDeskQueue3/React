@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getToken, clearError } from "../../actions/login";
 import * as MUI from "../../MaterialUI";
 import { theme, ColorButton } from "../../MaterialUI/useStyles";
+import { setLoggedUserRole } from '../../actions/tickets';
 
 const initialValues = {
     firstName: "",
@@ -61,6 +62,7 @@ const Register = props => {
             const userData = JSON.parse(localStorage.getItem("user"));
             
             if(userData.roles.includes("HELPER")){
+                dispatch(setLoggedUserRole("HELPER"));
                 props.history.push("/tickets");
                 setLoginError("");
             } else {
@@ -69,7 +71,7 @@ const Register = props => {
                 localStorage.removeItem("user");
             }
         }
-    }, [isFetching, props.history]);
+    }, [dispatch, isFetching, props.history]);
 
     useEffect(() => dispatch(clearError()), [dispatch]);
 
