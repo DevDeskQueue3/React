@@ -35,7 +35,7 @@ const TicketForm = props => {
         });
     },[values]);
 
-    useEffect(() => props.showPreview(values), [values]);
+    useEffect(() => props.showPreview(values), [values, props]);
 
     const selectTopic = data => {
         console.log(data.name, data.value);
