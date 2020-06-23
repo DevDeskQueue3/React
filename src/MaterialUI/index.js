@@ -3,11 +3,15 @@ import {
     AccountCircle,
     Visibility,
     VisibilityOff,
-    PostAddRounded as AddTicketIcon,
+    PostAddRounded as AddTicketIcon
 } from '@material-ui/icons';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import MenuIcon from '@material-ui/icons/Menu';
+import PersonIcon from '@material-ui/icons/Person';
+import CancelIcon from '@material-ui/icons/Cancel';
 
 import { 
     TextField,
@@ -87,12 +91,16 @@ export {
     CircularProgress,
     ExpandMoreIcon,
     ChevronRightIcon,
+    ChevronLeftIcon,
     Popper,
     Paper,
     Grow,
     ClickAwayListener,
     MenuItem,
     MenuList,
+    MenuIcon,
     Icon,
     AddTicketIcon,
+    PersonIcon,
+    CancelIcon,
 }

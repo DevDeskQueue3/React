@@ -21,15 +21,27 @@
     width: 60%;
     height: 100vh;
     /* max-width: 615px; */
-    padding-top: 24px !important;
-    padding-left: 27px !important;
+    padding: 24px !important;
+    padding-right: 7px !important;
+}
+
+.hide{
+    display: none;
 }
 
 ul.active{
     background-color: rgba(22, 142, 245, 0.13);
     border-left: 4px solid rgb(0, 171, 236);
     font-weight: bold;
-    padding: 10px 0 10px 0;
+    padding: 0;
+}
+
+ul.active:hover{
+    border-left: 4px solid rgba(255,255,255,0);
+}
+
+ul.active:hover:before{
+    border-left: 4px solid rgb(0, 171, 236);
 }
 
 .ticket-info-wrapper{
@@ -43,8 +55,6 @@ ul.active{
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px;
-    height: 100%;
 }
 
 .ticket-info-wrapper section:first-of-type {
@@ -52,21 +62,68 @@ ul.active{
 }
 
 .ticket-form{
+    
+    width: 100%;
+    height: 100%;
+}
+
+.ticket-form form {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
 }
 
-.ticket-form-header{
-    text-align: left;
-    width: 10%;
+.ticket-list-header {
+    display: flex;
+    align-items: center;
+
+}
+.ticket-form-header {
+    text-align: center;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
+.ticket-form-header h2,
+.ticket-list-header h2 {
+    font-size: 3rem;
+}
+
+.ticket-form-header button,
+.ticket-list-header button {
+    width: 50px;
+    height: 50px;
+}
+.ticket-form-header button .MuiSvgIcon-root,
+.ticket-list-header button .MuiSvgIcon-root {
+    width: 47px;
+    height: 47px;
+}
 .ticket-form .input-group{
     padding: 15px;
+    width: 100%;
+}
+.ticket-form .input-group div.MuiTextField-root{
+    width: 100%;
+}
+.ticket-form .input-group div.MuiInputBase-root{
+    width: 100% ;
+    font-size: 16px !important;
+}
+#title-label,
+.ticket-form .input-group .MuiInputLabel-root,
+.ticket-form .input-group .MuiChip-label{
+    font-size: 16px !important;
 }
 
-.ticket-form .input-group div.MuiInputBase-root{
-    width: 250px;
+#efforts, #description {
+    height: 80px !important;
 }
 
 /* Media Queries */

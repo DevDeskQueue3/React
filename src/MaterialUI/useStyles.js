@@ -29,9 +29,22 @@ const useStyles = makeStyles({
     dashboardRoot: {
         width: "100%",
         height: "100vh",
+        //marginTop: "40px",
         display: 'flex',
         flexWrap: "nowrap",
         justifyContent: "flex-start",
+    },
+    burgerwrapper: {
+        background: "rgba(200,200,200,.9)",
+        top: "10px",
+        margin: "0 40px 20px 0",
+        width: "5px",
+        height: "50px",
+        zIndex: "1250",
+        //position: "fixed",
+        '&:hover': {
+            background: "rgba(190,190,190,.9)"
+        }
     },
     dashboardtitle: {
         fontWeight: 'bold',
@@ -44,16 +57,15 @@ const useStyles = makeStyles({
     },
     list: {
         fontSize: '1.5rem',
-        padding: '10px 0 10px 0'
+        padding: '10px 0 10px 0',
+        '&:hover div': {
+            borderLeft: '4px solid rgb(0, 171, 236)',
+            backgroundColor: 'rgba(22, 142, 245, 0.13)'
+        }
     },
     listitem: {
         padding: '7% 7% !important',
         borderLeft: '4px solid rgba(255,255,255,0)', /* This prevents jitter on hover - Darren Tebo */
-        '&:hover div': {
-            borderLeft: '4px solid rgb(0, 171, 236)',
-            backgroundColor: 'rgba(22, 142, 245, 0.13)',
-            padding: '10px 0 10px 0'
-        }
     },
     card: {
         margin: '0 0px 17px 0px',
@@ -107,8 +119,7 @@ const useStyles = makeStyles({
         width: leftDrawerWidth,
         minWidth: 185,
         maxWidth: 354,
-        flexShrink: 0,
-
+        flexShrink: 0
     },
     drawerPaper: {
         width: leftDrawerWidth, 
@@ -124,7 +135,7 @@ const useStyles = makeStyles({
         marginTop: '30px',
     },
     drawerVisible: {
-        display: 'block'
+        display: 'block',
     },
     rightPane: {
         width: "40%",
