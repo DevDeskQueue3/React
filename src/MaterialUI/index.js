@@ -8,6 +8,7 @@ import {
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import MenuIcon from '@material-ui/icons/Menu';
 import PersonIcon from '@material-ui/icons/Person';
 
@@ -89,6 +90,7 @@ export {
     CircularProgress,
     ExpandMoreIcon,
     ChevronRightIcon,
+    ChevronLeftIcon,
     Popper,
     Paper,
     Grow,

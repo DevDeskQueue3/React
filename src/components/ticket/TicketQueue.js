@@ -22,9 +22,9 @@ const TicketQueue = (props) => {
     useEffect(() => {
         if(loggedUserRole === "STUDENT"){
             setFilteredTickets(tickets.filter(ticket => ticket.posted_by_id === user.id));
-        } else (
+        } else {
             setFilteredTickets(tickets)
-        )
+        }
     }, [loggedUserRole, user, tickets, dispatch]);
 
     if(filteredTickets.length > 0) console.log("FilteredTickets: ", filteredTickets);
@@ -59,7 +59,7 @@ const TicketQueue = (props) => {
 
     return (
         <MUI.List className="ticket-list" >
-            <Burger handleDrawerOpen={props.handleDrawerOpen} />
+            <Burger toggleDrawer={props.toggleDrawer} />
             <h1>{props.statusText}</h1>
             {
                 isFetching ? <h3 className='loading'>Loading Tickets...</h3> : 

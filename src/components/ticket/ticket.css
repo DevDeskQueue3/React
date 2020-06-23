@@ -25,11 +25,23 @@
     padding-left: 27px !important;
 }
 
+.hide{
+    display: none;
+}
+
 ul.active{
     background-color: rgba(22, 142, 245, 0.13);
     border-left: 4px solid rgb(0, 171, 236);
     font-weight: bold;
-    padding: 10px 0 10px 0;
+    padding: 0;
+}
+
+ul.active:hover{
+    border-left: 4px solid rgba(255,255,255,0);
+}
+
+ul.active:hover:before{
+    border-left: 4px solid rgb(0, 171, 236);
 }
 
 .ticket-info-wrapper{
