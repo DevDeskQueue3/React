@@ -52,12 +52,8 @@ const TicketDashboard = props => {
         setStatusFilter(status);
     };
 
-    //const { user } = useSelector(state => state.login);
     const dispatch = useDispatch();
-
-    //console.log("cea: components/ticket/TicketDashBoard.js: user: ", user);
     
-
     useEffect(() => {
         dispatch(setLoggedUserRole(localStorage.getItem("loggedUserRole")));
     }, [dispatch]);
