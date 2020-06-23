@@ -121,7 +121,6 @@ ul.active:hover:before{
 .ticket-form .input-group .MuiChip-label{
     font-size: 16px !important;
 }
-
 #efforts, #description {
     height: 80px !important;
 }

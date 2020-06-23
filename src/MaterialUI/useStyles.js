@@ -1,10 +1,10 @@
-import { makeStyles, createMuiTheme, Button, withStyles } from '@material-ui/core';
+import { makeStyles, createMuiTheme, Button, Tooltip, withStyles } from '@material-ui/core';
 import { orange } from '@material-ui/core/colors';
 
 export const theme = createMuiTheme({
     palette: {
         primary: orange,
-    },
+    }
 });
 
 const leftDrawerWidth = "25%";
@@ -55,6 +55,9 @@ const useStyles = makeStyles({
     ticketList: {
         border: "1px solid red",
     },
+    tooltip: {
+        fontWeight: 'bold'
+    },
     list: {
         fontSize: '1.5rem',
         padding: '10px 0 10px 0',
@@ -101,9 +104,6 @@ const useStyles = makeStyles({
         '& span': {
             fontWeight: '700'
         }
-    },
-    tooltip: {
-        fontSize: '1.4rem'
     },
     subtitle: {
         fontWeight: 'normal',
