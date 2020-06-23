@@ -59,7 +59,7 @@ const TicketQueue = (props) => {
 
     return (
         <MUI.List className="ticket-list" >
-            <Burger handleDrawerOpen={props.handleDrawerOpen} />
+            <Burger toggleDrawer={props.toggleDrawer} />
             <h1>{props.statusText}</h1>
             {
                 isFetching ? <h3 className='loading'>Loading Tickets...</h3> : 

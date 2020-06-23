@@ -12,7 +12,7 @@ const TicketDashboard = props => {
     const [ticket, setTicket] = useState({});
     const [previewVisible, setPreviewVisible] = useState(false);
     const [statusText, setStatusText] = useState("Tickets");
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState();
 
     const classes = MUI.useStyles();
 
@@ -23,8 +23,12 @@ const TicketDashboard = props => {
         }
     };
 
-    const handleDrawerOpen = () => {
-        setOpen(false);
+    useEffect(() => {
+        console.log(open);
+    },[open]);
+
+    const toggleDrawer = () => {
+        setOpen(!open);
     };
 
     const updateStatusText = (stat) => {
@@ -50,7 +54,7 @@ const TicketDashboard = props => {
             <TicketQueue
                 showPreview={setVisible}
                 statusText={statusText}
-                handleDrawerOpen={handleDrawerOpen}
+                toggleDrawer={toggleDrawer}
             />
             <TicketPreview visible={previewVisible} ticket={ticket} />
         </div>

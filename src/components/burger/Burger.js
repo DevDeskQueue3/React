@@ -9,7 +9,7 @@ const Burger = (props) => {
         <MUI.Button
             variant='contained'
             className={classes.burgerwrapper}
-            onClick={() => props.handleDrawerOpen()}
+            onClick={() => props.toggleDrawer()}
             disableRipple
         >
             <MUI.MenuIcon
