@@ -5,6 +5,7 @@ export const FETCH_TICKETS_SUCCESS = "FETCH_TICKETS_SUCCESS";
 export const FETCH_TICKETS_FAILURE = "FETCH_TICKETS_FAILURE";
 export const UPDATE_TICKETS = "UPDATE_TICKETS";
 export const UPDATE_TICKETS_FAILURE = "UPDATE_TICKETS_FAILURE";
+export const DELETE_TICKET = "DELETE_TICKET";
 export const SET_LOGGEDUSER_ROLE = "SET_LOGGEDUSER_ROLE";
 
 const filterByInitialValue = {
@@ -77,9 +78,18 @@ export const deleteTicket = id => dispatch => {
         .delete(`/tickets/${id}`)
         .then(res => {
             console.log(res);
+            dispatch({
+                type: DELETE_TICKET,
+                payload: res.data
+            });
+            
         })
         .catch(err => {
             console.log({code: err.response.status, message: err.response.data.message});
+            dispatch({
+                type: UPDATE_TICKETS_FAILURE,
+                payload: {code: err.response.status, message: err.response.data.message}
+            });
         })
 }
 

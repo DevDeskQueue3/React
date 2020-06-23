@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as MUI from "../../MaterialUI";
 import { useSelector, useDispatch } from "react-redux";
-import { getTickets } from '../../actions/tickets';
+import { getTickets, deleteTicket } from '../../actions/tickets';
 import { useHistory } from 'react-router-dom';
 
 import Burger from '../burger/Burger';
@@ -108,7 +108,7 @@ const TicketQueue = (props) => {
                                                     <MUI.IconButton>
                                                         <MUI.EditIcon />
                                                     </MUI.IconButton>
-                                                    <MUI.IconButton>
+                                                    <MUI.IconButton onClick = {() => dispatch(deleteTicket(ticket.ticket_id))}>
                                                         <MUI.DeleteIcon />
                                                     </MUI.IconButton>
                                                 </>}
