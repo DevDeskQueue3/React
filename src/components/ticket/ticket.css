@@ -25,6 +25,10 @@
     padding-left: 27px !important;
 }
 
+.hide{
+    display: none;
+}
+
 ul.active{
     background-color: rgba(22, 142, 245, 0.13);
     border-left: 4px solid rgb(0, 171, 236);

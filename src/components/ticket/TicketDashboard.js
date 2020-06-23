@@ -23,10 +23,6 @@ const TicketDashboard = props => {
         }
     };
 
-    useEffect(() => {
-        console.log(open);
-    },[open]);
-
     const toggleDrawer = () => {
         setOpen(!open);
     };

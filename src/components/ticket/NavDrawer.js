@@ -21,7 +21,7 @@ const NavDrawer = (props) => {
     return (
         <MUI.Drawer
             id = "navDrawer"
-            className={classes.drawer}
+            className={`${classes.drawer} ${props.open === false ? 'hide' : ''}`}
             classes={{
                 paper: classes.drawerPaper
             }}
