@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as MUI from "../../MaterialUI";
 import { useSelector, useDispatch } from "react-redux";
-import { getTickets } from '../../actions/tickets';
+import { getTickets, deleteTicket } from '../../actions/tickets';
 import { useHistory } from 'react-router-dom';
 
 import Burger from '../burger/Burger';
@@ -17,6 +17,7 @@ const TicketQueue = (props) => {
     const { tickets, loggedUserRole, isFetching, error } = useSelector(state => state.tickets);
     const [filteredTickets, setFilteredTickets] = useState(tickets);
     const [isCreatingTicket, setIsCreatingTicket] = useState(false);
+    const [ticketToEdit, setTicketToEdit] = useState(null);
     const [windowWidth] = useWindowSize();
 
     useEffect(() => {
@@ -56,7 +57,7 @@ const TicketQueue = (props) => {
             case "CLOSED":
                 colorClass = "ticket-card-green";
                 break;
-            case "INPROGRESS":
+            case "RESOLVED":
                 colorClass = "ticket-card-purple";
                 break;
             default:
@@ -66,7 +67,7 @@ const TicketQueue = (props) => {
         return colorClass;
     };
 
-    if(isCreatingTicket) return <TicketForm showPreview={props.showPreview} setPreviewVisible={props.setPreviewVisible} toggleDrawer={props.toggleDrawer} open={props.open} setIsCreatingTicket={setIsCreatingTicket} />;
+    if(isCreatingTicket) return <TicketForm ticketToEdit = {ticketToEdit} setTicketToEdit = {setTicketToEdit} showPreview={props.showPreview} setPreviewVisible={props.setPreviewVisible} toggleDrawer={props.toggleDrawer} open={props.open} setIsCreatingTicket={setIsCreatingTicket} />;
     return (
         <MUI.List className="ticket-list" >
             <section className='ticket-list-header'>
@@ -113,10 +114,17 @@ const TicketQueue = (props) => {
                                                             <MUI.AccountCircle />
                                                         </MUI.Tooltip>
                                                     </MUI.IconButton>
-                                                    <MUI.IconButton>
+
+                                                    <MUI.IconButton onClick = {() => {
+                                                        setIsCreatingTicket(true);
+                                                        setTicketToEdit(ticket);
+                                                    }}>
                                                         <MUI.EditIcon />
                                                     </MUI.IconButton>
-                                                    <MUI.IconButton>
+                                                    <MUI.IconButton onClick = {() => {
+                                                        dispatch(deleteTicket(ticket.ticket_id));
+                                                        props.setPreviewVisible(false);
+                                                    }}>
                                                         <MUI.DeleteIcon />
                                                     </MUI.IconButton>
                                                 </>}
