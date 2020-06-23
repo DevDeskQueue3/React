@@ -113,7 +113,10 @@ const TicketQueue = (props) => {
                                                     <MUI.IconButton>
                                                         <MUI.EditIcon />
                                                     </MUI.IconButton>
-                                                    <MUI.IconButton onClick = {() => dispatch(deleteTicket(ticket.ticket_id))}>
+                                                    <MUI.IconButton onClick = {() => {
+                                                        dispatch(deleteTicket(ticket.ticket_id));
+                                                        props.setPreviewVisible(false);
+                                                    }}>
                                                         <MUI.DeleteIcon />
                                                     </MUI.IconButton>
                                                 </>}
