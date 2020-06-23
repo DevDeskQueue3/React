@@ -93,7 +93,7 @@ const TicketQueue = (props) => {
                                             <MUI.CardHeader
                                                 className={classes.header}
                                                 title={ticket.title} />
-                                            <p className={classes.subtitle}>{ticket.description}</p>
+                                            <p className={classes.subtitle}>{ticket.categories}</p>
                                         </section>
                                         <section className={classes.cardsection}>
                                             <MUI.CardContent>
