@@ -56,7 +56,7 @@ const TicketQueue = (props) => {
             case "CLOSED":
                 colorClass = "ticket-card-green";
                 break;
-            case "INPROGRESS":
+            case "RESOLVED":
                 colorClass = "ticket-card-purple";
                 break;
             default:

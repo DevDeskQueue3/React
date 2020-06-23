@@ -80,7 +80,7 @@ export const deleteTicket = id => dispatch => {
             console.log(res);
             dispatch({
                 type: DELETE_TICKET,
-                payload: res.data
+                payload: id
             });
             
         })
