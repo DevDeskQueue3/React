@@ -64,7 +64,7 @@ export const editTicket = ticket => dispatch => {
             });
         })
         .catch(err => {
-            console.log({code: err.response.status, message: err.response.data.message})
+            console.log({code: err.response.status, message: err.response.data.message});
             dispatch({
                 type: UPDATE_TICKETS_FAILURE,
                 payload: {code: err.response.status, message: err.response.data.message}
@@ -72,11 +72,16 @@ export const editTicket = ticket => dispatch => {
         });
 }
 
-/* export const deleteTicket = id => dispatch => {
+export const deleteTicket = id => dispatch => {
     axiosWithAuth()
         .delete(`/tickets/${id}`)
-        .then(res => )
-} */
+        .then(res => {
+            console.log(res);
+        })
+        .catch(err => {
+            console.log({code: err.response.status, message: err.response.data.message});
+        })
+}
 
 export const setLoggedUserRole = role => dispatch => {
     dispatch({type: SET_LOGGEDUSER_ROLE, payload: role});
