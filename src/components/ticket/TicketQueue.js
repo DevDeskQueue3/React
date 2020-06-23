@@ -108,7 +108,6 @@ const TicketQueue = (props) => {
                                                     <MUI.IconButton>
                                                         <MUI.Tooltip
                                                             className={classes.tooltip}
-                                                            viewbox='0 0 50px 50px'
                                                             title={<MUI.Typography>{ticket.posted_by_name}</MUI.Typography>}
                                                         >
                                                             <MUI.AccountCircle />
