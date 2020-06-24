@@ -12,7 +12,7 @@ import useWindowSize from '../../hooks/useWindowSize';
 const TicketDashboard = props => {
     const [ticket, setTicket] = useState({});
     const [previewVisible, setPreviewVisible] = useState(false);
-    const [statusText, setStatusText] = useState("Tickets");
+    const [statusText, setStatusText] = useState("All Tickets");
     const [statusFilter, setStatusFilter] = useState("");
     const [open, setOpen] = useState(true);
     const [windowWidth] = useWindowSize();
