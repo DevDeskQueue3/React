@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as MUI from "../../MaterialUI";
+import moment from 'moment';
 import { useSelector, useDispatch } from "react-redux";
 import { getTickets, toggleClaim } from '../../actions/tickets';
 import { useHistory } from 'react-router-dom';
@@ -72,6 +73,8 @@ const TicketQueue = (props) => {
                 (
                     
                     filteredTickets.map((ticket) => {
+                        let daysAgo = moment(ticket.posted_at, "YYYYMMDD").fromNow();
+                        
                         return( 
                             <MUI.Card
                                 onClick={() => props.showPreview(ticket)}
@@ -82,7 +85,7 @@ const TicketQueue = (props) => {
                                         <section className={classes.cardsection}>
                                             <MUI.CardContent
                                                 className={classes.timeframe}>
-                                                <p>1 Day Old</p>
+                                                <p>{daysAgo}</p>
                                             </MUI.CardContent>
                                         </section>
                                     )}
