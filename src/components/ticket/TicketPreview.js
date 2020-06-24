@@ -11,6 +11,10 @@ const TicketPreview = (props) => {
     const { loggedUserRole } = useSelector(state => state.tickets);
     const [anchorEl, setAnchorEl] = useState();
 
+    // useEffect(() => {
+    //     props.getTicketToUpdate(ticket);
+    // },[])
+
     useEffect(() => {
         console.log('ticket preview: ', props.visible);
     },[props.visible]);
@@ -45,8 +49,12 @@ const TicketPreview = (props) => {
                                 open={Boolean(anchorEl)}
                                 onClose={handleClose}
                             >
-                                <MUI.MenuItem onClick={handleClose}>Edit</MUI.MenuItem>
-                                <MUI.MenuItem onClick={handleClose}>Delete</MUI.MenuItem>
+                                <MUI.MenuItem onClick={() => {
+                                    handleClose();
+                                }}>Edit</MUI.MenuItem>
+                                <MUI.MenuItem onClick={() => {
+                                    handleClose();
+                                }}>Delete</MUI.MenuItem>
                                 <MUI.MenuItem onClick={handleClose}>Update Status</MUI.MenuItem>
                             </MUI.Menu>
                         </MUI.Typography>
@@ -80,13 +88,6 @@ const TicketPreview = (props) => {
                     <MUI.Typography>
                     {props.ticket.what_ive_tried}
                     </MUI.Typography>
-                </MUI.CardContent>
-                <MUI.CardContent>
-                    {loggedUserRole === "HELPER" && <MUI.Button variant = "contained" >Assign</MUI.Button>}{" "}
-                    {loggedUserRole === "STUDENT" && <>
-                        <MUI.Button variant = "contained">Edit</MUI.Button>{" "}
-                        <MUI.Button variant = "contained">Delete</MUI.Button>{" "}
-                    </>}
                 </MUI.CardContent>
             </MUI.Card>
         </div>
