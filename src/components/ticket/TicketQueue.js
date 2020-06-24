@@ -27,6 +27,10 @@ const TicketQueue = (props) => {
     }, [dispatch, props.isCreatingTicket]);
 
     useEffect(() => {
+        props.getTicketSetter(setTicketToEdit);
+    }, [props]);
+
+    useEffect(() => {
         if(loggedUserRole === "STUDENT"){
             setFilteredTickets(tickets.filter(ticket => ticket.posted_by_id === user.id));
         } else {
@@ -34,7 +38,16 @@ const TicketQueue = (props) => {
         }
 
         if(props.filter !== ''){
-            setFilteredTickets(tickets.filter(ticket => (ticket.posted_by_id === user.id && ticket.status === props.filter)));
+            setFilteredTickets(tickets.filter(ticket => 
+                    (
+                        ticket.posted_by_id === user.id && 
+                        (
+                            ticket.status === props.filter ||
+                            (ticket.categories !== null && ticket.categories.includes(props.filter))
+                        )
+                    )
+                )
+            );
         }
 
     }, [loggedUserRole, user, props.filter, tickets, dispatch]);

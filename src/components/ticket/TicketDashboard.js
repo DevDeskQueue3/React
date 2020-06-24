@@ -13,14 +13,18 @@ const TicketDashboard = props => {
     const [ticket, setTicket] = useState({});
     const [previewVisible, setPreviewVisible] = useState(false);
     const [statusText, setStatusText] = useState("All Tickets");
-    const [statusFilter, setStatusFilter] = useState("");
+    const [filter, setFilter] = useState("");
     const [open, setOpen] = useState(true);
     const [windowWidth] = useWindowSize();
+<<<<<<< HEAD
     const [isCreatingTicket, setIsCreatingTicket] = useState(false);
     const [ticketToEdit, setTicketToEdit] = useState(null);
 
 
 
+=======
+    const [setter, setSetter] = useState();
+>>>>>>> 1ab7b5ba20a53a627d8c021badba7bf1326c395e
     const classes = MUI.useStyles();
 
     useEffect(() => {
@@ -49,11 +53,16 @@ const TicketDashboard = props => {
     };
 
     useEffect(() => {
-        console.log(statusFilter);
-    },[statusFilter]);
+        console.log(filter);
+    },[filter]);
 
-    const filterTickets = (status) => {
-        setStatusFilter(status);
+    const filterTickets = (value) => {
+        setFilter(value);
+    };
+
+    const getTicketSetter = (setter) => {
+        setSetter(setter);
+        console.log(setter);
     };
 
     const dispatch = useDispatch();
@@ -71,8 +80,9 @@ const TicketDashboard = props => {
             <TicketQueue
                 showPreview={setVisible}
                 statusText={statusText}
-                filter={statusFilter}
+                filter={filter}
                 ticketToUpdate={ticket}
+                getTicketSetter={getTicketSetter}
                 toggleDrawer={toggleDrawer}
                 open = {open}
                 setPreviewVisible = {setPreviewVisible}
