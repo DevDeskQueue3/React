@@ -1,14 +1,26 @@
 /* Ticket Color Code Styles */
 .ticket-card-green{
-    border-left: 4px solid green;
+    border-left: 6px solid green;
 }
 
 .ticket-card-purple{
-    border-left: 4px solid rgb(98, 0, 128);
+    border-left: 6px solid rgb(98, 0, 128);
 }
 
 .ticket-card-red{
-    border-left: 4px solid rgb(179, 3, 3);
+    border-left: 6px solid rgb(179, 3, 3);
+}
+
+.preview-card-green{
+    border-top: 6px solid green;
+}
+
+.preview-card-purple{
+    border-top: 6px solid rgb(98, 0, 128);
+}
+
+.preview-card-red{
+    border-top: 6px solid rgb(179, 3, 3);
 }
 
 /* Loading Styles */
@@ -121,18 +133,25 @@ ul.active:hover:before{
 .ticket-form .input-group .MuiChip-label{
     font-size: 16px !important;
 }
-
 #efforts, #description {
     height: 80px !important;
 }
 
+#rightPane h3 {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+
 /* Media Queries */
+
 @media screen and (max-width: 1100px){
     #rightPane {
         display: none;
     }
     #addTicketButton {
-        right: 50px;
+        right: 110px;
     }
     .ticket-list {
         width: 100%;

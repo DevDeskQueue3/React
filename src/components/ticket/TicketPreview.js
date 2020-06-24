@@ -1,5 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import * as MUI from '../../MaterialUI';
+import { useSelector } from 'react-redux';
+import { setStatusColor } from '../../utils/setStatusColor';
+import DottedMenu from '../burger/Dotted';
 
 // Needs to hide at 1100px window width and below, 
 // then make the tickets in the queue expand when you 
@@ -7,27 +10,37 @@ import * as MUI from '../../MaterialUI';
 // Check NavDrawer component for comment on when to hide
 const TicketPreview = (props) => {
     const classes = MUI.useStyles();
+    const { loggedUserRole } = useSelector(state => state.tickets);
 
-    useEffect(() => {
+    /* useEffect(() => {
         console.log('ticket preview: ', props.visible);
-    },[props.visible]);
+    },[props.visible]); */
+
 
     // Should be fixed position so it always shows when scrolling page
     return (
         <div id = "rightPane" className={classes.rightPane}>
             {!props.visible && <h2 className = {classes.previewHelperText}>Ticket Preview, Select a ticket to view details.</h2>}
-            <MUI.Card className={props.visible ? `${classes.drawerVisible} ${classes.previewDrawer}` : classes.previewDrawer}>
+            <MUI.Card className={props.visible ? `${classes.drawerVisible} ${classes.previewDrawer} ${setStatusColor("PREVIEW", props.ticket.status)}` : `${classes.previewDrawer} ${setStatusColor("PREVIEW", props.ticket.status)}`}>
                 <MUI.CardHeader
                     title={
                         <MUI.Typography
                             component='h3'
                             variant='h3'
                         >
-                            Title: {props.ticket.title}
+                            {props.isCreatingTicket ? `Title: ${props.ticket.title}` : props.ticket.title}
+                            {loggedUserRole === "STUDENT" && <>
+                                
+                                <DottedMenu 
+                                    ticket = {props.ticket} 
+                                    setIsCreatingTicket = {props.setIsCreatingTicket}
+                                    setPreviewVisible = {props.setPreviewVisible}
+                                />
+                            </>}
                         </MUI.Typography>
                     }
                     subheader={
-                        <p className={classes.subtitle}>Category: {props.ticket.categories}</p>
+                        <p className={classes.subtitle}>{props.ticket.categories} Issue</p>
                     }>
                 </MUI.CardHeader>
                 <MUI.CardContent>

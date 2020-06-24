@@ -5,8 +5,12 @@ import { getTickets } from '../../actions/tickets';
 import { useHistory } from 'react-router-dom';
 
 import Burger from '../burger/Burger';
+import DottedMenu from '../burger/Dotted';
 import TicketForm from './TicketForm';
 import useWindowSize from '../../hooks/useWindowSize';
+
+import { setStatusColor } from '../../utils/setStatusColor';
+
 
 const TicketQueue = (props) => {
     const classes = MUI.useStyles();
@@ -16,12 +20,11 @@ const TicketQueue = (props) => {
     const { user } = useSelector(state => state.login);
     const { tickets, loggedUserRole, isFetching, error } = useSelector(state => state.tickets);
     const [filteredTickets, setFilteredTickets] = useState(tickets);
-    const [isCreatingTicket, setIsCreatingTicket] = useState(false);
     const [windowWidth] = useWindowSize();
 
     useEffect(() => {
         dispatch(getTickets());        
-    }, [dispatch, isCreatingTicket]);
+    }, [dispatch, props.isCreatingTicket]);
 
     useEffect(() => {
         if(loggedUserRole === "STUDENT"){
@@ -29,9 +32,23 @@ const TicketQueue = (props) => {
         } else {
             setFilteredTickets(tickets)
         }
-    }, [loggedUserRole, user, tickets, dispatch]);
 
-    if(filteredTickets.length > 0) console.log("FilteredTickets: ", filteredTickets);
+        if(props.filter !== ''){
+            setFilteredTickets(tickets.filter(ticket => 
+                    (
+                        ticket.posted_by_id === user.id && 
+                        (
+                            ticket.status === props.filter ||
+                            (ticket.categories !== null && ticket.categories.includes(props.filter))
+                        )
+                    )
+                )
+            );
+        }
+
+    }, [loggedUserRole, user, props.filter, tickets, dispatch]);
+
+    //if(filteredTickets.length > 0) console.log("FilteredTickets: ", filteredTickets);
 
     const loginAgain = e => {
         localStorage.removeItem("token");
@@ -39,33 +56,12 @@ const TicketQueue = (props) => {
         push("/student/login");
     }
 
-    /* Helper function to set ticket status color */
-    const setStatusColor = (status) => {
-        let colorClass = "";
+    if(props.isCreatingTicket) return <TicketForm showPreview={props.showPreview} setPreviewVisible={props.setPreviewVisible} toggleDrawer={props.toggleDrawer} open={props.open} setIsCreatingTicket={props.setIsCreatingTicket} />;
 
-        /* Set the ticket status color according to the ticket status */
-        switch(status){
-            case "OPEN":
-                colorClass = "ticket-card-red";
-                break;
-            case "CLOSED":
-                colorClass = "ticket-card-green";
-                break;
-            case "INPROGRESS":
-                colorClass = "ticket-card-purple";
-                break;
-            default:
-                break;
-        };
-
-        return colorClass;
-    };
-
-    if(isCreatingTicket) return <TicketForm showPreview = {props.showPreview} setPreviewVisible = {props.setPreviewVisible} toggleDrawer = {props.toggleDrawer} open = {props.open} setIsCreatingTicket = {setIsCreatingTicket} />;
     return (
         <MUI.List className="ticket-list" >
             <section className='ticket-list-header'>
-                {windowWidth < 600 && <Burger toggleDrawer={props.toggleDrawer} open = {props.open} />}
+                {windowWidth < 600 && <Burger toggleDrawer={props.toggleDrawer} open={props.open} />}
                 <h2>{props.statusText}</h2>
             </section>
             {
@@ -75,34 +71,48 @@ const TicketQueue = (props) => {
                 (
                     
                     filteredTickets.map((ticket) => {
-                        
                         return( 
                             <MUI.Card
                                 onClick={() => props.showPreview(ticket)}
-                                className={`${classes.card} ${setStatusColor(ticket.status)}`} 
+                                className={`${classes.card} ${setStatusColor("TICKET", ticket.status)}`} 
                                 key={ticket.ticket_id}>
                                 <div className={classes.details}>
-                                    <section className={classes.cardsection}>
-                                        <MUI.CardContent
-                                            className={classes.timeframe}>
-                                            <p>1 Day Old</p>
-                                        </MUI.CardContent>
-                                    </section>
+                                    {loggedUserRole === "HELPER" && (
+                                        <section className={classes.cardsection}>
+                                            <MUI.CardContent
+                                                className={classes.timeframe}>
+                                                <p>1 Day Old</p>
+                                            </MUI.CardContent>
+                                        </section>
+                                    )}
                                     <div className='ticket-info-wrapper'>
                                         <section className={classes.cardsection}>
+                                            <p className={classes.subtitle}>{ticket.categories} Issue</p>
                                             <MUI.CardHeader
                                                 className={classes.header}
-                                                title={ticket.title} />
-                                            <p className={classes.subtitle}>{ticket.categories}</p>
+                                                title={ticket.title} />                                            
                                         </section>
                                         <section className={classes.cardsection}>
                                             <MUI.CardContent>
-                                                <MUI.Tooltip
-                                                    className={classes.tooltip}
-                                                    TransitionComponent={MUI.Fade}
-                                                    title={ticket.posted_by_name}>
-                                                    <MUI.AccountCircle />
-                                                </MUI.Tooltip>
+                                                <MUI.IconButton>
+                                                    <MUI.Tooltip
+                                                        className={classes.tooltip}
+                                                        title={<MUI.Typography>{ticket.posted_by_name}</MUI.Typography>}
+                                                    >
+                                                        <MUI.AccountCircle />
+                                                    </MUI.Tooltip>
+                                                </MUI.IconButton>
+
+                                                {loggedUserRole === "HELPER" && <><br /><MUI.Button variant = "contained" >Assign</MUI.Button></>}
+                                                {loggedUserRole === "STUDENT" && <>
+                                                    
+                                                    <DottedMenu 
+                                                        ticket = {ticket} 
+                                                        setIsCreatingTicket = {props.setIsCreatingTicket}
+                                                        setTicketToEdit = {props.setTicketToEdit}
+                                                        setPreviewVisible = {props.setPreviewVisible}
+                                                    />
+                                                </>}
                                             </MUI.CardContent>
                                         </section>
                                     </div>
@@ -118,7 +128,7 @@ const TicketQueue = (props) => {
                     id = "addTicketButton"
                     className={classes.addTicketButton}
                     variant="contained"
-                    onClick = {() => setIsCreatingTicket(true)}
+                    onClick = {() => props.setIsCreatingTicket(true)}
                 >
                     <MUI.AddTicketIcon fontSize="large" />
                 </MUI.Button>

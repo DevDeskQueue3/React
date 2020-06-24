@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import * as MUI from '../../MaterialUI/';
 import { setLoggedUserRole } from '../../actions/tickets';
 
@@ -12,10 +12,11 @@ import useWindowSize from '../../hooks/useWindowSize';
 const TicketDashboard = props => {
     const [ticket, setTicket] = useState({});
     const [previewVisible, setPreviewVisible] = useState(false);
-    const [statusText, setStatusText] = useState("Tickets");
-    const [statusFilter, setStatusFilter] = useState("");
+    const [statusText, setStatusText] = useState("All Tickets");
+    const [filter, setFilter] = useState("");
     const [open, setOpen] = useState(true);
     const [windowWidth] = useWindowSize();
+    const [isCreatingTicket, setIsCreatingTicket] = useState(false);
 
     const classes = MUI.useStyles();
 
@@ -44,20 +45,16 @@ const TicketDashboard = props => {
         setStatusText(stat);
     };
 
-    useEffect(() => {
-        console.log(statusFilter);
-    },[statusFilter]);
+    /* useEffect(() => {
+        console.log(filter);
+    },[filter]); */
 
-    const filterTickets = (status) => {
-        setStatusFilter(status);
+    const filterTickets = (value) => {
+        setFilter(value);
     };
 
-    //const { user } = useSelector(state => state.login);
     const dispatch = useDispatch();
-
-    //console.log("cea: components/ticket/TicketDashBoard.js: user: ", user);
     
-
     useEffect(() => {
         dispatch(setLoggedUserRole(localStorage.getItem("loggedUserRole")));
     }, [dispatch]);
@@ -71,12 +68,21 @@ const TicketDashboard = props => {
             <TicketQueue
                 showPreview={setVisible}
                 statusText={statusText}
-                filter={statusFilter}
+                filter={filter}
+                ticketToUpdate={ticket}
                 toggleDrawer={toggleDrawer}
                 open = {open}
                 setPreviewVisible = {setPreviewVisible}
+                isCreatingTicket = {isCreatingTicket}
+                setIsCreatingTicket = {setIsCreatingTicket}
             />
-            <TicketPreview visible={previewVisible} ticket={ticket} />
+            <TicketPreview
+                visible={previewVisible}
+                ticket={ticket} 
+                isCreatingTicket = {isCreatingTicket}
+                setIsCreatingTicket = {setIsCreatingTicket}
+                setPreviewVisible = {setPreviewVisible}
+            />
         </div>
 
         

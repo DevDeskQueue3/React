@@ -4,8 +4,8 @@ import useForm from '../../hooks/useForm';
 import * as MUI from '../../MaterialUI/index';
 import { ticketFormSchema } from '../../utils/ticketFormValidation';
 import { theme, ColorButton } from '../../MaterialUI/useStyles';
-import { useDispatch } from "react-redux";
-import { createTicket } from '../../actions/tickets';
+import { useDispatch, useSelector } from "react-redux";
+import { createTicket, editTicket, setTicketToEdit } from '../../actions/tickets';
 import Burger from '../burger/Burger';
 import useWindowSize from '../../hooks/useWindowSize';
 
@@ -20,7 +20,8 @@ const TicketForm = props => {
     const dispatch = useDispatch();
     const [windowWidth] = useWindowSize();
     const [buttonDisabled, setButtonDisabled] = useState(true);
-    const [values, handleChanges, formErrors, clearForm] = useForm(initialValues, ticketFormSchema);
+    const { ticketToEdit } = useSelector(state => state.tickets);
+    const [values, handleChanges, formErrors, clearForm] = useForm(ticketToEdit ? ticketToEdit : initialValues, ticketFormSchema);
     const [chipData, setChipData] = useState([
         {key: 0, name: "categories", value: "Equipment"},
         {key: 1, name: "categories", value: "People"},
@@ -35,7 +36,7 @@ const TicketForm = props => {
         });
     },[values]);
 
-    useEffect(() => props.showPreview(values), [values]);
+    useEffect(() => props.showPreview(values), [values, props]);
 
     const selectTopic = data => {
         console.log(data.name, data.value);
@@ -65,9 +66,15 @@ const TicketForm = props => {
     
     const submitTicket = e => {
         e.preventDefault();
-        console.log(values)
-        dispatch(createTicket(values));
+
+        if(ticketToEdit) {
+            dispatch(editTicket(values));
+            dispatch(setTicketToEdit(null));
+        } else {
+            dispatch(createTicket(values));
+        }
         props.setIsCreatingTicket(false);
+
         clearForm();
     }
     return(
@@ -79,6 +86,8 @@ const TicketForm = props => {
                 <MUI.IconButton aria-label = "close" onClick = {() => {
                     props.setIsCreatingTicket(false);
                     props.setPreviewVisible(false);
+                    dispatch(setTicketToEdit(null));
+                    clearForm();
                 }}>
                     <MUI.CancelIcon fontSize="large" />
                 </MUI.IconButton>
@@ -136,7 +145,7 @@ const TicketForm = props => {
                                 id='efforts'
                                 name = "what_ive_tried"
                                 type='text'
-                                value={values.steps_tried}
+                                value={values.what_ive_tried}
                                 onChange={handleChanges}
                                 label='What have you tried?'
                             />
@@ -144,7 +153,7 @@ const TicketForm = props => {
                         
                     </MUI.ThemeProvider>
                     <div className = "button-group">
-                        <ColorButton size="large" color="primary" type = "submit" disabled={buttonDisabled}>Submit Ticket</ColorButton>
+                        <ColorButton size="large" color="primary" type = "submit" disabled={buttonDisabled}>{ticketToEdit ? "Edit Ticket" : "Submit Ticket"}</ColorButton>
                     </div>
                 </form>
             </section>

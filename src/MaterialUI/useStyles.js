@@ -4,7 +4,7 @@ import { orange } from '@material-ui/core/colors';
 export const theme = createMuiTheme({
     palette: {
         primary: orange,
-    },
+    }
 });
 
 const leftDrawerWidth = "25%";
@@ -33,6 +33,7 @@ const useStyles = makeStyles({
         display: 'flex',
         flexWrap: "nowrap",
         justifyContent: "flex-start",
+        background: "#F9FAFB",
     },
     burgerwrapper: {
         background: "rgba(200,200,200,.9)",
@@ -54,6 +55,9 @@ const useStyles = makeStyles({
     },
     ticketList: {
         border: "1px solid red",
+    },
+    tooltip: {
+        fontWeight: 'bold'
     },
     list: {
         fontSize: '1.5rem',
@@ -102,9 +106,6 @@ const useStyles = makeStyles({
             fontWeight: '700'
         }
     },
-    tooltip: {
-        fontSize: '1.4rem'
-    },
     subtitle: {
         fontWeight: 'normal',
         fontSize: '.9rem',
@@ -136,6 +137,7 @@ const useStyles = makeStyles({
     },
     drawerVisible: {
         display: 'block',
+        
     },
     rightPane: {
         width: "40%",
@@ -156,7 +158,7 @@ const useStyles = makeStyles({
         width: "80px",
         height: "80px",
         position: "fixed",
-        right: "35%",
+        right: "38%",
         bottom: "50px",
         '&:hover': {
             backgroundColor: "rgba(255, 152, 0, 0.7607843137254902)"

@@ -3,7 +3,7 @@ import {
     AccountCircle,
     Visibility,
     VisibilityOff,
-    PostAddRounded as AddTicketIcon
+    PostAddRounded as AddTicketIcon,
 } from '@material-ui/icons';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -12,6 +12,10 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import MenuIcon from '@material-ui/icons/Menu';
 import PersonIcon from '@material-ui/icons/Person';
 import CancelIcon from '@material-ui/icons/Cancel';
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteIcon from "@material-ui/icons/Delete";
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import { 
     TextField,
@@ -24,7 +28,6 @@ import {
     CardActionArea,
     CardActions,
     CardHeader,
-    Tooltip,
     Fade,
     List,
     ListItem,
@@ -37,6 +40,7 @@ import {
     Chip,
     IconButton,
     Fab,
+    Tooltip,
     ThemeProvider,
     Typography,
     InputAdornment,
@@ -47,6 +51,7 @@ import {
     ClickAwayListener,
     MenuItem,
     MenuList,
+    Menu,
     Icon,
 } from '@material-ui/core';
 
@@ -67,7 +72,6 @@ export {
     CardActionArea,
     CardActions,
     CardHeader,
-    Tooltip,
     Fade,
     List,
     ListItem,
@@ -75,6 +79,7 @@ export {
     FormControl,
     InputLabel,
     Input,
+    Tooltip,
     FilledInput,
     Button,
     Chip,
@@ -98,9 +103,14 @@ export {
     ClickAwayListener,
     MenuItem,
     MenuList,
+    Menu,
     MenuIcon,
     Icon,
     AddTicketIcon,
     PersonIcon,
     CancelIcon,
+    EditIcon,
+    DeleteIcon,
+    MoreHorizIcon,
+    MoreVertIcon
 }
