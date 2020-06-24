@@ -145,7 +145,11 @@ const TicketQueue = (props) => {
                                                         open={Boolean(anchorEl)}
                                                         onClose={handleClose}
                                                     >
-                                                        <MUI.MenuItem onClick={handleClose}>Edit</MUI.MenuItem>
+                                                        <MUI.MenuItem onClick={() => {
+                                                            handleClose();
+                                                            setIsCreatingTicket(true);
+                                                            setTicketToEdit(ticket);
+                                                        }}>Edit</MUI.MenuItem>
                                                         <MUI.MenuItem onClick={handleClose}>Delete</MUI.MenuItem>
                                                         <MUI.MenuItem onClick={handleClose}>Update Status</MUI.MenuItem>
                                                     </MUI.Menu>
