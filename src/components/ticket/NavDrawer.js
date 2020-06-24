@@ -98,28 +98,28 @@ const NavDrawer = (props) => {
                 defaultCollapseIcon={<MUI.ExpandMoreIcon />}
                 defaultExpandIcon={<MUI.ChevronRightIcon />}
             >
-                <MUI.TreeItem nodeId='1' label='Filter Tickets'>
-                    <MUI.TreeItem nodeId='2' label='Categories'>
-                        <MUI.TreeItem nodeId='3' onClick={() => { props.updateStatusText('Equipment Issues'); props.filterTickets('Equipment') }} label='Equipment' />
-                        <MUI.TreeItem nodeId='4' onClick={() => { props.updateStatusText('People Issues'); props.filterTickets('People') }} label='People' />
-                        <MUI.TreeItem nodeId='5' onClick={() => { props.updateStatusText('Track Issues'); props.filterTickets('Track') }} label='Track' />
-                        <MUI.TreeItem nodeId='6' onClick={() => { props.updateStatusText('Finance Issues'); props.filterTickets('Finances') }} label='Finances' />
-                        <MUI.TreeItem nodeId='7' onClick={() => { props.updateStatusText('Other Issues'); props.filterTickets('Other') }} label='Other' />
+                <MUI.TreeItem nodeId='1' label={<MUI.Typography className={classes.filteritem}>Filter Tickets</MUI.Typography>}>
+                    <MUI.TreeItem nodeId='2' label={<MUI.Typography className={classes.filteritem}>Categories</MUI.Typography>}>
+                        <MUI.TreeItem nodeId='3' onClick={() => { props.updateStatusText('Equipment Issues'); props.filterTickets('Equipment') }} label={<MUI.Typography className={classes.filteritem}>Equipment</MUI.Typography>} />
+                        <MUI.TreeItem nodeId='4' onClick={() => { props.updateStatusText('People Issues'); props.filterTickets('People') }} label={<MUI.Typography className={classes.filteritem}>People</MUI.Typography>} />
+                        <MUI.TreeItem nodeId='5' onClick={() => { props.updateStatusText('Track Issues'); props.filterTickets('Track') }} label={<MUI.Typography className={classes.filteritem}>Track</MUI.Typography>} />
+                        <MUI.TreeItem nodeId='6' onClick={() => { props.updateStatusText('Finance Issues'); props.filterTickets('Finances') }} label={<MUI.Typography className={classes.filteritem}>Finances</MUI.Typography>} />
+                        <MUI.TreeItem nodeId='7' onClick={() => { props.updateStatusText('Other Issues'); props.filterTickets('Other') }} label={<MUI.Typography className={classes.filteritem}>Other</MUI.Typography>} />
                     </MUI.TreeItem>
-                    <MUI.TreeItem nodeId='8' label='Status'>
-                        <MUI.TreeItem nodeId='9' onClick={() => { props.updateStatusText('Open Tickets'); props.filterTickets('OPEN') }} label='Open' />
-                        <MUI.TreeItem nodeId='10' onClick={() => { props.updateStatusText('Resolved Tickets'); props.filterTickets('RESOLVED') }} label='Resolved' />
-                        <MUI.TreeItem nodeId='12' onClick={() => { props.updateStatusText('Closed Tickets'); props.filterTickets('CLOSED') }} label='Closed' />
+                    <MUI.TreeItem nodeId='8' label={<MUI.Typography className={classes.filteritem}>Status</MUI.Typography>}>
+                        <MUI.TreeItem nodeId='9' onClick={() => { props.updateStatusText('Open Tickets'); props.filterTickets('OPEN') }} label={<MUI.Typography className={classes.filteritem}>Open</MUI.Typography>} />
+                        <MUI.TreeItem nodeId='10' onClick={() => { props.updateStatusText('Resolved Tickets'); props.filterTickets('RESOLVED') }} label={<MUI.Typography className={classes.filteritem}>Resolved</MUI.Typography>} />
+                        <MUI.TreeItem nodeId='12' onClick={() => { props.updateStatusText('Closed Tickets'); props.filterTickets('CLOSED') }} label={<MUI.Typography className={classes.filteritem}>Closed</MUI.Typography>} />
                     </MUI.TreeItem>
-                    <MUI.TreeItem nodeId='13' label='Assigned to'>
-                        <MUI.TreeItem nodeId='14' label='Team Lead' />
-                        <MUI.TreeItem nodeId='15' label='Section Lead' />
+                    <MUI.TreeItem nodeId='13' label={<MUI.Typography className={classes.filteritem}>Assigned To</MUI.Typography>}>
+                        <MUI.TreeItem nodeId='14' label={<MUI.Typography className={classes.filteritem}>Team Lead</MUI.Typography>} />
+                        <MUI.TreeItem nodeId='15' label={<MUI.Typography className={classes.filteritem}>Section Lead</MUI.Typography>} />
                     </MUI.TreeItem>
-                    <MUI.TreeItem nodeId='16' label='Urgency'>
-                        <MUI.TreeItem nodeId='17' label='Normal' />
-                        <MUI.TreeItem nodeId='18' label='Urgent' />
-                        <MUI.TreeItem nodeId='19' label='Very Urgent' />
-                        <MUI.TreeItem nodeId='20' label='Emergency' />
+                    <MUI.TreeItem nodeId='16' label={<MUI.Typography className={classes.filteritem}>Urgency</MUI.Typography>}>
+                        <MUI.TreeItem nodeId='17' label={<MUI.Typography className={classes.filteritem}>Normal</MUI.Typography>} />
+                        <MUI.TreeItem nodeId='18' label={<MUI.Typography className={classes.filteritem}>Urgent</MUI.Typography>} />
+                        <MUI.TreeItem nodeId='19' label={<MUI.Typography className={classes.filteritem}>Very Urgent</MUI.Typography>} />
+                        <MUI.TreeItem nodeId='20' label={<MUI.Typography className={classes.filteritem}>Emergency</MUI.Typography>} />
                     </MUI.TreeItem>
                 </MUI.TreeItem>
                 

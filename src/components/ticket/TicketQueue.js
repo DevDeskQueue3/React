@@ -50,7 +50,7 @@ const TicketQueue = (props) => {
 
     }, [loggedUserRole, user, props.filter, tickets, dispatch]);
 
-    if(filteredTickets.length > 0) console.log("FilteredTickets: ", filteredTickets);
+    // if(filteredTickets.length > 0) console.log("FilteredTickets: ", filteredTickets);
 
     const loginAgain = e => {
         localStorage.removeItem("token");

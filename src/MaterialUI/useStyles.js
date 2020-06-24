@@ -55,6 +55,10 @@ const useStyles = makeStyles({
         alignItems: "center !important",
         justifyContent: "space-between !important",
     },
+    filteritem: {
+        fontSize: '1.4rem',
+        margin: '20px 0'
+    },
     ticketList: {
         border: "1px solid red",
     },

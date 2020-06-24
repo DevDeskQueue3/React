@@ -16,8 +16,6 @@ const TicketPreview = (props) => {
     const { loggedUserRole } = useSelector(state => state.tickets);
     const { user } = useSelector(state => state.login);
 
-    console.log(user)
-
     // Should be fixed position so it always shows when scrolling page
     return (
         <div id = "rightPane" className={classes.rightPane}>
