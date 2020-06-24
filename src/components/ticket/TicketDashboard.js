@@ -68,11 +68,14 @@ const TicketDashboard = props => {
                 showPreview={setVisible}
                 statusText={statusText}
                 filter={statusFilter}
+                ticketToUpdate={ticket}
                 toggleDrawer={toggleDrawer}
                 open = {open}
                 setPreviewVisible = {setPreviewVisible}
             />
-            <TicketPreview visible={previewVisible} ticket={ticket} />
+            <TicketPreview
+                visible={previewVisible}
+                ticket={ticket} />
         </div>
 
         

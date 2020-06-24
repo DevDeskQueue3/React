@@ -1,14 +1,14 @@
 /* Ticket Color Code Styles */
 .ticket-card-green{
-    border-left: 4px solid green;
+    border-left: 6px solid green;
 }
 
 .ticket-card-purple{
-    border-left: 4px solid rgb(98, 0, 128);
+    border-left: 6px solid rgb(98, 0, 128);
 }
 
 .ticket-card-red{
-    border-left: 4px solid rgb(179, 3, 3);
+    border-left: 6px solid rgb(179, 3, 3);
 }
 
 /* Loading Styles */
