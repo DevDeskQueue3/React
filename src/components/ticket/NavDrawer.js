@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import * as MUI from "../../MaterialUI";
 import { useSelector } from 'react-redux';
 
@@ -10,6 +10,7 @@ const NavDrawer = (props) => {
 
     const classes = MUI.useStyles();
     const { loggedUserRole } = useSelector(state => state.tickets);
+    const [anchorEl, setAnchorEl] = useState();
 
     const logout = () => {
         localStorage.clear();
@@ -19,6 +20,14 @@ const NavDrawer = (props) => {
     const setActive = (e) => {
         const ref = e.currentTarget.id === 'open-tickets' ? opentickets : closedtickets;
         ref.current.classList.add("active");
+    };
+
+    const handleClick = e => {
+        setAnchorEl(e.currentTarget);
+    };
+
+    const handleClose = e => {
+        setAnchorEl(null);
     };
 
     return (
@@ -36,12 +45,21 @@ const NavDrawer = (props) => {
                 className={classes.list}>
                 <MUI.ListItem className={classes.dashboardtitle}>
                     <span>The Queue</span>
-                    <MUI.Button
-                        variant="contained"
-                        onClick={logout}
-                    >
+                    <MUI.IconButton onClick={handleClick}>
                         <MUI.PersonIcon />
-                    </MUI.Button>
+                    </MUI.IconButton>
+                    <MUI.Menu
+                        id='account-menu'
+                        anchorEl={anchorEl}
+                        keepMounted
+                        open={Boolean(anchorEl)}
+                        onClose={handleClose}>
+                        <MUI.MenuItem onClick={() => {
+                            handleClose();
+                            logout();
+                        }}>Logout</MUI.MenuItem>
+                        <MUI.MenuItem onClick={handleClose}>View Profile</MUI.MenuItem>
+                    </MUI.Menu>
                 </MUI.ListItem>
             </MUI.List>
             <MUI.Divider />
