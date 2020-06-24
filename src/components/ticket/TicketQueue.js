@@ -8,6 +8,8 @@ import Burger from '../burger/Burger';
 import TicketForm from './TicketForm';
 import useWindowSize from '../../hooks/useWindowSize';
 
+import { setStatusColor } from '../../utils/setStatusColor';
+
 const TicketQueue = (props) => {
     const classes = MUI.useStyles();
     const dispatch = useDispatch();
@@ -47,28 +49,6 @@ const TicketQueue = (props) => {
         push("/student/login");
     }
 
-    /* Helper function to set ticket status color */
-    const setStatusColor = (status) => {
-        let colorClass = "";
-
-        /* Set the ticket status color according to the ticket status */
-        switch(status){
-            case "OPEN":
-                colorClass = "ticket-card-red";
-                break;
-            case "CLOSED":
-                colorClass = "ticket-card-green";
-                break;
-            case "RESOLVED":
-                colorClass = "ticket-card-purple";
-                break;
-            default:
-                break;
-        };
-
-        return colorClass;
-    };
-
     const handleClick = e => {
         setAnchorEl(e.target);
     };
@@ -95,7 +75,7 @@ const TicketQueue = (props) => {
                         return( 
                             <MUI.Card
                                 onClick={() => props.showPreview(ticket)}
-                                className={`${classes.card} ${setStatusColor(ticket.status)}`} 
+                                className={`${classes.card} ${setStatusColor("TICKET", ticket.status)}`} 
                                 key={ticket.ticket_id}>
                                 <div className={classes.details}>
                                     <section className={classes.cardsection}>

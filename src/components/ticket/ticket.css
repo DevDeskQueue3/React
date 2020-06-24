@@ -11,6 +11,18 @@
     border-left: 6px solid rgb(179, 3, 3);
 }
 
+.preview-card-green{
+    border-top: 6px solid green;
+}
+
+.preview-card-purple{
+    border-top: 6px solid rgb(98, 0, 128);
+}
+
+.preview-card-red{
+    border-top: 6px solid rgb(179, 3, 3);
+}
+
 /* Loading Styles */
 .loading{
     margin-left: 20px;
