@@ -100,16 +100,16 @@ const NavDrawer = (props) => {
             >
                 <MUI.TreeItem nodeId='1' label='Filter Tickets'>
                     <MUI.TreeItem nodeId='2' label='Categories'>
-                        <MUI.TreeItem nodeId='3' onClick={() => props.filterTickets('Equipment')} label='Equipment' />
-                        <MUI.TreeItem nodeId='4' onClick={() => props.filterTickets('People')} label='People' />
-                        <MUI.TreeItem nodeId='5' onClick={() => props.filterTickets('Track')} label='Track' />
-                        <MUI.TreeItem nodeId='6' onClick={() => props.filterTickets('Finances')} label='Finances' />
-                        <MUI.TreeItem nodeId='7' onClick={() => props.filterTickets('Other')} label='Other' />
+                        <MUI.TreeItem nodeId='3' onClick={() => { props.updateStatusText('Equipment Issues'); props.filterTickets('Equipment') }} label='Equipment' />
+                        <MUI.TreeItem nodeId='4' onClick={() => { props.updateStatusText('People Issues'); props.filterTickets('People') }} label='People' />
+                        <MUI.TreeItem nodeId='5' onClick={() => { props.updateStatusText('Track Issues'); props.filterTickets('Track') }} label='Track' />
+                        <MUI.TreeItem nodeId='6' onClick={() => { props.updateStatusText('Finance Issues'); props.filterTickets('Finances') }} label='Finances' />
+                        <MUI.TreeItem nodeId='7' onClick={() => { props.updateStatusText('Other Issues'); props.filterTickets('Other') }} label='Other' />
                     </MUI.TreeItem>
                     <MUI.TreeItem nodeId='8' label='Status'>
-                        <MUI.TreeItem nodeId='9' onClick={() => props.filterTickets('OPEN')} label='Open' />
-                        <MUI.TreeItem nodeId='10' onClick={() => props.filterTickets('RESOLVED')} label='Resolved' />
-                        <MUI.TreeItem nodeId='12' onClick={() => props.filterTickets('CLOSED')} label='Closed' />
+                        <MUI.TreeItem nodeId='9' onClick={() => { props.updateStatusText('Open Tickets'); props.filterTickets('OPEN') }} label='Open' />
+                        <MUI.TreeItem nodeId='10' onClick={() => { props.updateStatusText('Resolved Tickets'); props.filterTickets('RESOLVED') }} label='Resolved' />
+                        <MUI.TreeItem nodeId='12' onClick={() => { props.updateStatusText('Closed Tickets'); props.filterTickets('CLOSED') }} label='Closed' />
                     </MUI.TreeItem>
                     <MUI.TreeItem nodeId='13' label='Assigned to'>
                         <MUI.TreeItem nodeId='14' label='Team Lead' />

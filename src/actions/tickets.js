@@ -28,11 +28,12 @@ export const getTickets = (filterBy = filterByInitialValue) => dispatch => {
             });
         })
         .catch(err => {
+            console.log(err.response)
             dispatch({
                 type: FETCH_TICKETS_FAILURE,
                 payload: {
-                    code: err.response.status, 
-                    message: err.response.data.message
+                    code: err.response ? err.response.status : 500, 
+                    message: err.response ? err.response.data.message : err.message
                 }
             })
         });

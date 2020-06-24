@@ -27,7 +27,7 @@ const TicketQueue = (props) => {
     }, [dispatch, props.isCreatingTicket]);
 
     useEffect(() => {
-        props.getTicketSetter(setTicketToEdit);
+        props.getTicketSetter(props.setTicketToEdit);
     }, [props]);
 
     useEffect(() => {
