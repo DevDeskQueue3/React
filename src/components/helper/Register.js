@@ -58,7 +58,7 @@ const Register = props => {
     };
 
     useEffect(() => {
-        if(localStorage.getItem("token")) {
+        if(localStorage.getItem("devdesk-auth")) {
             const userData = JSON.parse(localStorage.getItem("user"));
             
             if(userData.roles.includes("HELPER")){
@@ -67,7 +67,7 @@ const Register = props => {
                 setLoginError("");
             } else {
                 setLoginError("Your account is not a student account, sign in using the helper link at the bottom.");
-                localStorage.removeItem("token");
+                localStorage.removeItem("devdesk-auth");
                 localStorage.removeItem("user");
             }
         }

@@ -13,7 +13,8 @@ const NavDrawer = (props) => {
     const [anchorEl, setAnchorEl] = useState();
 
     const logout = () => {
-        localStorage.clear();
+        localStorage.removeItem("devdesk-auth");
+        localStorage.removeItem("user");
         window.location.href = "/";
     }
 

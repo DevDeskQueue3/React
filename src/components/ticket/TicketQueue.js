@@ -53,7 +53,7 @@ const TicketQueue = (props) => {
     // if(filteredTickets.length > 0) console.log("FilteredTickets: ", filteredTickets);
 
     const loginAgain = e => {
-        localStorage.removeItem("token");
+        localStorage.removeItem("devdesk-auth");
         localStorage.removeItem("user");
         push("/student/login");
     }
