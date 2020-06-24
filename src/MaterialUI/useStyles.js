@@ -20,7 +20,7 @@ export const ColorButton = withStyles((theme) => ({
     }
 }))(Button);
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     loginInput: {
         width: "100%",
         height: "74px",
@@ -55,9 +55,12 @@ const useStyles = makeStyles({
         alignItems: "center !important",
         justifyContent: "space-between !important",
     },
+    filterheader: {
+        fontWeight: 'bold'
+    },
     filteritem: {
-        fontSize: '1.4rem',
-        margin: '20px 0'
+        fontSize: '1.2rem',
+        margin: '9px 0'
     },
     ticketList: {
         border: "1px solid red",
@@ -74,7 +77,8 @@ const useStyles = makeStyles({
         }
     },
     listitem: {
-        padding: '7% 7% !important',
+        paddingLeft: '10px',
+        padding: '7% 7%',
         borderLeft: '4px solid rgba(255,255,255,0)', /* This prevents jitter on hover - Darren Tebo */
     },
     card: {
@@ -156,7 +160,6 @@ const useStyles = makeStyles({
     },  
     paper: {
         marginRight: theme.spacing(2),
-
     },
     addTicketButton: {
         background: "#ff9800",
@@ -174,6 +177,6 @@ const useStyles = makeStyles({
             height: "45px"
         }
     },
-});
+}));
 
 export default useStyles;
