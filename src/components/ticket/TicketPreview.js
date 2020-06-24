@@ -36,7 +36,7 @@ const TicketPreview = (props) => {
                         >
                             Title: {props.ticket.title}
                             <MUI.IconButton onClick={handleClick}>
-                                <MUI.MoreHorizIcon />
+                                <MUI.MoreVertIcon />
                             </MUI.IconButton>
                             <MUI.Menu
                                 id='option-menu'
