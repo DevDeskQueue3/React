@@ -8,6 +8,7 @@ export const UPDATE_TICKETS = "UPDATE_TICKETS";
 export const UPDATE_TICKETS_FAILURE = "UPDATE_TICKETS_FAILURE";
 export const DELETE_TICKET = "DELETE_TICKET";
 export const CHANGE_STATUS = "CHANGE_STATUS";
+export const TOGGLE_CLAIM = "TOGGLE_CLAIM";
 export const SET_LOGGEDUSER_ROLE = "SET_LOGGEDUSER_ROLE";
 export const SET_TICKET_TO_EDIT = "SET_TICKET_TO_EDIT";
 
@@ -113,6 +114,25 @@ export const changeStatus = (id, status) => dispatch => {
                 payload: {code: err.response.status, message: err.response.data.message}
             });
         })
+}
+
+export const toggleClaim = ticket => dispatch => {
+    axiosWithAuth()
+        .patch(`/tickets/${ticket.ticket_id}/${ticket.claimed_by_id ? "release" : "claim"}`)
+        .then(res => {
+            //console.log(res.data);
+            dispatch({
+                type: TOGGLE_CLAIM,
+                payload: res.data
+            });
+        })
+        .catch(err => {
+            console.log({code: err.response.status, message: err.response.data.message});
+            dispatch({
+                type: UPDATE_TICKETS_FAILURE,
+                payload: {code: err.response.status, message: err.response.data.message}
+            });
+        });
 }
 
 export const setLoggedUserRole = role => dispatch => {

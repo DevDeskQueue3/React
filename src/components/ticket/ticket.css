@@ -31,7 +31,7 @@
 /* Ticket Styles */
 .ticket-list{
     width: 60%;
-    height: 100vh;
+    min-height: 100vh;
     /* max-width: 615px; */
     padding: 24px !important;
     padding-right: 7px !important;

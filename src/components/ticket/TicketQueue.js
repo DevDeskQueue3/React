@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as MUI from "../../MaterialUI";
 import { useSelector, useDispatch } from "react-redux";
-import { getTickets } from '../../actions/tickets';
+import { getTickets, toggleClaim } from '../../actions/tickets';
 import { useHistory } from 'react-router-dom';
 
 import Burger from '../burger/Burger';
@@ -10,6 +10,7 @@ import TicketForm from './TicketForm';
 import useWindowSize from '../../hooks/useWindowSize';
 
 import { setStatusColor } from '../../utils/setStatusColor';
+import { theme } from "../../MaterialUI/useStyles";
 
 
 const TicketQueue = (props) => {
@@ -48,7 +49,7 @@ const TicketQueue = (props) => {
 
     }, [loggedUserRole, user, props.filter, tickets, dispatch]);
 
-    //if(filteredTickets.length > 0) console.log("FilteredTickets: ", filteredTickets);
+    if(filteredTickets.length > 0) console.log("FilteredTickets: ", filteredTickets);
 
     const loginAgain = e => {
         localStorage.removeItem("token");
@@ -92,7 +93,7 @@ const TicketQueue = (props) => {
                                                 className={classes.header}
                                                 title={ticket.title} />                                            
                                         </section>
-                                        <section className={classes.cardsection}>
+                                        <section className={classes.cardsection} style = {{textAlign: "right"}}>
                                             <MUI.CardContent>
                                                 <MUI.IconButton>
                                                     <MUI.Tooltip
@@ -102,8 +103,28 @@ const TicketQueue = (props) => {
                                                         <MUI.AccountCircle />
                                                     </MUI.Tooltip>
                                                 </MUI.IconButton>
+                                                <br />
+                                                <MUI.ThemeProvider theme = {theme}>
+                                                    {(loggedUserRole === "HELPER" && ticket.status === "OPEN") && <>
+                                                        <br />
+                                                        <MUI.Button 
+                                                            variant = "outlined" 
+                                                            color = "primary" 
+                                                            disabled = {
+                                                                (ticket.claimed_by_id && ticket.claimed_by_id !== user.id) ? true : false}
+                                                            onClick = {e => {
+                                                                e.stopPropagation();
+                                                                props.setPreviewVisible(false);
+                                                                dispatch(toggleClaim(ticket));
+                                                            }}
+                                                        >
+                                                            {
+                                                                (ticket.claimed_by_id && ticket.claimed_by_id !== user.id) ? "Claimed" : 
+                                                                (ticket.claimed_by_id && ticket.claimed_by_id === user.id) ? "Unclaim" : "Claim"}
+                                                        </MUI.Button>
+                                                    </>}
+                                                </MUI.ThemeProvider>
 
-                                                {loggedUserRole === "HELPER" && <><br /><MUI.Button variant = "contained" >Assign</MUI.Button></>}
                                                 {loggedUserRole === "STUDENT" && <>
                                                     
                                                     <DottedMenu 

@@ -1,8 +1,10 @@
 import React from 'react';
 import * as MUI from '../../MaterialUI';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { setStatusColor } from '../../utils/setStatusColor';
 import DottedMenu from '../burger/Dotted';
+import { theme } from '../../MaterialUI/useStyles';
+import { toggleClaim } from '../../actions/tickets';
 
 // Needs to hide at 1100px window width and below, 
 // then make the tickets in the queue expand when you 
@@ -10,12 +12,11 @@ import DottedMenu from '../burger/Dotted';
 // Check NavDrawer component for comment on when to hide
 const TicketPreview = (props) => {
     const classes = MUI.useStyles();
+    const dispatch = useDispatch();
     const { loggedUserRole } = useSelector(state => state.tickets);
+    const { user } = useSelector(state => state.login);
 
-    /* useEffect(() => {
-        console.log('ticket preview: ', props.visible);
-    },[props.visible]); */
-
+    console.log(user)
 
     // Should be fixed position so it always shows when scrolling page
     return (
@@ -29,6 +30,29 @@ const TicketPreview = (props) => {
                             variant='h3'
                         >
                             {props.isCreatingTicket ? `Title: ${props.ticket.title}` : props.ticket.title}
+
+                            <MUI.ThemeProvider theme = {theme}>
+                                {(loggedUserRole === "HELPER" && props.ticket.status === "OPEN") && <>
+                                    <br />
+                                    <MUI.Button 
+                                        variant = "outlined" 
+                                        color = "primary" 
+                                        disabled = {
+                                            (props.ticket.claimed_by_id && props.ticket.claimed_by_id !== user.id) ? true : false}
+                                        onClick = {e => {
+                                            e.stopPropagation();
+                                            props.setPreviewVisible(false);
+                                            dispatch(toggleClaim(props.ticket));
+                                        }}
+                                    >
+                                        {
+                                            (props.ticket.claimed_by_id && props.ticket.claimed_by_id !== user.id) ? "Claimed" : 
+                                            (props.ticket.claimed_by_id && props.ticket.claimed_by_id === user.id) ? "Unclaim" : "Claim"}
+                                    </MUI.Button>
+                                </>}
+                            </MUI.ThemeProvider>
+
+
                             {loggedUserRole === "STUDENT" && <>
                                 
                                 <DottedMenu 

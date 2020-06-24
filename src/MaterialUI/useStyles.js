@@ -14,6 +14,7 @@ export const ColorButton = withStyles((theme) => ({
         color: theme.palette.getContrastText(orange[500]),
         backgroundColor: orange[500],
         '&:hover': {
+            borderColor: theme.palette.primary,
             backgroundColor: orange[700]
         }
     }
@@ -28,7 +29,8 @@ const useStyles = makeStyles({
     },
     dashboardRoot: {
         width: "100%",
-        height: "100vh",
+        height: "auto",
+        minHeight: "100vh",
         //marginTop: "40px",
         display: 'flex',
         flexWrap: "nowrap",

@@ -1,4 +1,15 @@
-import { FETCH_TICKETS_START, FETCH_TICKETS_SUCCESS, FETCH_TICKETS_FAILURE, SET_LOGGEDUSER_ROLE, CREATE_TICKET, UPDATE_TICKETS, DELETE_TICKET, CHANGE_STATUS, SET_TICKET_TO_EDIT } from "../actions/tickets";
+import { 
+    FETCH_TICKETS_START, 
+    FETCH_TICKETS_SUCCESS, 
+    FETCH_TICKETS_FAILURE, 
+    SET_LOGGEDUSER_ROLE, 
+    CREATE_TICKET, 
+    UPDATE_TICKETS, 
+    DELETE_TICKET, 
+    CHANGE_STATUS, 
+    SET_TICKET_TO_EDIT, 
+    TOGGLE_CLAIM 
+} from "../actions/tickets";
 
 const initialState = {
     tickets: [],
@@ -67,6 +78,19 @@ export const tickets = (state = initialState, action) => {
                     return ticket;
                 })
             };
+        case TOGGLE_CLAIM:
+            return {
+                ...state,
+                tickets: state.tickets.map(ticket => {
+                    if(ticket.ticket_id === action.payload.ticket_id) {
+                        return {
+                            ...ticket,
+                            claimed_by_id: action.payload.claimed_by
+                        }
+                    }
+                    return ticket;
+                })
+            }
         case DELETE_TICKET:
             return {
                 ...state,
