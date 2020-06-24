@@ -44,7 +44,7 @@ const NavDrawer = (props) => {
             <MUI.List
                 className={classes.list}>
                 <MUI.ListItem className={classes.dashboardtitle}>
-                    <span>The Queue</span>
+                    <span>DevDesk</span>
                     <MUI.IconButton onClick={handleClick}>
                         <MUI.PersonIcon />
                     </MUI.IconButton>
