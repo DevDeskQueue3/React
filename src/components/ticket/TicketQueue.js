@@ -70,10 +70,11 @@ const TicketQueue = (props) => {
     };
 
     const handleClick = e => {
-        setAnchorEl(e.currentTarget);
+        setAnchorEl(e.target);
     };
 
     const handleClose = e => {
+        // e.preventDefault();
         setAnchorEl(null);
     };
 
@@ -147,7 +148,7 @@ const TicketQueue = (props) => {
                                                         }}>Edit Details</MUI.MenuItem>
                                                         <MUI.MenuItem onClick={() => {
                                                                 handleClose()
-                                                                dispatch(deleteTicket(ticket.ticket_id));
+                                                                dispatch(deleteTicket(ticketForMenuClicked.ticket_id));
                                                                 props.setPreviewVisible(false);
                                                             }
                                                         }>Delete Ticket</MUI.MenuItem>
