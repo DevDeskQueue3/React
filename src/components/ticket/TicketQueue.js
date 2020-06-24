@@ -29,6 +29,10 @@ const TicketQueue = (props) => {
     }, [dispatch, isCreatingTicket]);
 
     useEffect(() => {
+        props.getTicketSetter(setTicketToEdit);
+    }, [props]);
+
+    useEffect(() => {
         if(loggedUserRole === "STUDENT"){
             setFilteredTickets(tickets.filter(ticket => ticket.posted_by_id === user.id));
         } else {

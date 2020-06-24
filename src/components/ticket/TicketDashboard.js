@@ -16,7 +16,7 @@ const TicketDashboard = props => {
     const [statusFilter, setStatusFilter] = useState("");
     const [open, setOpen] = useState(true);
     const [windowWidth] = useWindowSize();
-
+    const [setter, setSetter] = useState();
     const classes = MUI.useStyles();
 
     useEffect(() => {
@@ -52,6 +52,11 @@ const TicketDashboard = props => {
         setStatusFilter(status);
     };
 
+    const getTicketSetter = (setter) => {
+        setSetter(setter);
+        console.log(setter);
+    };
+
     const dispatch = useDispatch();
     
     useEffect(() => {
@@ -69,6 +74,7 @@ const TicketDashboard = props => {
                 statusText={statusText}
                 filter={statusFilter}
                 ticketToUpdate={ticket}
+                getTicketSetter={getTicketSetter}
                 toggleDrawer={toggleDrawer}
                 open = {open}
                 setPreviewVisible = {setPreviewVisible}
