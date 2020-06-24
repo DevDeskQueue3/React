@@ -73,7 +73,6 @@ const TicketQueue = (props) => {
     };
 
     const handleClose = e => {
-        // e.preventDefault();
         setAnchorEl(null);
     };
 
