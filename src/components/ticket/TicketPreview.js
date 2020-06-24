@@ -27,11 +27,32 @@ const TicketPreview = (props) => {
         setAnchorEl(null);
     };
 
+    const setPreviewStatusColor = (status) => {
+        let colorClass = "";
+
+        /* Set the ticket status color according to the ticket status */
+        switch(status){
+            case "OPEN":
+                colorClass = "preview-card-red";
+                break;
+            case "CLOSED":
+                colorClass = "preview-card-green";
+                break;
+            case "RESOLVED":
+                colorClass = "preview-card-purple";
+                break;
+            default:
+                break;
+        };
+
+        return colorClass;
+    };
+
     // Should be fixed position so it always shows when scrolling page
     return (
         <div id = "rightPane" className={classes.rightPane}>
             {!props.visible && <h2 className = {classes.previewHelperText}>Ticket Preview, Select a ticket to view details.</h2>}
-            <MUI.Card className={props.visible ? `${classes.drawerVisible} ${classes.previewDrawer}` : classes.previewDrawer}>
+            <MUI.Card className={props.visible ? `${classes.drawerVisible} ${classes.previewDrawer} ${setPreviewStatusColor(props.ticket.status)}` : `${classes.previewDrawer} ${setPreviewStatusColor(props.ticket.status)}`}>
                 <MUI.CardHeader
                     title={
                         <MUI.Typography
