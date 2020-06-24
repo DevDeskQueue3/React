@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as MUI from "../../MaterialUI";
 import { useSelector, useDispatch } from "react-redux";
-import { getTickets, deleteTicket } from '../../actions/tickets';
+import { getTickets, deleteTicket, changeStatus } from '../../actions/tickets';
 import { useHistory } from 'react-router-dom';
 
 import Burger from '../burger/Burger';
@@ -151,7 +151,11 @@ const TicketQueue = (props) => {
                                                                 props.setPreviewVisible(false);
                                                             }
                                                         }>Delete Ticket</MUI.MenuItem>
-                                                        <MUI.MenuItem onClick={handleClose}>Mark Resolved</MUI.MenuItem>
+                                                        <MUI.MenuItem onClick={() => {
+                                                            handleClose();
+                                                            dispatch(changeStatus(ticketForMenuClicked.ticket_id, "resolve"));
+                                                            alert("ticket marked resolved!");
+                                                        }}>{ticketForMenuClicked.status === "OPEN" ? "Mark Resolved" : "Mark Unresolved"}</MUI.MenuItem>
                                                     </MUI.Menu>
                                                 </>}
                                             </MUI.CardContent>
