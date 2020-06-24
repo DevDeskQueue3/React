@@ -18,7 +18,7 @@ export const getToken = user => dispatch => {
                 type: FETCH_LOGIN_SUCCESS,
                 payload: res.data
             });
-            localStorage.setItem("token", res.data.token);
+            localStorage.setItem("devdesk-auth", res.data.token);
             localStorage.setItem("user", JSON.stringify(res.data));
         })
         .catch(err => {
