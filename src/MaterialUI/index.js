@@ -15,6 +15,7 @@ import CancelIcon from '@material-ui/icons/Cancel';
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import { 
     TextField,
@@ -110,5 +111,6 @@ export {
     CancelIcon,
     EditIcon,
     DeleteIcon,
-    MoreHorizIcon
+    MoreHorizIcon,
+    MoreVertIcon
 }

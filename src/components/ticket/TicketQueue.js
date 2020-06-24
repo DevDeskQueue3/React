@@ -20,6 +20,7 @@ const TicketQueue = (props) => {
     const [ticketToEdit, setTicketToEdit] = useState(null);
     const [windowWidth] = useWindowSize();
     const [anchorEl, setAnchorEl] = useState();
+    const [ticketForMenuClicked, setTicketForMenuClicked] = useState({});
 
     useEffect(() => {
         dispatch(getTickets());        
@@ -90,7 +91,7 @@ const TicketQueue = (props) => {
                 (
                     
                     filteredTickets.map((ticket) => {
-                        
+                        const curTicket = ticket;
                         return( 
                             <MUI.Card
                                 onClick={() => props.showPreview(ticket)}
@@ -112,31 +113,25 @@ const TicketQueue = (props) => {
                                         </section>
                                         <section className={classes.cardsection}>
                                             <MUI.CardContent>
+                                                <MUI.IconButton>
+                                                    <MUI.Tooltip
+                                                        className={classes.tooltip}
+                                                        title={<MUI.Typography>{ticket.posted_by_name}</MUI.Typography>}
+                                                    >
+                                                        <MUI.AccountCircle />
+                                                    </MUI.Tooltip>
+                                                </MUI.IconButton>
+
                                                 {loggedUserRole === "HELPER" && <><br /><MUI.Button variant = "contained" >Assign</MUI.Button></>}
                                                 {loggedUserRole === "STUDENT" && <>
-                                                    <MUI.IconButton>
-                                                        <MUI.Tooltip
-                                                            className={classes.tooltip}
-                                                            title={<MUI.Typography>{ticket.posted_by_name}</MUI.Typography>}
-                                                        >
-                                                            <MUI.AccountCircle />
-                                                        </MUI.Tooltip>
-                                                    </MUI.IconButton>
+                                                    
 
-                                                    <MUI.IconButton onClick = {() => {
-                                                        setIsCreatingTicket(true);
-                                                        setTicketToEdit(ticket);
-                                                    }}>
-                                                        <MUI.EditIcon />
-                                                    </MUI.IconButton>
-                                                    <MUI.IconButton onClick = {() => {
-                                                        dispatch(deleteTicket(ticket.ticket_id));
-                                                        props.setPreviewVisible(false);
-                                                    }}>
-                                                        <MUI.DeleteIcon />
-                                                    </MUI.IconButton>
-                                                    <MUI.IconButton onClick={handleClick}>
-                                                        <MUI.MoreHorizIcon />
+                                                    <MUI.IconButton onClick={(e) => {
+                                                            handleClick(e);
+                                                            setTicketForMenuClicked(ticket);
+                                                        }
+                                                    }>
+                                                        <MUI.MoreVertIcon />
                                                     </MUI.IconButton>
                                                     <MUI.Menu
                                                         id='option-menu'
@@ -148,10 +143,15 @@ const TicketQueue = (props) => {
                                                         <MUI.MenuItem onClick={() => {
                                                             handleClose();
                                                             setIsCreatingTicket(true);
-                                                            setTicketToEdit(ticket);
-                                                        }}>Edit</MUI.MenuItem>
-                                                        <MUI.MenuItem onClick={handleClose}>Delete</MUI.MenuItem>
-                                                        <MUI.MenuItem onClick={handleClose}>Update Status</MUI.MenuItem>
+                                                            setTicketToEdit(ticketForMenuClicked);
+                                                        }}>Edit Details</MUI.MenuItem>
+                                                        <MUI.MenuItem onClick={() => {
+                                                                handleClose()
+                                                                dispatch(deleteTicket(ticket.ticket_id));
+                                                                props.setPreviewVisible(false);
+                                                            }
+                                                        }>Delete Ticket</MUI.MenuItem>
+                                                        <MUI.MenuItem onClick={handleClose}>Mark Resolved</MUI.MenuItem>
                                                     </MUI.Menu>
                                                 </>}
                                             </MUI.CardContent>

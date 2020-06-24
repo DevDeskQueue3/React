@@ -1,15 +1,8 @@
 import { useState } from "react";
 import * as yup from "yup";
 
-const initialValues = {
-    title: "",
-    description: "",
-    categories: [],
-    what_ive_tried: "",
-};
-
-export default function useForm(passedValues, formSchema) {
-    const [values, setValues] = useState(passedValues);
+export default function useForm(initialValues, formSchema) {
+    const [values, setValues] = useState(initialValues);
     const [formErrors, setFormErrors] = useState(initialValues);
 
     const handleChanges = e => {
