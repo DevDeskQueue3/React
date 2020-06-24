@@ -9,6 +9,7 @@ export const UPDATE_TICKETS_FAILURE = "UPDATE_TICKETS_FAILURE";
 export const DELETE_TICKET = "DELETE_TICKET";
 export const CHANGE_STATUS = "CHANGE_STATUS";
 export const SET_LOGGEDUSER_ROLE = "SET_LOGGEDUSER_ROLE";
+export const SET_TICKET_TO_EDIT = "SET_TICKET_TO_EDIT";
 
 const filterByInitialValue = {
     status: ""
@@ -80,7 +81,7 @@ export const deleteTicket = id => dispatch => {
     axiosWithAuth()
         .delete(`/tickets/${id}`)
         .then(res => {
-            console.log(res);
+            //console.log(res);
             dispatch({
                 type: DELETE_TICKET,
                 payload: id
@@ -117,4 +118,8 @@ export const changeStatus = (id, status) => dispatch => {
 export const setLoggedUserRole = role => dispatch => {
     dispatch({type: SET_LOGGEDUSER_ROLE, payload: role});
     localStorage.setItem("loggedUserRole", role);
+}
+
+export const setTicketToEdit = ticket => dispatch => {
+    dispatch({type: SET_TICKET_TO_EDIT, payload: ticket});
 }

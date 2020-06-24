@@ -27,10 +27,6 @@ const TicketQueue = (props) => {
     }, [dispatch, props.isCreatingTicket]);
 
     useEffect(() => {
-        props.getTicketSetter(props.setTicketToEdit);
-    }, [props]);
-
-    useEffect(() => {
         if(loggedUserRole === "STUDENT"){
             setFilteredTickets(tickets.filter(ticket => ticket.posted_by_id === user.id));
         } else {
@@ -52,7 +48,7 @@ const TicketQueue = (props) => {
 
     }, [loggedUserRole, user, props.filter, tickets, dispatch]);
 
-    if(filteredTickets.length > 0) console.log("FilteredTickets: ", filteredTickets);
+    //if(filteredTickets.length > 0) console.log("FilteredTickets: ", filteredTickets);
 
     const loginAgain = e => {
         localStorage.removeItem("token");
@@ -60,7 +56,7 @@ const TicketQueue = (props) => {
         push("/student/login");
     }
 
-    if(props.isCreatingTicket) return <TicketForm ticketToEdit = {props.ticketToEdit} setTicketToEdit = {props.setTicketToEdit} showPreview={props.showPreview} setPreviewVisible={props.setPreviewVisible} toggleDrawer={props.toggleDrawer} open={props.open} setIsCreatingTicket={props.setIsCreatingTicket} />;
+    if(props.isCreatingTicket) return <TicketForm showPreview={props.showPreview} setPreviewVisible={props.setPreviewVisible} toggleDrawer={props.toggleDrawer} open={props.open} setIsCreatingTicket={props.setIsCreatingTicket} />;
 
     return (
         <MUI.List className="ticket-list" >
@@ -81,18 +77,20 @@ const TicketQueue = (props) => {
                                 className={`${classes.card} ${setStatusColor("TICKET", ticket.status)}`} 
                                 key={ticket.ticket_id}>
                                 <div className={classes.details}>
-                                    <section className={classes.cardsection}>
-                                        <MUI.CardContent
-                                            className={classes.timeframe}>
-                                            <p>1 Day Old</p>
-                                        </MUI.CardContent>
-                                    </section>
+                                    {loggedUserRole === "HELPER" && (
+                                        <section className={classes.cardsection}>
+                                            <MUI.CardContent
+                                                className={classes.timeframe}>
+                                                <p>1 Day Old</p>
+                                            </MUI.CardContent>
+                                        </section>
+                                    )}
                                     <div className='ticket-info-wrapper'>
                                         <section className={classes.cardsection}>
+                                            <p className={classes.subtitle}>{ticket.categories} Issue</p>
                                             <MUI.CardHeader
                                                 className={classes.header}
-                                                title={ticket.title} />
-                                            <p className={classes.subtitle}>{ticket.categories}</p>
+                                                title={ticket.title} />                                            
                                         </section>
                                         <section className={classes.cardsection}>
                                             <MUI.CardContent>

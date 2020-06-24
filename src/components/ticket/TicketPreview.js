@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import * as MUI from '../../MaterialUI';
 import { useSelector } from 'react-redux';
 import { setStatusColor } from '../../utils/setStatusColor';
@@ -12,9 +12,9 @@ const TicketPreview = (props) => {
     const classes = MUI.useStyles();
     const { loggedUserRole } = useSelector(state => state.tickets);
 
-    useEffect(() => {
+    /* useEffect(() => {
         console.log('ticket preview: ', props.visible);
-    },[props.visible]);
+    },[props.visible]); */
 
 
     // Should be fixed position so it always shows when scrolling page
@@ -28,20 +28,19 @@ const TicketPreview = (props) => {
                             component='h3'
                             variant='h3'
                         >
-                            Title: {props.ticket.title}
+                            {props.isCreatingTicket ? `Title: ${props.ticket.title}` : props.ticket.title}
                             {loggedUserRole === "STUDENT" && <>
                                 
                                 <DottedMenu 
                                     ticket = {props.ticket} 
                                     setIsCreatingTicket = {props.setIsCreatingTicket}
-                                    setTicketToEdit = {props.setTicketToEdit}
                                     setPreviewVisible = {props.setPreviewVisible}
                                 />
                             </>}
                         </MUI.Typography>
                     }
                     subheader={
-                        <p className={classes.subtitle}>Category: {props.ticket.categories}</p>
+                        <p className={classes.subtitle}>{props.ticket.categories} Issue</p>
                     }>
                 </MUI.CardHeader>
                 <MUI.CardContent>

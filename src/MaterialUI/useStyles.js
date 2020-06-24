@@ -137,6 +137,7 @@ const useStyles = makeStyles({
     },
     drawerVisible: {
         display: 'block',
+        
     },
     rightPane: {
         width: "40%",
@@ -157,7 +158,7 @@ const useStyles = makeStyles({
         width: "80px",
         height: "80px",
         position: "fixed",
-        right: "35%",
+        right: "38%",
         bottom: "50px",
         '&:hover': {
             backgroundColor: "rgba(255, 152, 0, 0.7607843137254902)"

@@ -17,9 +17,7 @@ const TicketDashboard = props => {
     const [open, setOpen] = useState(true);
     const [windowWidth] = useWindowSize();
     const [isCreatingTicket, setIsCreatingTicket] = useState(false);
-    const [ticketToEdit, setTicketToEdit] = useState(null);
 
-    const [setter, setSetter] = useState();
     const classes = MUI.useStyles();
 
     useEffect(() => {
@@ -47,17 +45,12 @@ const TicketDashboard = props => {
         setStatusText(stat);
     };
 
-    useEffect(() => {
+    /* useEffect(() => {
         console.log(filter);
-    },[filter]);
+    },[filter]); */
 
     const filterTickets = (value) => {
         setFilter(value);
-    };
-
-    const getTicketSetter = (setter) => {
-        setSetter(setter);
-        //console.log(setter);
     };
 
     const dispatch = useDispatch();
@@ -77,23 +70,17 @@ const TicketDashboard = props => {
                 statusText={statusText}
                 filter={filter}
                 ticketToUpdate={ticket}
-                setter = {setter}
-                getTicketSetter={getTicketSetter}
                 toggleDrawer={toggleDrawer}
                 open = {open}
                 setPreviewVisible = {setPreviewVisible}
                 isCreatingTicket = {isCreatingTicket}
                 setIsCreatingTicket = {setIsCreatingTicket}
-                ticketToEdit = {ticketToEdit}
-                setTicketToEdit = {setTicketToEdit}
             />
             <TicketPreview
                 visible={previewVisible}
                 ticket={ticket} 
                 isCreatingTicket = {isCreatingTicket}
                 setIsCreatingTicket = {setIsCreatingTicket}
-                ticketToEdit = {ticketToEdit}
-                setTicketToEdit = {setTicketToEdit}
                 setPreviewVisible = {setPreviewVisible}
             />
         </div>

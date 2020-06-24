@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import * as MUI from '../../MaterialUI/index';
 import { useDispatch } from 'react-redux';
-import { deleteTicket, changeStatus } from '../../actions/tickets';
+import { deleteTicket, changeStatus, setTicketToEdit } from '../../actions/tickets';
 
-const DottedMenu = ({ticket, setIsCreatingTicket, setTicketToEdit, setPreviewVisible}) => {
+const DottedMenu = ({ticket, setIsCreatingTicket, setPreviewVisible}) => {
     //const classes = MUI.useStyles();
     const [anchorEl, setAnchorEl] = useState();
     const dispatch = useDispatch();
@@ -32,7 +32,7 @@ const DottedMenu = ({ticket, setIsCreatingTicket, setTicketToEdit, setPreviewVis
                 <MUI.MenuItem onClick={() => {
                     handleClose();
                     setIsCreatingTicket(true);
-                    setTicketToEdit(ticket);
+                    dispatch(setTicketToEdit(ticket));
                 }}>Edit Details</MUI.MenuItem>
             )}
                 <MUI.MenuItem onClick={() => {
