@@ -97,8 +97,9 @@ const TicketQueue = (props) => {
                                             <MUI.CardContent>
                                                 <MUI.IconButton>
                                                     <MUI.Tooltip
+                                                        disableHoverListener={ticket.claimed_by_name === null ? true : false}
                                                         className={classes.tooltip}
-                                                        title={<MUI.Typography>{ticket.posted_by_name}</MUI.Typography>}
+                                                        title={<MUI.Typography>{ticket.claimed_by_name && ticket.claimed_by_name}</MUI.Typography>}
                                                     >
                                                         <MUI.AccountCircle />
                                                     </MUI.Tooltip>
