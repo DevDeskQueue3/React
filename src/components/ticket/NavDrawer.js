@@ -73,7 +73,7 @@ const NavDrawer = (props) => {
                     button
                     onClick={() => {
                             props.updateStatusText("Open Tickets");
-                            props.filterTickets("OPEN");
+                            props.filterTickets( "OPEN");
                         }
                     }>{loggedUserRole === "STUDENT" ? "Open Tickets" : "All Tickets"}</MUI.ListItem>
             </MUI.List>
@@ -100,23 +100,26 @@ const NavDrawer = (props) => {
             >
                 <MUI.TreeItem nodeId='1' label='Filter Tickets'>
                     <MUI.TreeItem nodeId='2' label='Categories'>
-                        <MUI.TreeItem nodeId='3' label='Category 1' />
+                        <MUI.TreeItem nodeId='3' onClick={() => props.filterTickets('Equipment')} label='Equipment' />
+                        <MUI.TreeItem nodeId='4' onClick={() => props.filterTickets('People')} label='People' />
+                        <MUI.TreeItem nodeId='5' onClick={() => props.filterTickets('Track')} label='Track' />
+                        <MUI.TreeItem nodeId='6' onClick={() => props.filterTickets('Finances')} label='Finances' />
+                        <MUI.TreeItem nodeId='7' onClick={() => props.filterTickets('Other')} label='Other' />
                     </MUI.TreeItem>
-                    <MUI.TreeItem nodeId='4' label='Status'>
-                        <MUI.TreeItem nodeId='5' label='Created' />
-                        <MUI.TreeItem nodeId='6' label='Viewed' />
-                        <MUI.TreeItem nodeId='7' label='In Progress' />
-                        <MUI.TreeItem nodeId='8' label='Completed' />
+                    <MUI.TreeItem nodeId='8' label='Status'>
+                        <MUI.TreeItem nodeId='9' onClick={() => props.filterTickets('OPEN')} label='Open' />
+                        <MUI.TreeItem nodeId='10' onClick={() => props.filterTickets('RESOLVED')} label='Resolved' />
+                        <MUI.TreeItem nodeId='12' onClick={() => props.filterTickets('CLOSED')} label='Closed' />
                     </MUI.TreeItem>
-                    <MUI.TreeItem nodeId='9' label='Assigned to'>
-                        <MUI.TreeItem nodeId='10' label='Team Lead' />
-                        <MUI.TreeItem nodeId='11' label='Section Lead' />
+                    <MUI.TreeItem nodeId='13' label='Assigned to'>
+                        <MUI.TreeItem nodeId='14' label='Team Lead' />
+                        <MUI.TreeItem nodeId='15' label='Section Lead' />
                     </MUI.TreeItem>
-                    <MUI.TreeItem nodeId='12' label='Urgency'>
-                        <MUI.TreeItem nodeId='13' label='Normal' />
-                        <MUI.TreeItem nodeId='14' label='Urgent' />
-                        <MUI.TreeItem nodeId='15' label='Very Urgent' />
-                        <MUI.TreeItem nodeId='16' label='Emergency' />
+                    <MUI.TreeItem nodeId='16' label='Urgency'>
+                        <MUI.TreeItem nodeId='17' label='Normal' />
+                        <MUI.TreeItem nodeId='18' label='Urgent' />
+                        <MUI.TreeItem nodeId='19' label='Very Urgent' />
+                        <MUI.TreeItem nodeId='20' label='Emergency' />
                     </MUI.TreeItem>
                 </MUI.TreeItem>
                 

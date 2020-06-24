@@ -13,7 +13,7 @@ const TicketDashboard = props => {
     const [ticket, setTicket] = useState({});
     const [previewVisible, setPreviewVisible] = useState(false);
     const [statusText, setStatusText] = useState("All Tickets");
-    const [statusFilter, setStatusFilter] = useState("");
+    const [filter, setFilter] = useState("");
     const [open, setOpen] = useState(true);
     const [windowWidth] = useWindowSize();
     const [setter, setSetter] = useState();
@@ -45,11 +45,11 @@ const TicketDashboard = props => {
     };
 
     useEffect(() => {
-        console.log(statusFilter);
-    },[statusFilter]);
+        console.log(filter);
+    },[filter]);
 
-    const filterTickets = (status) => {
-        setStatusFilter(status);
+    const filterTickets = (value) => {
+        setFilter(value);
     };
 
     const getTicketSetter = (setter) => {
@@ -72,7 +72,7 @@ const TicketDashboard = props => {
             <TicketQueue
                 showPreview={setVisible}
                 statusText={statusText}
-                filter={statusFilter}
+                filter={filter}
                 ticketToUpdate={ticket}
                 getTicketSetter={getTicketSetter}
                 toggleDrawer={toggleDrawer}

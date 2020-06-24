@@ -40,7 +40,16 @@ const TicketQueue = (props) => {
         }
 
         if(props.filter !== ''){
-            setFilteredTickets(tickets.filter(ticket => (ticket.posted_by_id === user.id && ticket.status === props.filter)));
+            setFilteredTickets(tickets.filter(ticket => 
+                    (
+                        ticket.posted_by_id === user.id && 
+                        (
+                            ticket.status === props.filter ||
+                            (ticket.categories !== null && ticket.categories.includes(props.filter))
+                        )
+                    )
+                )
+            );
         }
 
     }, [loggedUserRole, user, props.filter, tickets, dispatch]);
@@ -124,45 +133,22 @@ const TicketQueue = (props) => {
                                                         open={Boolean(anchorEl)}
                                                         onClose={handleClose}
                                                     >
-                                                        {ticketForMenuClicked.status === "OPEN" && (
-                                                            <MUI.MenuItem onClick={() => {
-                                                                handleClose();
-                                                                setIsCreatingTicket(true);
-                                                                setTicketToEdit(ticketForMenuClicked);
-                                                            }}>Edit Details</MUI.MenuItem>
-                                                        )}
-                                                            <MUI.MenuItem onClick={() => {
-                                                                    handleClose()
-                                                                    dispatch(deleteTicket(ticketForMenuClicked.ticket_id));
-                                                                    props.setPreviewVisible(false);
-                                                                }
-                                                            }>Delete Ticket</MUI.MenuItem>
-                                                        
-                                                        {ticketForMenuClicked.status !== "CLOSED" && (
-                                                            <MUI.MenuItem onClick={() => {
-                                                                handleClose();
-                                                                dispatch(changeStatus(
-                                                                        ticketForMenuClicked.ticket_id, 
-                                                                        ticketForMenuClicked.status === "OPEN" ? "resolve" : 
-                                                                        ticketForMenuClicked.status === "RESOLVED" && "open"
-                                                                    )
-                                                                );
-                                                            }}>
-                                                                {ticketForMenuClicked.status === "OPEN" ? "Mark Resolved" : 
-                                                                ticketForMenuClicked.status === "RESOLVED" && "Mark Unresolved"}
-                                                            </MUI.MenuItem>
-                                                        )}
-
-                                                        {(ticketForMenuClicked.status === "RESOLVED" || ticketForMenuClicked.status === "CLOSED") && (
-                                                            <MUI.MenuItem onClick={() => {
-                                                                handleClose();
-                                                                dispatch(changeStatus(
-                                                                    ticketForMenuClicked.ticket_id, 
-                                                                    ticketForMenuClicked.status === "RESOLVED" ? "close" : 
-                                                                    ticketForMenuClicked.status === "CLOSED" && "open")
-                                                                );
-                                                            }}>{ticketForMenuClicked.status === "RESOLVED" ? "Close Ticket" : ticketForMenuClicked.status === "CLOSED" && "Reopen Ticket"}</MUI.MenuItem>
-                                                        )}
+                                                        <MUI.MenuItem onClick={() => {
+                                                            handleClose();
+                                                            setIsCreatingTicket(true);
+                                                            setTicketToEdit(ticketForMenuClicked);
+                                                        }}>Edit Details</MUI.MenuItem>
+                                                        <MUI.MenuItem onClick={() => {
+                                                                handleClose()
+                                                                dispatch(deleteTicket(ticketForMenuClicked.ticket_id));
+                                                                props.setPreviewVisible(false);
+                                                            }
+                                                        }>Delete Ticket</MUI.MenuItem>
+                                                        <MUI.MenuItem onClick={() => {
+                                                            handleClose();
+                                                            dispatch(changeStatus(ticketForMenuClicked.ticket_id, "resolve"));
+                                                            alert("ticket marked resolved!");
+                                                        }}>{ticketForMenuClicked.status === "OPEN" ? "Mark Resolved" : "Mark Unresolved"}</MUI.MenuItem>
                                                     </MUI.Menu>
                                                 </>}
                                             </MUI.CardContent>
