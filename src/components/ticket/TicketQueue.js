@@ -115,16 +115,20 @@ const TicketQueue = (props) => {
                                         </section>
                                         <section className={classes.cardsection} style = {{textAlign: "right"}}>
                                             <MUI.CardContent>
-                                                <MUI.IconButton>
-                                                    <MUI.Tooltip
-                                                        disableHoverListener={ticket.claimed_by_name === null ? true : false}
-                                                        className={classes.tooltip}
-                                                        title={<MUI.Typography>{ticket.claimed_by_name && ticket.claimed_by_name}</MUI.Typography>}
-                                                    >
-                                                        <MUI.AccountCircle />
-                                                    </MUI.Tooltip>
-                                                </MUI.IconButton>
-                                                <br />
+                                                {ticket.claimed_by_name &&
+                                                    <>
+                                                        <MUI.IconButton>
+                                                            <MUI.Tooltip
+                                                                disableHoverListener={ticket.claimed_by_name === null ? true : false}
+                                                                className={classes.tooltip}
+                                                                title={<MUI.Typography>{ticket.claimed_by_name && ticket.claimed_by_name}</MUI.Typography>}
+                                                            >
+                                                                <MUI.AccountCircle />
+                                                            </MUI.Tooltip>
+                                                        </MUI.IconButton>
+                                                        <br />
+                                                    </>
+                                                }
                                                 <MUI.ThemeProvider theme = {theme}>
                                                     {(loggedUserRole === "HELPER" && ticket.status === "OPEN") && <>
                                                         <br />
