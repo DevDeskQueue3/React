@@ -49,7 +49,7 @@ const Login = props => {
         if(localStorage.getItem("devdesk-auth")) {
             const userData = JSON.parse(localStorage.getItem("user"));
             
-            if(userData.roles.includes("HELPER")){
+            if(userData && userData.roles.includes("HELPER")){
                 dispatch(setLoggedUserRole("HELPER"));
                 props.history.push("/dashboard");
                 setLoginError("");
