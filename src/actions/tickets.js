@@ -7,6 +7,7 @@ export const CREATE_TICKET = "CREATE_TICKET";
 export const UPDATE_TICKETS = "UPDATE_TICKETS";
 export const UPDATE_TICKETS_FAILURE = "UPDATE_TICKETS_FAILURE";
 export const DELETE_TICKET = "DELETE_TICKET";
+export const CHANGE_STATUS = "CHANGE_STATUS";
 export const SET_LOGGEDUSER_ROLE = "SET_LOGGEDUSER_ROLE";
 
 const filterByInitialValue = {
@@ -84,6 +85,24 @@ export const deleteTicket = id => dispatch => {
                 payload: id
             });
             
+        })
+        .catch(err => {
+            console.log({code: err.response.status, message: err.response.data.message});
+            dispatch({
+                type: UPDATE_TICKETS_FAILURE,
+                payload: {code: err.response.status, message: err.response.data.message}
+            });
+        })
+}
+
+export const changeStatus = (id, status) => dispatch => {
+    axiosWithAuth()
+        .patch(`/tickets/${id}/${status.toLowerCase()}`)
+        .then(res => {
+            dispatch({
+                type: CHANGE_STATUS,
+                payload: res.data
+            });
         })
         .catch(err => {
             console.log({code: err.response.status, message: err.response.data.message});
