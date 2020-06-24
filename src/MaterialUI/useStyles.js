@@ -1,4 +1,4 @@
-import { makeStyles, createMuiTheme, Button, Tooltip, withStyles } from '@material-ui/core';
+import { makeStyles, createMuiTheme, Button, withStyles } from '@material-ui/core';
 import { orange } from '@material-ui/core/colors';
 
 export const theme = createMuiTheme({
@@ -33,6 +33,7 @@ const useStyles = makeStyles({
         display: 'flex',
         flexWrap: "nowrap",
         justifyContent: "flex-start",
+        background: "#F9FAFB",
     },
     burgerwrapper: {
         background: "rgba(200,200,200,.9)",

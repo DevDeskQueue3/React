@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import * as MUI from "../../MaterialUI";
 import { useSelector, useDispatch } from "react-redux";
-import { getTickets, deleteTicket, changeStatus } from '../../actions/tickets';
+import { getTickets } from '../../actions/tickets';
 import { useHistory } from 'react-router-dom';
 
 import Burger from '../burger/Burger';
+import DottedMenu from '../burger/Dotted';
 import TicketForm from './TicketForm';
 import useWindowSize from '../../hooks/useWindowSize';
 
 import { setStatusColor } from '../../utils/setStatusColor';
+
 
 const TicketQueue = (props) => {
     const classes = MUI.useStyles();
@@ -18,15 +20,11 @@ const TicketQueue = (props) => {
     const { user } = useSelector(state => state.login);
     const { tickets, loggedUserRole, isFetching, error } = useSelector(state => state.tickets);
     const [filteredTickets, setFilteredTickets] = useState(tickets);
-    const [isCreatingTicket, setIsCreatingTicket] = useState(false);
-    const [ticketToEdit, setTicketToEdit] = useState(null);
     const [windowWidth] = useWindowSize();
-    const [anchorEl, setAnchorEl] = useState();
-    const [ticketForMenuClicked, setTicketForMenuClicked] = useState({});
 
     useEffect(() => {
         dispatch(getTickets());        
-    }, [dispatch, isCreatingTicket]);
+    }, [dispatch, props.isCreatingTicket]);
 
     useEffect(() => {
         if(loggedUserRole === "STUDENT"){
@@ -49,15 +47,8 @@ const TicketQueue = (props) => {
         push("/student/login");
     }
 
-    const handleClick = e => {
-        setAnchorEl(e.target);
-    };
+    if(props.isCreatingTicket) return <TicketForm ticketToEdit = {props.ticketToEdit} setTicketToEdit = {props.setTicketToEdit} showPreview={props.showPreview} setPreviewVisible={props.setPreviewVisible} toggleDrawer={props.toggleDrawer} open={props.open} setIsCreatingTicket={props.setIsCreatingTicket} />;
 
-    const handleClose = e => {
-        setAnchorEl(null);
-    };
-
-    if(isCreatingTicket) return <TicketForm ticketToEdit = {ticketToEdit} setTicketToEdit = {setTicketToEdit} showPreview={props.showPreview} setPreviewVisible={props.setPreviewVisible} toggleDrawer={props.toggleDrawer} open={props.open} setIsCreatingTicket={setIsCreatingTicket} />;
     return (
         <MUI.List className="ticket-list" >
             <section className='ticket-list-header'>
@@ -71,7 +62,6 @@ const TicketQueue = (props) => {
                 (
                     
                     filteredTickets.map((ticket) => {
-                        const curTicket = ticket;
                         return( 
                             <MUI.Card
                                 onClick={() => props.showPreview(ticket)}
@@ -105,61 +95,12 @@ const TicketQueue = (props) => {
                                                 {loggedUserRole === "HELPER" && <><br /><MUI.Button variant = "contained" >Assign</MUI.Button></>}
                                                 {loggedUserRole === "STUDENT" && <>
                                                     
-
-                                                    <MUI.IconButton onClick={(e) => {
-                                                            handleClick(e);
-                                                            setTicketForMenuClicked(ticket);
-                                                        }
-                                                    }>
-                                                        <MUI.MoreVertIcon />
-                                                    </MUI.IconButton>
-                                                    <MUI.Menu
-                                                        id='option-menu'
-                                                        anchorEl={anchorEl}
-                                                        keepMounted
-                                                        open={Boolean(anchorEl)}
-                                                        onClose={handleClose}
-                                                    >
-                                                        {ticketForMenuClicked.status === "OPEN" && (
-                                                            <MUI.MenuItem onClick={() => {
-                                                                handleClose();
-                                                                setIsCreatingTicket(true);
-                                                                setTicketToEdit(ticketForMenuClicked);
-                                                            }}>Edit Details</MUI.MenuItem>
-                                                        )}
-                                                            <MUI.MenuItem onClick={() => {
-                                                                    handleClose()
-                                                                    dispatch(deleteTicket(ticketForMenuClicked.ticket_id));
-                                                                    props.setPreviewVisible(false);
-                                                                }
-                                                            }>Delete Ticket</MUI.MenuItem>
-                                                        
-                                                        {ticketForMenuClicked.status !== "CLOSED" && (
-                                                            <MUI.MenuItem onClick={() => {
-                                                                handleClose();
-                                                                dispatch(changeStatus(
-                                                                        ticketForMenuClicked.ticket_id, 
-                                                                        ticketForMenuClicked.status === "OPEN" ? "resolve" : 
-                                                                        ticketForMenuClicked.status === "RESOLVED" && "open"
-                                                                    )
-                                                                );
-                                                            }}>
-                                                                {ticketForMenuClicked.status === "OPEN" ? "Mark Resolved" : 
-                                                                ticketForMenuClicked.status === "RESOLVED" && "Mark Unresolved"}
-                                                            </MUI.MenuItem>
-                                                        )}
-
-                                                        {(ticketForMenuClicked.status === "RESOLVED" || ticketForMenuClicked.status === "CLOSED") && (
-                                                            <MUI.MenuItem onClick={() => {
-                                                                handleClose();
-                                                                dispatch(changeStatus(
-                                                                    ticketForMenuClicked.ticket_id, 
-                                                                    ticketForMenuClicked.status === "RESOLVED" ? "close" : 
-                                                                    ticketForMenuClicked.status === "CLOSED" && "open")
-                                                                );
-                                                            }}>{ticketForMenuClicked.status === "RESOLVED" ? "Close Ticket" : ticketForMenuClicked.status === "CLOSED" && "Reopen Ticket"}</MUI.MenuItem>
-                                                        )}
-                                                    </MUI.Menu>
+                                                    <DottedMenu 
+                                                        ticket = {ticket} 
+                                                        setIsCreatingTicket = {props.setIsCreatingTicket}
+                                                        setTicketToEdit = {props.setTicketToEdit}
+                                                        setPreviewVisible = {props.setPreviewVisible}
+                                                    />
                                                 </>}
                                             </MUI.CardContent>
                                         </section>
@@ -176,7 +117,7 @@ const TicketQueue = (props) => {
                     id = "addTicketButton"
                     className={classes.addTicketButton}
                     variant="contained"
-                    onClick = {() => setIsCreatingTicket(true)}
+                    onClick = {() => props.setIsCreatingTicket(true)}
                 >
                     <MUI.AddTicketIcon fontSize="large" />
                 </MUI.Button>

@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import * as MUI from '../../MaterialUI';
 import { useSelector } from 'react-redux';
 import { setStatusColor } from '../../utils/setStatusColor';
+import DottedMenu from '../burger/Dotted';
 
 // Needs to hide at 1100px window width and below, 
 // then make the tickets in the queue expand when you 
@@ -10,23 +11,11 @@ import { setStatusColor } from '../../utils/setStatusColor';
 const TicketPreview = (props) => {
     const classes = MUI.useStyles();
     const { loggedUserRole } = useSelector(state => state.tickets);
-    const [anchorEl, setAnchorEl] = useState();
-
-    // useEffect(() => {
-    //     props.getTicketToUpdate(ticket);
-    // },[])
 
     useEffect(() => {
         console.log('ticket preview: ', props.visible);
     },[props.visible]);
 
-    const handleClick = e => {
-        setAnchorEl(e.currentTarget);
-    };
-
-    const handleClose = e => {
-        setAnchorEl(null);
-    };
 
     // Should be fixed position so it always shows when scrolling page
     return (
@@ -40,24 +29,15 @@ const TicketPreview = (props) => {
                             variant='h3'
                         >
                             Title: {props.ticket.title}
-                            <MUI.IconButton onClick={handleClick}>
-                                <MUI.MoreVertIcon />
-                            </MUI.IconButton>
-                            <MUI.Menu
-                                id='option-menu'
-                                anchorEl={anchorEl}
-                                keepMounted
-                                open={Boolean(anchorEl)}
-                                onClose={handleClose}
-                            >
-                                <MUI.MenuItem onClick={() => {
-                                    handleClose();
-                                }}>Edit</MUI.MenuItem>
-                                <MUI.MenuItem onClick={() => {
-                                    handleClose();
-                                }}>Delete</MUI.MenuItem>
-                                <MUI.MenuItem onClick={handleClose}>Update Status</MUI.MenuItem>
-                            </MUI.Menu>
+                            {loggedUserRole === "STUDENT" && <>
+                                
+                                <DottedMenu 
+                                    ticket = {props.ticket} 
+                                    setIsCreatingTicket = {props.setIsCreatingTicket}
+                                    setTicketToEdit = {props.setTicketToEdit}
+                                    setPreviewVisible = {props.setPreviewVisible}
+                                />
+                            </>}
                         </MUI.Typography>
                     }
                     subheader={
