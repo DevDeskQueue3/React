@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as MUI from "../../MaterialUI";
+import moment from 'moment';
 import { useSelector, useDispatch } from "react-redux";
 import { getTickets, toggleClaim } from '../../actions/tickets';
 import { useHistory } from 'react-router-dom';
@@ -72,6 +73,8 @@ const TicketQueue = (props) => {
                 (
                     
                     filteredTickets.map((ticket) => {
+                        let daysAgo = moment(ticket.posted_at, "YYYYMMDD").fromNow();
+                        
                         return( 
                             <MUI.Card
                                 onClick={() => props.showPreview(ticket)}
@@ -82,7 +85,7 @@ const TicketQueue = (props) => {
                                         <section className={classes.cardsection}>
                                             <MUI.CardContent
                                                 className={classes.timeframe}>
-                                                <p>1 Day Old</p>
+                                                <p>{daysAgo}</p>
                                             </MUI.CardContent>
                                         </section>
                                     )}
@@ -97,8 +100,9 @@ const TicketQueue = (props) => {
                                             <MUI.CardContent>
                                                 <MUI.IconButton>
                                                     <MUI.Tooltip
+                                                        disableHoverListener={ticket.claimed_by_name === null ? true : false}
                                                         className={classes.tooltip}
-                                                        title={<MUI.Typography>{ticket.posted_by_name}</MUI.Typography>}
+                                                        title={<MUI.Typography>{ticket.claimed_by_name && ticket.claimed_by_name}</MUI.Typography>}
                                                     >
                                                         <MUI.AccountCircle />
                                                     </MUI.Tooltip>
