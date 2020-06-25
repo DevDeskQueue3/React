@@ -8,7 +8,6 @@ import StudentRegister from './components/student/Register';
 import './App.css';
 import PrivateRoute from './components/PrivateRoute';
 import TicketDashboard from './components/ticket/TicketDashboard';
-import Profile from './components/profile/profile';
 
 const App = () => {
   const { location, push } = useHistory();

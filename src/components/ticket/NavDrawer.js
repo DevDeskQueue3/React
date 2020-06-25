@@ -62,6 +62,9 @@ const NavDrawer = (props) => {
                             logout();
                         }}>Logout</MUI.MenuItem>
                         <MUI.MenuItem onClick={handleClose}>
+                            <Link to={`${url}/tickets`}>View Tickets</Link>
+                        </MUI.MenuItem>
+                        <MUI.MenuItem onClick={handleClose}>
                             <Link to={`${url}/profile`}>View Profile</Link>
                         </MUI.MenuItem>
                     </MUI.Menu>
