@@ -37,7 +37,7 @@ const StudentRegister = props => {
             name: `${values.firstName} ${values.lastName}`,
             email: values.email,
             password: values.password,
-            role: 'STUDENT'
+            roles: ['STUDENT']
         };
 
         console.log(newData);
