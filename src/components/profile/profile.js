@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as MUI from '../../MaterialUI/index';
 import { useSelector } from 'react-redux';
 
@@ -9,7 +9,6 @@ const Profile = (props) => {
     const { user } = useSelector(state => state.login);
 
     console.log(user);
-    const [counter, setCounter] = useState(0);
 
     return (
         <div className='profile-wrapper'>
@@ -25,8 +24,7 @@ const Profile = (props) => {
                     <MUI.Typography
                         variant='h4'
                         component='h4'>Roles: {user.roles.map(role => {
-                            // setCounter(counter + 1);
-                            return (<p key={`${user.name}_${counter}`}>{role}</p>)
+                            return (<p key={`${user.name}_0`}>{role}</p>)
                         })}</MUI.Typography>
                 </section>
             </MUI.Paper>
