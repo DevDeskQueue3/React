@@ -1,10 +1,12 @@
 import React, { useRef, useState } from 'react';
 import * as MUI from "../../MaterialUI";
 import { useSelector } from 'react-redux';
+import { Link, useRouteMatch } from 'react-router-dom';
 
 //Needs to be hidden at window width 600px and below,
 //Check TicketPreview component for comment on when to hide
 const NavDrawer = (props) => {
+    const {url} = useRouteMatch();
     const opentickets = useRef();
     const closedtickets = useRef();
 
@@ -59,7 +61,9 @@ const NavDrawer = (props) => {
                             handleClose();
                             logout();
                         }}>Logout</MUI.MenuItem>
-                        <MUI.MenuItem onClick={handleClose}>View Profile</MUI.MenuItem>
+                        <MUI.MenuItem onClick={handleClose}>
+                            <Link to={`${url}/profile`}>View Profile</Link>
+                        </MUI.MenuItem>
                     </MUI.Menu>
                 </MUI.ListItem>
             </MUI.List>
