@@ -99,8 +99,8 @@ const TicketQueue = (props) => {
                         return( 
                             <MUI.Card
                                 onClick={(e) => {
-                                    if (windowWidth < 600) toggleTicket(e, ticket);
-                                    if (windowWidth > 600) props.showPreview(ticket);
+                                    if (windowWidth < 1100) toggleTicket(e, ticket);
+                                    if (windowWidth > 1100) props.showPreview(ticket);
                                 }}
                                 className={`${classes.card} ${setStatusColor("TICKET", ticket.status)}`} 
                                 key={ticket.ticket_id}>
