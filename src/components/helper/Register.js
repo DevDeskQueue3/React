@@ -63,7 +63,7 @@ const Register = props => {
             
             if(userData && userData.roles.includes("HELPER")){
                 dispatch(setLoggedUserRole("HELPER"));
-                props.history.push("/dashboard");
+                props.history.push("/dashboard/tickets");
                 setLoginError("");
             } else {
                 setLoginError("Your account is not a student account, sign in using the helper link at the bottom.");
