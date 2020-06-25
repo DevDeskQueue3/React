@@ -40,7 +40,7 @@ const Register = props => {
             name: helper.firstName + " " + helper.lastName,
             email: helper.email,
             password: helper.password,
-            role: "HELPER"
+            roles: ["STUDENT", "HELPER"]
         }
 
         console.log(newHelper);

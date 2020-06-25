@@ -1,7 +1,41 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import * as MUI from "../../MaterialUI";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
+import Modal from '@material-ui/core/Modal';
+import useForm from '../../hooks/useForm';
+import { passwordCheckSchema } from '../../utils/loginFormValidation';
+import { getToken, addUserRole } from '../../actions/login';
+import { setLoggedUserRole } from '../../actions/tickets';
 import { Link, useRouteMatch } from 'react-router-dom';
+
+function rand() {
+    return Math.round(Math.random() * 20) - 10;
+}
+
+function getModalStyle() {
+    const top = 50 + rand();
+    const left = 50 + rand();
+
+    return {
+        top: `${top}%`,
+        left: `${left}%`,
+        transform: `translate(-${top}%, -${left}%)`,
+    };
+}
+
+const useStyles = makeStyles((theme) => ({
+    paper: {
+        position: 'absolute',
+        width: 400,
+        backgroundColor: theme.palette.background.paper,
+        border: '2px solid #000',
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(2, 4, 3),
+    },
+}));
+
+
 
 //Needs to be hidden at window width 600px and below,
 //Check TicketPreview component for comment on when to hide
@@ -11,8 +45,18 @@ const NavDrawer = (props) => {
     const closedtickets = useRef();
 
     const classes = MUI.useStyles();
+    const { user, error } = useSelector(state => state.login)
     const { loggedUserRole } = useSelector(state => state.tickets);
     const [anchorEl, setAnchorEl] = useState();
+    const [passwordModal, setPasswordModal] = useState(false);
+    const [checkingPassword, setCheckingPassword] = useState(false);
+    const [modalStyle] = React.useState(getModalStyle);
+    const modalClasses = useStyles();
+    const [modal, handleChange, formErrors] = useForm({password: ""}, passwordCheckSchema);
+    const dispatch = useDispatch();
+    const [isButtonDisabled, setIsButtonDisabled] = useState(true)
+
+    
 
     const logout = () => {
         localStorage.removeItem("devdesk-auth");
@@ -32,6 +76,47 @@ const NavDrawer = (props) => {
     const handleClose = e => {
         setAnchorEl(null);
     };
+
+
+    const changeRole = e => {
+        dispatch(addUserRole({id: user.id, roles: ["STUDENT", "HELPER"]}));
+        
+        if(loggedUserRole === "STUDENT") {
+            dispatch(setLoggedUserRole("HELPER"));
+        } else {
+            dispatch(setLoggedUserRole("STUDENT"));
+        }
+
+    }
+
+    const closePasswordModal = () => {
+        setPasswordModal(false);
+    };
+
+    const checkPassword = e => {
+        e.preventDefault();
+
+        
+    }
+
+    useEffect(() => {
+        passwordCheckSchema.isValid(modal).then(valid => {
+            setIsButtonDisabled(!valid);
+        });
+    }, [modal]);
+
+    const modalBody = (
+        <div style={modalStyle} className={modalClasses.paper}>
+            <h2 id="simple-modal-title">{loggedUserRole === "STUDENT" ? "Become a Helper" : "Add Student Role"}</h2>
+            <p id="simple-modal-description">
+                Please enter your password to add the {loggedUserRole === "STUDENT" ? "Helper" : "Student"} role.
+            </p>
+            <form onSubmit = {checkPassword}>
+                <MUI.TextField style = {{width: 200}} error = {formErrors.password.length > 0} helperText = {formErrors.password.length > 0 && formErrors.password} id = "password" name = "password" type = "password" value = {modal.password} onChange = {handleChange} />
+                <MUI.Button type = "submit" disabled = {isButtonDisabled}>Submit</MUI.Button>
+            </form>
+        </div>
+    );
 
     return (
         <MUI.Drawer
@@ -67,6 +152,23 @@ const NavDrawer = (props) => {
                         <MUI.MenuItem onClick={handleClose}>
                             <Link to={`${url}/profile`}>View Profile</Link>
                         </MUI.MenuItem>
+
+                        <MUI.MenuItem onClick={changeRole}>
+                            {
+                                loggedUserRole === "STUDENT" ? 
+                                    user.roles.includes("HELPER") ? "Helper View" : "Become a Helper" :
+                                    user.roles.includes("STUDENT") ? "Student View" : "Add Student Role"
+                            }
+                        </MUI.MenuItem>
+
+                        <Modal
+                            open={passwordModal}
+                            onClose={closePasswordModal}
+                            aria-labelledby="simple-modal-title"
+                            aria-describedby="simple-modal-description"
+                        >
+                            {modalBody}
+                        </Modal>
                     </MUI.Menu>
                 </MUI.ListItem>
             </MUI.List>
