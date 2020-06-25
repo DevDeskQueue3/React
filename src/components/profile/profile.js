@@ -25,7 +25,7 @@ const Profile = (props) => {
                     <MUI.Typography
                         variant='h4'
                         component='h4'>Roles: {user.roles.map(role => {
-                            setCounter(counter + 1);
+                            // setCounter(counter + 1);
                             return (<p key={`${user.name}_${counter}`}>{role}</p>)
                         })}</MUI.Typography>
                 </section>
