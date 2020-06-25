@@ -84,7 +84,8 @@ const useStyles = makeStyles((theme) => ({
     card: {
         margin: '0 0px 17px 0px',
         textAlign: 'left',
-        width: '97%'
+        width: '97%',
+        transition: 'height 1s ease-in'
     },
     details: {
         display: 'flex',

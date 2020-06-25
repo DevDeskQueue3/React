@@ -75,6 +75,10 @@ const TicketQueue = (props) => {
         push("/student/login");
     }
 
+    const toggleTicket = (e, ticket) => {
+        e.currentTarget.classList.toggle('expand');
+    };
+
     if(props.isCreatingTicket) return <TicketForm showPreview={props.showPreview} setPreviewVisible={props.setPreviewVisible} toggleDrawer={props.toggleDrawer} open={props.open} setIsCreatingTicket={props.setIsCreatingTicket} />;
 
     return (
@@ -94,7 +98,10 @@ const TicketQueue = (props) => {
                         
                         return( 
                             <MUI.Card
-                                onClick={() => props.showPreview(ticket)}
+                                onClick={(e) => {
+                                    toggleTicket(e, ticket);
+                                    props.showPreview(ticket);
+                                }}
                                 className={`${classes.card} ${setStatusColor("TICKET", ticket.status)}`} 
                                 key={ticket.ticket_id}>
                                 <div className={classes.details}>
