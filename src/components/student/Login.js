@@ -62,7 +62,7 @@ const StudentLogin = props => {
             
             if(userData && userData.roles.includes("STUDENT")){
                 dispatch(setLoggedUserRole("STUDENT"));
-                props.history.push("/dashboard");
+                props.history.push("/dashboard/tickets");
                 setLoginError("");
             } else {
                 setLoginError("Your account is not a student account, sign in using the helper link at the bottom.");

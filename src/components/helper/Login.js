@@ -51,7 +51,7 @@ const Login = props => {
             
             if(userData && userData.roles.includes("HELPER")){
                 dispatch(setLoggedUserRole("HELPER"));
-                props.history.push("/dashboard");
+                props.history.push("/dashboard/tickets");
                 setLoginError("");
             } else {
                 setLoginError("Your account is not a helper account, click on the link above to go to the student login.");
