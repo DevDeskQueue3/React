@@ -75,7 +75,7 @@ const TicketQueue = (props) => {
         push("/student/login");
     }
 
-    const toggleTicket = (e, ticket) => {
+    const toggleTicket = (e) => {
         e.currentTarget.classList.toggle('expand');
     };
 
@@ -109,7 +109,9 @@ const TicketQueue = (props) => {
                                         <section className={classes.cardsection}>
                                             <MUI.CardContent
                                                 className={classes.timeframe}>
-                                                <p>{daysAgo}</p>
+                                                <div className='timeframe-text'>
+                                                    <p>{daysAgo}</p>
+                                                </div>
                                             </MUI.CardContent>
                                         </section>
                                     )}
@@ -118,7 +120,13 @@ const TicketQueue = (props) => {
                                             <p className={classes.subtitle}>{ticket.categories} Issue</p>
                                             <MUI.CardHeader
                                                 className={classes.header}
-                                                title={ticket.title} />                                            
+                                                title={ticket.title} />    
+                                            <section className='additional-info'>
+                                                <h5>Description of Issue</h5>
+                                                <MUI.Typography>{ticket.description}</MUI.Typography>
+                                                <h5>What I've tried</h5>
+                                                <MUI.Typography>{ticket.what_ive_tried}</MUI.Typography>
+                                            </section>                                        
                                         </section>
                                         <section className={classes.cardsection} style = {{textAlign: "right"}}>
                                             <MUI.CardContent>

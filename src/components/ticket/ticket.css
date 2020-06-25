@@ -41,8 +41,8 @@
     display: none;
 }
 
-.expand{
-    height: 200px;
+div.expand{
+    height: 300px;
 }
 
 ul.active{
@@ -74,7 +74,12 @@ ul.active:hover:before{
 }
 
 .ticket-info-wrapper section:first-of-type {
-    width: 46%;
+    width: 70%;
+    margin: 0 10px;
+}
+
+.ticket-info-wrapper section.additional-info{
+    margin: 70px 0 10px 0;
 }
 
 .ticket-form{
