@@ -7,6 +7,7 @@ import useForm from '../../hooks/useForm';
 import { passwordCheckSchema } from '../../utils/loginFormValidation';
 import { getToken, addUserRole } from '../../actions/login';
 import { setLoggedUserRole } from '../../actions/tickets';
+import { Link, useRouteMatch } from 'react-router-dom';
 
 function rand() {
     return Math.round(Math.random() * 20) - 10;
@@ -35,9 +36,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
+
 //Needs to be hidden at window width 600px and below,
 //Check TicketPreview component for comment on when to hide
 const NavDrawer = (props) => {
+    const {url} = useRouteMatch();
     const opentickets = useRef();
     const closedtickets = useRef();
 
@@ -143,8 +146,13 @@ const NavDrawer = (props) => {
                             handleClose();
                             logout();
                         }}>Logout</MUI.MenuItem>
-                        <MUI.MenuItem onClick={handleClose}>View Profile</MUI.MenuItem>
-                        
+                        <MUI.MenuItem onClick={handleClose}>
+                            <Link to={`${url}/tickets`}>View Tickets</Link>
+                        </MUI.MenuItem>
+                        <MUI.MenuItem onClick={handleClose}>
+                            <Link to={`${url}/profile`}>View Profile</Link>
+                        </MUI.MenuItem>
+
                         <MUI.MenuItem onClick={changeRole}>
                             {
                                 loggedUserRole === "STUDENT" ? 

@@ -41,6 +41,10 @@
     display: none;
 }
 
+div.expand{
+    height: 300px;
+}
+
 ul.active{
     background-color: rgba(22, 142, 245, 0.13);
     border-left: 4px solid rgb(0, 171, 236);
@@ -70,7 +74,12 @@ ul.active:hover:before{
 }
 
 .ticket-info-wrapper section:first-of-type {
-    width: 46%;
+    width: 70%;
+    margin: 0 10px;
+}
+
+.ticket-info-wrapper section.additional-info{
+    margin: 70px 0 10px 0;
 }
 
 .ticket-form{

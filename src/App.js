@@ -24,7 +24,7 @@ const App = () => {
       <Route path="/helper/signup" component={HelperRegister} />
       <Route path="/student/login" component={StudentLogin} />
       <Route path="/student/signup" component={StudentRegister} />
-      <PrivateRoute exact path = "/dashboard" component = {TicketDashboard} />
+      <PrivateRoute path = "/dashboard" component = {TicketDashboard} />
     </div>
   );
 };

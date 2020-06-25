@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from "react-redux";
+import PrivateRoute from '../PrivateRoute';
 import * as MUI from '../../MaterialUI/';
 import { setLoggedUserRole } from '../../actions/tickets';
 
@@ -9,7 +10,10 @@ import TicketQueue from './TicketQueue';
 import TicketPreview from './TicketPreview';
 import useWindowSize from '../../hooks/useWindowSize';
 
+import Profile from '../profile/profile';
+
 const TicketDashboard = props => {
+
     const [ticket, setTicket] = useState({});
     const [previewVisible, setPreviewVisible] = useState(false);
     const [statusText, setStatusText] = useState("All Tickets");
@@ -45,10 +49,6 @@ const TicketDashboard = props => {
         setStatusText(stat);
     };
 
-    /* useEffect(() => {
-        console.log(filter);
-    },[filter]); */
-
     const filterTickets = (value) => {
         setFilter(value);
     };
@@ -65,27 +65,31 @@ const TicketDashboard = props => {
                 updateStatusText={updateStatusText}
                 filterTickets={filterTickets}
                 open={open} />
-            <TicketQueue
-                showPreview={setVisible}
-                statusText={statusText}
-                filter={filter}
-                ticketToUpdate={ticket}
-                toggleDrawer={toggleDrawer}
-                open = {open}
-                setPreviewVisible = {setPreviewVisible}
-                isCreatingTicket = {isCreatingTicket}
-                setIsCreatingTicket = {setIsCreatingTicket}
-            />
-            <TicketPreview
-                visible={previewVisible}
-                ticket={ticket} 
-                isCreatingTicket = {isCreatingTicket}
-                setIsCreatingTicket = {setIsCreatingTicket}
-                setPreviewVisible = {setPreviewVisible}
-            />
+            
+            <PrivateRoute exact path = "/dashboard/tickets">
+                <TicketQueue
+                    showPreview={setVisible}
+                    statusText={statusText}
+                    filter={filter}
+                    ticketToUpdate={ticket}
+                    toggleDrawer={toggleDrawer}
+                    open = {open}
+                    setPreviewVisible = {setPreviewVisible}
+                    isCreatingTicket = {isCreatingTicket}
+                    setIsCreatingTicket = {setIsCreatingTicket}
+                />
+                <TicketPreview
+                    visible={previewVisible}
+                    ticket={ticket} 
+                    isCreatingTicket = {isCreatingTicket}
+                    setIsCreatingTicket = {setIsCreatingTicket}
+                    setPreviewVisible = {setPreviewVisible}
+                />
+            </PrivateRoute>
+            <PrivateRoute path='/dashboard/profile'>
+                <Profile />
+            </PrivateRoute>
         </div>
-
-        
     );
 };
 

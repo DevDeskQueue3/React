@@ -75,6 +75,10 @@ const TicketQueue = (props) => {
         push("/student/login");
     }
 
+    const toggleTicket = (e) => {
+        e.currentTarget.classList.toggle('expand');
+    };
+
     if(props.isCreatingTicket) return <TicketForm showPreview={props.showPreview} setPreviewVisible={props.setPreviewVisible} toggleDrawer={props.toggleDrawer} open={props.open} setIsCreatingTicket={props.setIsCreatingTicket} />;
 
     return (
@@ -94,7 +98,10 @@ const TicketQueue = (props) => {
                         
                         return( 
                             <MUI.Card
-                                onClick={() => props.showPreview(ticket)}
+                                onClick={(e) => {
+                                    if (windowWidth < 1100) toggleTicket(e, ticket);
+                                    if (windowWidth > 1100) props.showPreview(ticket);
+                                }}
                                 className={`${classes.card} ${setStatusColor("TICKET", ticket.status)}`} 
                                 key={ticket.ticket_id}>
                                 <div className={classes.details}>
@@ -102,7 +109,9 @@ const TicketQueue = (props) => {
                                         <section className={classes.cardsection}>
                                             <MUI.CardContent
                                                 className={classes.timeframe}>
-                                                <p>{daysAgo}</p>
+                                                <div className='timeframe-text'>
+                                                    <p>{daysAgo}</p>
+                                                </div>
                                             </MUI.CardContent>
                                         </section>
                                     )}
@@ -111,7 +120,13 @@ const TicketQueue = (props) => {
                                             <p className={classes.subtitle}>{ticket.categories} Issue</p>
                                             <MUI.CardHeader
                                                 className={classes.header}
-                                                title={ticket.title} />                                            
+                                                title={ticket.title} />    
+                                            <section className='additional-info'>
+                                                <h5>Description of Issue</h5>
+                                                <MUI.Typography>{ticket.description}</MUI.Typography>
+                                                <h5>What I've tried</h5>
+                                                <MUI.Typography>{ticket.what_ive_tried}</MUI.Typography>
+                                            </section>                                        
                                         </section>
                                         <section className={classes.cardsection} style = {{textAlign: "right"}}>
                                             <MUI.CardContent>

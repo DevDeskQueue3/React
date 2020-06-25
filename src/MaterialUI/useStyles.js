@@ -84,18 +84,24 @@ const useStyles = makeStyles((theme) => ({
     card: {
         margin: '0 0px 17px 0px',
         textAlign: 'left',
-        width: '97%'
+        width: '97%',
+        height: '120px',
+        transition: 'height .4s ease-in',
+        overflow: 'hidden'
     },
     details: {
         display: 'flex',
         padding: '0'
     },
     timeframe: {
+        display: 'flex',
+        flexDirection: 'column',
         borderRight: '1px solid #cecece',
         margin: '10px 0',
+        justifyContent: 'center',
         width: '108px',
         maxWidth: '110px',
-        '& p': {
+        '& div': {
             position: 'relative',
             top: '20%'
         }
