@@ -144,6 +144,10 @@ const useStyles = makeStyles((theme) => ({
         minWidth: 185,
         maxWidth: 354
     },
+    profilePaper: {
+        width: '100%',
+        padding: '10px'
+    },
     previewDrawer: {
         display: 'none',
         position: "fixed",
