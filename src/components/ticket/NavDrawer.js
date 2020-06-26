@@ -184,8 +184,9 @@ const NavDrawer = (props) => {
                     className={classes.listitem}
                     button
                     onClick={() => {
+                            let filterValue = loggedUserRole === "HELPER" ? "ALL" : "OPEN";
                             props.updateStatusText("Open Tickets");
-                            props.filterTickets("OPEN");
+                            props.filterTickets(filterValue);
                         }
                     }>{loggedUserRole === "STUDENT" ? "Open Tickets" : "All Tickets"}</MUI.ListItem>
             </MUI.List>
@@ -199,8 +200,9 @@ const NavDrawer = (props) => {
                     className={classes.listitem}
                     button
                     onClick={() => {
+                            let filterValue = loggedUserRole === "HELPER" ? "MY" : "CLOSED";
                             props.updateStatusText("Closed Tickets");
-                            props.filterTickets("CLOSED");
+                            props.filterTickets(filterValue);
                         }
                     }>{loggedUserRole === "STUDENT" ? "Closed Tickets" : "My Tickets"}</MUI.ListItem>
             </MUI.List>

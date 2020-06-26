@@ -29,9 +29,9 @@ const TicketQueue = (props) => {
     }, [dispatch, props.isCreatingTicket]);
 
     useEffect(() => {
-        let newTickets = tickets.filter(ticket => ticket.status === "OPEN");
-        console.log(newTickets);
-    }, [tickets]);
+        // let newTickets = tickets.filter(ticket => ticket.status === "OPEN");
+        console.log(filteredTickets);
+    }, [filteredTickets]);
 
     useEffect(() => {
         if(loggedUserRole === "STUDENT"){
@@ -45,7 +45,8 @@ const TicketQueue = (props) => {
                 setFilteredTickets(tickets.filter(ticket => 
                         (
                             (
-                                ticket.status === props.filter ||
+                                (props.filter === "ALL" ? ticket : ticket.claimed_by_id === user.id ||
+                                ticket.status === props.filter) ||
                                 (ticket.categories !== null && ticket.categories.includes(props.filter))
                             )
                         )
@@ -130,7 +131,7 @@ const TicketQueue = (props) => {
                                         </section>
                                         <section className={classes.cardsection} style = {{textAlign: "right"}}>
                                             <MUI.CardContent>
-                                                {(loggedUserRole === "HELPER" && ticket.claimed_by_name) &&
+                                                {ticket.claimed_by_name &&
                                                     <>
                                                         <MUI.IconButton>
                                                             <MUI.Tooltip
