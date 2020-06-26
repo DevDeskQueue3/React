@@ -137,7 +137,7 @@ const useStyles = makeStyles((theme) => ({
         minWidth: 185,
         maxWidth: 354,
         flexShrink: 0,
-        fontFamily: 'Electrolized, verdana, segoe'
+        fontFamily: 'Open Sans, verdana, segoe'
     },
     drawerPaper: {
         width: leftDrawerWidth, 

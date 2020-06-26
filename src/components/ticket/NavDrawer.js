@@ -66,7 +66,9 @@ const NavDrawer = (props) => {
 
     const setActive = (e) => {
         const ref = e.currentTarget.id === 'open-tickets' ? opentickets : closedtickets;
-        ref.current.classList.add("active");
+        const prevRef = ref; // store previous ref so that it can be made inactive
+        prevRef.current.classList.toggle("active");
+        ref.current.classList.toggle("active"); // set the new ref to active
     };
 
     const handleClick = e => {
@@ -221,7 +223,7 @@ const NavDrawer = (props) => {
                         <MUI.TreeItem nodeId='10' onClick={() => { props.updateStatusText('Resolved Tickets'); props.filterTickets('RESOLVED') }} label={<MUI.Typography className={classes.filteritem}>Resolved</MUI.Typography>} />
                         <MUI.TreeItem nodeId='12' onClick={() => { props.updateStatusText('Closed Tickets'); props.filterTickets('CLOSED') }} label={<MUI.Typography className={classes.filteritem}>Closed</MUI.Typography>} />
                     </MUI.TreeItem>
-                    <MUI.TreeItem nodeId='13' label={<MUI.Typography className={`${classes.filteritem} ${classes.filterheader}`}>Assigned To</MUI.Typography>}>
+                    {/* <MUI.TreeItem nodeId='13' label={<MUI.Typography className={`${classes.filteritem} ${classes.filterheader}`}>Assigned To</MUI.Typography>}>
                         <MUI.TreeItem nodeId='14' label={<MUI.Typography className={classes.filteritem}>Team Lead</MUI.Typography>} />
                         <MUI.TreeItem nodeId='15' label={<MUI.Typography className={classes.filteritem}>Section Lead</MUI.Typography>} />
                     </MUI.TreeItem>
@@ -230,7 +232,7 @@ const NavDrawer = (props) => {
                         <MUI.TreeItem nodeId='18' label={<MUI.Typography className={classes.filteritem}>Urgent</MUI.Typography>} />
                         <MUI.TreeItem nodeId='19' label={<MUI.Typography className={classes.filteritem}>Very Urgent</MUI.Typography>} />
                         <MUI.TreeItem nodeId='20' label={<MUI.Typography className={classes.filteritem}>Emergency</MUI.Typography>} />
-                    </MUI.TreeItem>
+                    </MUI.TreeItem> */}
                 </MUI.TreeItem>
                 
             </MUI.TreeView>
