@@ -185,7 +185,7 @@ const NavDrawer = (props) => {
                     button
                     onClick={() => {
                             let filterValue = loggedUserRole === "HELPER" ? "ALL" : "OPEN";
-                            props.updateStatusText("Open Tickets");
+                            props.updateStatusText(`${filterValue} Tickets`);
                             props.filterTickets(filterValue);
                         }
                     }>{loggedUserRole === "STUDENT" ? "Open Tickets" : "All Tickets"}</MUI.ListItem>
@@ -201,7 +201,7 @@ const NavDrawer = (props) => {
                     button
                     onClick={() => {
                             let filterValue = loggedUserRole === "HELPER" ? "MY" : "CLOSED";
-                            props.updateStatusText("Closed Tickets");
+                            props.updateStatusText(`${filterValue} Tickets`);
                             props.filterTickets(filterValue);
                         }
                     }>{loggedUserRole === "STUDENT" ? "Closed Tickets" : "My Tickets"}</MUI.ListItem>
