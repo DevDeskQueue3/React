@@ -3,6 +3,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## DevDesk Queue App
 Students at Lambda School need a place where they can escalate their concerns and receive help. This app will allow an admin to manage help desk tickets that come in from Lambda School Students.
 
+Link to live app: [DevDesk App](https://devdeskqueue3.vercel.app/).
+
 ### Product Vision Document (PVD)
 Here is the link for the Product Vision Document to read more about our goals for this app: [PVD](https://docs.google.com/document/d/1krugO1IBcXsC9sUGfoRJifWSltto1Vq4ZzcJBieuRtc/edit#)
 
