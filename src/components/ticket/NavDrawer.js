@@ -151,9 +151,9 @@ const NavDrawer = (props) => {
                         <MUI.MenuItem onClick={handleClose}>
                             <Link to={`${url}/tickets`}>View Tickets</Link>
                         </MUI.MenuItem>
-                        <MUI.MenuItem onClick={handleClose}>
+                        {/* <MUI.MenuItem onClick={handleClose}>
                             <Link to={`${url}/profile`}>View Profile</Link>
-                        </MUI.MenuItem>
+                        </MUI.MenuItem> */}
 
                         <MUI.MenuItem onClick={changeRole}>
                             {
