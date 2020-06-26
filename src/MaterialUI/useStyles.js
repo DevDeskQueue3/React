@@ -85,8 +85,8 @@ const useStyles = makeStyles((theme) => ({
         margin: '0 0px 17px 0px',
         textAlign: 'left',
         width: '97%',
-        height: '120px',
-        transition: 'height .4s ease-in',
+        maxHeight: '120px',
+        transition: 'max-height .4s linear',
         overflow: 'hidden'
     },
     details: {

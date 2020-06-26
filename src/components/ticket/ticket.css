@@ -42,7 +42,7 @@
 }
 
 div.expand{
-    height: 300px;
+    max-height: 500px;
 }
 
 ul.active{
@@ -160,7 +160,7 @@ ul.active:hover:before{
         display: none;
     }
     #addTicketButton {
-        right: 110px;
+        right: 10px;
     }
     .ticket-list {
         width: 100%;
