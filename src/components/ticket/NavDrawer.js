@@ -185,7 +185,7 @@ const NavDrawer = (props) => {
                     button
                     onClick={() => {
                             props.updateStatusText("Open Tickets");
-                            props.filterTickets( "OPEN");
+                            props.filterTickets("OPEN");
                         }
                     }>{loggedUserRole === "STUDENT" ? "Open Tickets" : "All Tickets"}</MUI.ListItem>
             </MUI.List>
