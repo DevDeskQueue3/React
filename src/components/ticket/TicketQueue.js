@@ -131,7 +131,7 @@ const TicketQueue = (props) => {
                                         </section>
                                         <section className={classes.cardsection} style = {{textAlign: "right"}}>
                                             <MUI.CardContent>
-                                                {ticket.claimed_by_name &&
+                                                {(loggedUserRole === "HELPER" && ticket.claimed_by_name) &&
                                                     <>
                                                         <MUI.IconButton>
                                                             <MUI.Tooltip
